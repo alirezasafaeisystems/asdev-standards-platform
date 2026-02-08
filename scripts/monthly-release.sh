@@ -109,7 +109,8 @@ if git diff --quiet; then
   exit 0
 fi
 
-git add platform/repo-templates/templates.yaml sync/divergence-report.csv sync/divergence-report.previous.csv "$update_file"
+git add platform/repo-templates/templates.yaml sync/divergence-report.previous.csv "$update_file"
+git add -f sync/divergence-report.csv
 git commit -m "chore: monthly ASDEV release ${DATE_TAG}"
 git push -u origin "$BRANCH_NAME"
 

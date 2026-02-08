@@ -66,16 +66,19 @@ cat >> "$OUTPUT_FILE" <<SECTION
 
 ## Level 1 Rollout Targets
 
-| Repository | Level 1 Templates |
-|---|---|
+| Repository | Level 1 Templates | Target File |
+|---|---|---|
 SECTION
 
-if [[ -f sync/targets.level1.yaml ]]; then
-  while IFS=$'\t' read -r repo templates; do
-    echo "| ${repo} | ${templates} |" >> "$OUTPUT_FILE"
-  done < <(yq -r '.targets[] | [.repo, (.templates | join(", "))] | @tsv' sync/targets.level1.yaml)
+mapfile -t level1_files < <(find sync -maxdepth 1 -type f -name 'targets.level1*.yaml' | sort)
+if [[ "${#level1_files[@]}" -gt 0 ]]; then
+  for file in "${level1_files[@]}"; do
+    while IFS=$'\t' read -r repo templates; do
+      echo "| ${repo} | ${templates} | ${file} |" >> "$OUTPUT_FILE"
+    done < <(yq -r '.targets[]? | [.repo, (.templates | join(", "))] | @tsv' "$file")
+  done
 else
-  echo "| n/a | targets.level1.yaml not found |" >> "$OUTPUT_FILE"
+  echo "| n/a | targets.level1 files not found | n/a |" >> "$OUTPUT_FILE"
 fi
 
 cat >> "$OUTPUT_FILE" <<'FOOTER'
@@ -83,5 +86,5 @@ cat >> "$OUTPUT_FILE" <<'FOOTER'
 ## Notes
 
 - Level 0 metrics are derived from `sync/divergence-report.csv`.
-- Level 1 section reflects configured rollout intent from `sync/targets.level1.yaml`.
+- Level 1 section reflects configured rollout intent from `sync/targets.level1*.yaml`.
 FOOTER
