@@ -46,8 +46,10 @@ fi
 previous_csv="$(mktemp)"
 if [[ -f sync/divergence-report.csv ]]; then
   cp sync/divergence-report.csv "$previous_csv"
+  cp sync/divergence-report.csv sync/divergence-report.previous.csv
 else
   : > "$previous_csv"
+  : > sync/divergence-report.previous.csv
 fi
 
 # 2) Generate current divergence snapshot
@@ -107,7 +109,7 @@ if git diff --quiet; then
   exit 0
 fi
 
-git add platform/repo-templates/templates.yaml sync/divergence-report.csv "$update_file"
+git add platform/repo-templates/templates.yaml sync/divergence-report.csv sync/divergence-report.previous.csv "$update_file"
 git commit -m "chore: monthly ASDEV release ${DATE_TAG}"
 git push -u origin "$BRANCH_NAME"
 

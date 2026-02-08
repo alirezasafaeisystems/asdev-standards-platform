@@ -36,6 +36,34 @@ done
 
 cat >> "$OUTPUT_FILE" <<SECTION
 
+## Level 0 Trend (Current vs Previous Snapshot)
+
+| Status | Previous | Current | Delta |
+|---|---:|---:|---:|
+SECTION
+
+count_status() {
+  local file="$1"
+  local status="$2"
+  if [[ ! -f "$file" ]]; then
+    echo 0
+    return
+  fi
+  awk -F, -v s="$status" 'NR>1 && $7==s {c++} END{print c+0}' "$file"
+}
+
+prev_file="sync/divergence-report.previous.csv"
+curr_file="sync/divergence-report.csv"
+
+for st in aligned diverged missing opted_out; do
+  prev="$(count_status "$prev_file" "$st")"
+  curr="$(count_status "$curr_file" "$st")"
+  delta=$((curr - prev))
+  echo "| ${st} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
+done
+
+cat >> "$OUTPUT_FILE" <<SECTION
+
 ## Level 1 Rollout Targets
 
 | Repository | Level 1 Templates |

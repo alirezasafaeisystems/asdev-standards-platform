@@ -1,0 +1,10 @@
+targets:
+  - repo: alirezasafaeiiidev/go-level1-pilot
+    default_branch: main
+    templates:
+      - go-level1-ci
+    optional_features: []
+    opt_outs: []
+    labels:
+      - asdev-sync
+      - standards

@@ -1,0 +1,10 @@
+targets:
+  - repo: alirezasafaeiiidev/python-level1-pilot
+    default_branch: main
+    templates:
+      - python-level1-ci
+    optional_features: []
+    opt_outs: []
+    labels:
+      - asdev-sync
+      - standards

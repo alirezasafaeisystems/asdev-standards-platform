@@ -12,9 +12,11 @@ lint:
 	@bash -n platform/scripts/divergence-report.sh
 	@bash -n scripts/monthly-release.sh
 	@bash -n scripts/generate-dashboard.sh
+	@bash -n scripts/validate-target-template-ids.sh
 	@echo "Lint checks passed."
 
 test:
+	@if command -v yq >/dev/null 2>&1; then bash scripts/validate-target-template-ids.sh; else echo "Skipping template-id validation (yq not found)."; fi
 	@bash tests/test_scripts.sh
 
 run:
