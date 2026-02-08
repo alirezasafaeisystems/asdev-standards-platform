@@ -1,0 +1,39 @@
+name: ASDEV Sync PR Comment
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  comment:
+    if: startsWith(github.head_ref, 'chore/asdev-sync-')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Post sync summary comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          files_json=$(gh api repos/${REPO}/pulls/${PR_NUMBER}/files)
+          total=$(echo "$files_json" | jq 'length')
+          added=$(echo "$files_json" | jq '[.[].additions] | add // 0')
+          deleted=$(echo "$files_json" | jq '[.[].deletions] | add // 0')
+          changed=$(echo "$files_json" | jq '[.[].changes] | add // 0')
+
+          body=$(cat <<MSG
+          ## ASDEV Sync Summary
+
+          - Files changed: ${total}
+          - Lines added: ${added}
+          - Lines deleted: ${deleted}
+          - Total line changes: ${changed}
+
+          This PR appears to be an ASDEV sync branch and was auto-summarized.
+          MSG
+          )
+
+          gh pr comment ${PR_NUMBER} --repo ${REPO} --body "$body"

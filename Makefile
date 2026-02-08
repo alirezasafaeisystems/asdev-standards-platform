@@ -10,9 +10,12 @@ setup:
 lint:
 	@bash -n platform/scripts/sync.sh
 	@bash -n platform/scripts/divergence-report.sh
+	@bash -n platform/scripts/divergence-report-combined.sh
 	@bash -n scripts/monthly-release.sh
 	@bash -n scripts/generate-dashboard.sh
 	@bash -n scripts/validate-target-template-ids.sh
+	@bash -n scripts/validate-template-version-policy.sh
+	@bash -n scripts/weekly-governance-digest.sh
 	@echo "Lint checks passed."
 
 test:

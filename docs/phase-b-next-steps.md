@@ -79,8 +79,15 @@
 - [x] Add CI check that validates all target files reference known template IDs.
 
 ## Next Execution Tasks (Phase F)
-- [ ] Create Go pilot repository and execute first Go Level 1 rollout PR.
-- [ ] Expand divergence report to include Level 1 targets (`targets.level1*.yaml`) in a combined report mode.
-- [ ] Add PR comment bot workflow that posts divergence summary on sync PRs.
-- [ ] Add policy check in CI that prevents template version changes without ADR/standard reference updates.
-- [ ] Publish a weekly governance digest issue automatically from dashboard + divergence deltas.
+- [ ] Create Go pilot repository and execute first Go Level 1 rollout PR. (blocked: GitHub API timeout from execution environment)
+- [x] Expand divergence report to include Level 1 targets (`targets.level1*.yaml`) in a combined report mode.
+- [x] Add PR comment bot workflow that posts divergence summary on sync PRs.
+- [x] Add policy check in CI that prevents template version changes without ADR/standard reference updates.
+- [x] Publish a weekly governance digest issue automatically from dashboard + divergence deltas.
+
+## Next Execution Tasks (Phase G)
+- [ ] Retry Go pilot repository provisioning and run first Go Level 1 sync PR when GitHub API connectivity is stable.
+- [ ] Execute `scripts/weekly-governance-digest.sh` once manually and verify digest issue creation/update.
+- [ ] Add combined-report trend section to dashboard (`sync/divergence-report.combined.csv` deltas).
+- [ ] Add lightweight retry/backoff to scripts that call GitHub API-heavy operations (`sync.sh`, divergence scripts).
+- [ ] Add runbook section for outage handling and recovery steps in `docs/`.
