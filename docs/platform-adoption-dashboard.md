@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-09T20:50:03Z
+- Generated at: 2026-02-09T21:43:29Z
 
 ## Level 0 Adoption (from divergence report)
 
@@ -43,6 +43,12 @@
 |---|---:|---:|---:|
 | alirezasafaeiiidev/go-level1-pilot | 0 | 1 | 1 |
 | alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
+
+## Transient Error Fingerprints (Combined)
+
+| Fingerprint | Previous | Current | Delta |
+|---|---:|---:|---:|
+| auth_or_access | 0 | 2 | 2 |
 
 ## Combined Report Delta by Repo
 
