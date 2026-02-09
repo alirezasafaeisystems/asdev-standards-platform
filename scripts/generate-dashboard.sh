@@ -10,6 +10,7 @@ FINGERPRINT_HISTORY_ROW_LIMIT="${FINGERPRINT_HISTORY_ROW_LIMIT:-40}"
 FINGERPRINT_TOP_DELTA_LIMIT="${FINGERPRINT_TOP_DELTA_LIMIT:-5}"
 CLONE_FAILED_HISTORY_LIMIT="${CLONE_FAILED_HISTORY_LIMIT:-5}"
 UNKNOWN_TEMPLATE_HISTORY_LIMIT="${UNKNOWN_TEMPLATE_HISTORY_LIMIT:-5}"
+AUTH_OR_ACCESS_HISTORY_LIMIT="${AUTH_OR_ACCESS_HISTORY_LIMIT:-5}"
 
 cd "$ROOT_DIR"
 
@@ -328,6 +329,46 @@ SECTION
       echo "| n/a | n/a | 0 |" >> "$OUTPUT_FILE"
     fi
     rm -f "$trend_tmp"
+
+    cat >> "$OUTPUT_FILE" <<SECTION
+
+## auth_or_access Trend by Run
+
+| Run | auth_or_access count |
+|---|---:|
+SECTION
+
+    auth_history_tmp="$(mktemp)"
+    : > "$auth_history_tmp"
+    get_auth_or_access_current_count() {
+      local file="$1"
+      if [[ ! -f "$file" ]]; then
+        echo 0
+        return
+      fi
+      awk -F, 'NR>1 && $1=="auth_or_access" {print $3; found=1} END{if(!found) print 0}' "$file"
+    }
+
+    if [[ -f "$trend_current" ]]; then
+      echo "current,$(get_auth_or_access_current_count "$trend_current")" >> "$auth_history_tmp"
+    fi
+    if [[ -f "$trend_previous" ]]; then
+      echo "previous,$(get_auth_or_access_current_count "$trend_previous")" >> "$auth_history_tmp"
+    fi
+    if [[ -d "sync/snapshots" ]]; then
+      mapfile -t auth_history_files < <(find sync/snapshots -maxdepth 1 -type f -name 'divergence-report.combined.errors.trend.*.csv' | sort | tail -n "$AUTH_OR_ACCESS_HISTORY_LIMIT")
+      for file in "${auth_history_files[@]}"; do
+        run_tag="$(basename "$file" | sed -E 's/^divergence-report\.combined\.errors\.trend\.([0-9TZ]+)\.csv$/\1/')"
+        echo "${run_tag},$(get_auth_or_access_current_count "$file")" >> "$auth_history_tmp"
+      done
+    fi
+
+    if [[ -s "$auth_history_tmp" ]]; then
+      awk -F, '{printf "| %s | %s |\n", $1, $2}' "$auth_history_tmp" | sort -u | head -n "$((AUTH_OR_ACCESS_HISTORY_LIMIT + 2))" >> "$OUTPUT_FILE"
+    else
+      echo "| n/a | 0 |" >> "$OUTPUT_FILE"
+    fi
+    rm -f "$auth_history_tmp"
   fi
 
   cat >> "$OUTPUT_FILE" <<SECTION

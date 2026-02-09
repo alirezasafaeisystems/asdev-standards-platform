@@ -67,18 +67,21 @@ cat > "${SYNC_DIR}/divergence-report.combined.errors.trend.csv" <<'CSV'
 error_fingerprint,previous,current,delta
 tls_error,1,3,2
 timeout,2,1,-1
+auth_or_access,1,4,3
 CSV
 
 cat > "${SYNC_DIR}/divergence-report.combined.errors.trend.previous.csv" <<'CSV'
 error_fingerprint,previous,current,delta
 tls_error,0,1,1
 http_502,1,0,-1
+auth_or_access,0,2,2
 CSV
 
 mkdir -p "${SYNC_DIR}/snapshots"
 cat > "${SYNC_DIR}/snapshots/divergence-report.combined.errors.trend.20260209T100000Z.csv" <<'CSV'
 error_fingerprint,previous,current,delta
 tls_error,0,2,2
+auth_or_access,0,3,3
 CSV
 cat > "${SYNC_DIR}/snapshots/divergence-report.combined.20260209T100000Z.csv" <<'CSV'
 target_file,repo,template_id,expected_version,detected_version,mode,source_ref,status,last_checked_at
@@ -131,6 +134,26 @@ grep -q "| previous | http_502 | -1 |" "${OUTPUT_FILE}" || {
 
 grep -q "| 20260209T100000Z | tls_error | 2 |" "${OUTPUT_FILE}" || {
   echo "Missing snapshot trend history row" >&2
+  exit 1
+}
+
+grep -q "## auth_or_access Trend by Run" "${OUTPUT_FILE}" || {
+  echo "Missing auth_or_access trend section" >&2
+  exit 1
+}
+
+grep -q "| current | 4 |" "${OUTPUT_FILE}" || {
+  echo "Missing current auth_or_access row" >&2
+  exit 1
+}
+
+grep -q "| previous | 2 |" "${OUTPUT_FILE}" || {
+  echo "Missing previous auth_or_access row" >&2
+  exit 1
+}
+
+grep -q "| 20260209T100000Z | 3 |" "${OUTPUT_FILE}" || {
+  echo "Missing snapshot auth_or_access row" >&2
   exit 1
 }
 

@@ -112,6 +112,10 @@ fi
 
 current_issue_number="$(gh issue list --repo alirezasafaeiiidev/asdev_platform --state open --search "${TITLE} in:title" --json number --jq '.[0].number // empty')"
 current_issue_url="$(gh issue list --repo alirezasafaeiiidev/asdev_platform --state open --search "${TITLE} in:title" --json url --jq '.[0].url // empty')"
+stale_evaluated_count="0"
+stale_closed_count="0"
+stale_dry_run_candidates="0"
+stale_dry_run_enabled="${DIGEST_STALE_DRY_RUN:-false}"
 if [[ -n "$current_issue_number" && -n "$current_issue_url" ]]; then
   stale_summary_file="$(mktemp)"
   DIGEST_STALE_SUMMARY_FILE="$stale_summary_file" \
@@ -123,8 +127,23 @@ if [[ -n "$current_issue_number" && -n "$current_issue_url" ]]; then
   if [[ -f "$stale_summary_file" ]]; then
     echo "Weekly digest stale lifecycle summary:"
     cat "$stale_summary_file"
+    stale_evaluated_count="$(awk -F= '/^evaluated_count=/{print $2}' "$stale_summary_file" | tail -n 1)"
+    stale_closed_count="$(awk -F= '/^closed_count=/{print $2}' "$stale_summary_file" | tail -n 1)"
+    stale_dry_run_candidates="$(awk -F= '/^dry_run_candidates=/{print $2}' "$stale_summary_file" | tail -n 1)"
+    stale_dry_run_enabled="$(awk -F= '/^dry_run_enabled=/{print $2}' "$stale_summary_file" | tail -n 1)"
     rm -f "$stale_summary_file"
   fi
+fi
+
+if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+  {
+    echo "## Weekly Digest Stale Lifecycle"
+    echo ""
+    echo "- stale_evaluated_count: ${stale_evaluated_count}"
+    echo "- stale_closed_count: ${stale_closed_count}"
+    echo "- stale_dry_run_candidates: ${stale_dry_run_candidates}"
+    echo "- stale_dry_run_enabled: ${stale_dry_run_enabled}"
+  } >> "$GITHUB_STEP_SUMMARY"
 fi
 
 rm -f "$body_file" "$actions_file"

@@ -7,6 +7,7 @@ TREND_FILE="${3:-sync/divergence-report.combined.errors.trend.csv}"
 ATTESTATION_FILE="${4:-sync/generated-reports.attestation}"
 ATTESTATION_MAX_AGE_SECONDS="${ATTESTATION_MAX_AGE_SECONDS:-1800}"
 ATTESTATION_EXPECTED_SCHEMA_VERSION="${ATTESTATION_EXPECTED_SCHEMA_VERSION:-1}"
+ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM="${ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM:-sha256}"
 
 for file in "$COMBINED_FILE" "$ERRORS_FILE" "$TREND_FILE"; do
   if [[ ! -f "$file" ]]; then
@@ -29,6 +30,7 @@ require_key() {
 }
 
 require_key "schema_version"
+require_key "checksum_algorithm"
 require_key "validated_at"
 require_key "combined_file"
 require_key "errors_file"
@@ -40,6 +42,12 @@ require_key "trend_sha256"
 schema_version="$(grep '^schema_version=' "$ATTESTATION_FILE" | cut -d= -f2-)"
 if [[ "$schema_version" != "$ATTESTATION_EXPECTED_SCHEMA_VERSION" ]]; then
   echo "Unsupported attestation schema_version=${schema_version}; expected=${ATTESTATION_EXPECTED_SCHEMA_VERSION}" >&2
+  exit 1
+fi
+
+checksum_algorithm="$(grep '^checksum_algorithm=' "$ATTESTATION_FILE" | cut -d= -f2-)"
+if [[ "$checksum_algorithm" != "$ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM" ]]; then
+  echo "Unsupported attestation checksum_algorithm=${checksum_algorithm}; expected=${ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM}" >&2
   exit 1
 fi
 

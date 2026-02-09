@@ -9,6 +9,7 @@ FAKE_BIN="${WORK_DIR}/fakebin"
 mkdir -p "${FAKE_BIN}"
 
 CAPTURED_BODY="${WORK_DIR}/captured-body.md"
+STEP_SUMMARY="${WORK_DIR}/step-summary.md"
 
 cat > "${FAKE_BIN}/yq" <<'YQ'
 #!/usr/bin/env bash
@@ -69,6 +70,7 @@ chmod +x "${FAKE_BIN}/gh"
   DIGEST_OWNER="@owner-test" \
   DIGEST_REVIEW_SLA="48h" \
   SKIP_REPORT_REGEN=true \
+  GITHUB_STEP_SUMMARY="${STEP_SUMMARY}" \
   bash scripts/weekly-governance-digest.sh
 )
 
@@ -104,6 +106,16 @@ grep -q "#16" "${CAPTURED_BODY}" || {
 
 grep -q "#17" "${CAPTURED_BODY}" || {
   echo "Missing linked issue #17" >&2
+  exit 1
+}
+
+grep -q "## Weekly Digest Stale Lifecycle" "${STEP_SUMMARY}" || {
+  echo "Missing weekly digest stale lifecycle summary section" >&2
+  exit 1
+}
+
+grep -q -- "- stale_evaluated_count:" "${STEP_SUMMARY}" || {
+  echo "Missing stale evaluated metric in summary" >&2
   exit 1
 }
 

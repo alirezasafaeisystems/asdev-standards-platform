@@ -131,4 +131,27 @@ grep -q 'Attestation path mismatch for combined_file' "${WORK_DIR}/path.err" || 
   exit 1
 }
 
+(
+  cd "$ROOT_DIR"
+  ATTESTATION_CHECKSUM_ALGORITHM=sha1 bash scripts/write-report-attestation.sh "$combined" "$errors" "$trend" "$attestation"
+)
+
+set +e
+(
+  cd "$ROOT_DIR"
+  ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM=sha256 bash scripts/validate-report-attestation.sh "$combined" "$errors" "$trend" "$attestation"
+) >"${WORK_DIR}/algo.out" 2>"${WORK_DIR}/algo.err"
+algo_status=$?
+set -e
+
+if [[ "$algo_status" -eq 0 ]]; then
+  echo "Expected checksum algorithm compatibility failure" >&2
+  exit 1
+fi
+
+grep -q 'Unsupported attestation checksum_algorithm' "${WORK_DIR}/algo.err" || {
+  echo "Missing checksum algorithm mismatch error" >&2
+  exit 1
+}
+
 echo "report attestation checks passed."
