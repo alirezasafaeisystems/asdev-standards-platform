@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUTPUT_FILE="${1:-docs/platform-adoption-dashboard.md}"
 NOW_UTC="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 LATEST_WEEKLY_DIGEST_URL="${LATEST_WEEKLY_DIGEST_URL:-}"
+FINGERPRINT_HISTORY_LIMIT="${FINGERPRINT_HISTORY_LIMIT:-3}"
+FINGERPRINT_HISTORY_ROW_LIMIT="${FINGERPRINT_HISTORY_ROW_LIMIT:-40}"
 
 cd "$ROOT_DIR"
 
@@ -188,6 +190,42 @@ SECTION
         echo "| ${fingerprint} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
       done
     fi
+  fi
+
+  trend_current="sync/divergence-report.combined.errors.trend.csv"
+  trend_previous="sync/divergence-report.combined.errors.trend.previous.csv"
+  if [[ -f "$trend_current" || -f "$trend_previous" ]]; then
+    cat >> "$OUTPUT_FILE" <<SECTION
+
+## Fingerprint Delta History (Recent Runs)
+
+| Run | Fingerprint | Delta |
+|---|---|---:|
+SECTION
+
+    trend_tmp="$(mktemp)"
+    : > "$trend_tmp"
+
+    if [[ -f "$trend_current" ]]; then
+      awk -F, 'NR>1 {print "current," $1 "," $4}' "$trend_current" >> "$trend_tmp"
+    fi
+    if [[ -f "$trend_previous" ]]; then
+      awk -F, 'NR>1 {print "previous," $1 "," $4}' "$trend_previous" >> "$trend_tmp"
+    fi
+    if [[ -d "sync/snapshots" ]]; then
+      mapfile -t trend_history_files < <(find sync/snapshots -maxdepth 1 -type f -name 'divergence-report.combined.errors.trend.*.csv' | sort | tail -n "$FINGERPRINT_HISTORY_LIMIT")
+      for file in "${trend_history_files[@]}"; do
+        run_tag="$(basename "$file" | sed -E 's/^divergence-report\.combined\.errors\.trend\.([0-9TZ]+)\.csv$/\1/')"
+        awk -F, -v run="$run_tag" 'NR>1 {print run "," $1 "," $4}' "$file" >> "$trend_tmp"
+      done
+    fi
+
+    if [[ -s "$trend_tmp" ]]; then
+      awk -F, '{printf "| %s | %s | %s |\n", $1, $2, $3}' "$trend_tmp" | sort -u | head -n "$FINGERPRINT_HISTORY_ROW_LIMIT" >> "$OUTPUT_FILE"
+    else
+      echo "| n/a | n/a | 0 |" >> "$OUTPUT_FILE"
+    fi
+    rm -f "$trend_tmp"
   fi
 
   cat >> "$OUTPUT_FILE" <<SECTION

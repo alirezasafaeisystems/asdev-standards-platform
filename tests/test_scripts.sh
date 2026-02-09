@@ -10,6 +10,8 @@ bash tests/test_divergence_error_fingerprint.sh
 bash tests/test_retry_cmd.sh
 bash tests/test_error_fingerprint_trend.sh
 bash tests/test_validate_generated_reports.sh
+bash tests/test_report_attestation.sh
+bash tests/test_rotate_report_snapshots_retention.sh
 bash tests/test_summarize_error_fingerprint_trend.sh
 bash tests/test_close_stale_weekly_digests.sh
 bash tests/test_dashboard_reliability.sh

@@ -24,6 +24,8 @@ lint:
 	@bash -n scripts/close-stale-weekly-digests.sh
 	@bash -n scripts/validate-generated-reports.sh
 	@bash -n scripts/summarize-error-fingerprint-trend.sh
+	@bash -n scripts/write-report-attestation.sh
+	@bash -n scripts/validate-report-attestation.sh
 	@echo "Lint checks passed."
 
 test:

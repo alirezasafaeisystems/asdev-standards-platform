@@ -65,7 +65,10 @@ bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
 - If the combined report contains `clone_failed`, CI publishes a warning with the affected repositories.
 - CI also publishes transient error fingerprint counts (for example `tls_error`, `http_502`, `timeout`) in logs, produces a compact fingerprint trend CSV artifact, and appends top increasing/decreasing fingerprint deltas to the workflow summary.
 - CI validates generated CSV schemas before report artifacts are uploaded and before downstream update PR automation proceeds.
+- CI writes and validates a report attestation (`sync/generated-reports.attestation`) so update PR automation is gated on validated artifacts.
 - Weekly digest automation closes stale open digest issues beyond SLA (`DIGEST_STALE_DAYS`, default `8`) and references the active digest issue; dry-run preview is available via `DIGEST_STALE_DRY_RUN=true`.
+- Snapshot rotation archives report snapshots under `sync/snapshots/` and prunes by retention (`REPORT_SNAPSHOT_RETENTION_DAYS`, default `14`).
+- Dashboard includes recent fingerprint delta history from current/previous trend files and retained snapshot trend files.
 
 ## Phase B Deliverables
 

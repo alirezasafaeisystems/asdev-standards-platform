@@ -115,6 +115,14 @@ jobs:
             sync/divergence-report.combined.errors.csv \
             sync/divergence-report.combined.errors.trend.csv
 
+      - name: Write report attestation
+        run: |
+          bash scripts/write-report-attestation.sh \
+            sync/divergence-report.combined.csv \
+            sync/divergence-report.combined.errors.csv \
+            sync/divergence-report.combined.errors.trend.csv \
+            sync/generated-reports.attestation
+
       - name: Append fingerprint delta summary
         run: |
           bash scripts/summarize-error-fingerprint-trend.sh \
@@ -129,6 +137,7 @@ jobs:
             sync/divergence-report.combined.csv
             sync/divergence-report.combined.errors.csv
             sync/divergence-report.combined.errors.trend.csv
+            sync/generated-reports.attestation
             docs/platform-adoption-dashboard.md
 
   open-update-pr:
@@ -160,6 +169,14 @@ jobs:
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Validate report attestation presence
+        run: |
+          bash scripts/validate-report-attestation.sh \
+            sync/divergence-report.combined.csv \
+            sync/divergence-report.combined.errors.csv \
+            sync/divergence-report.combined.errors.trend.csv \
+            sync/generated-reports.attestation
+
       - name: Create update PR
         id: create_update_pr
         if: steps.generated_changes.outputs.has_changes == 'true'
@@ -179,6 +196,11 @@ jobs:
             - `docs/platform-adoption-dashboard.md`
           branch: "chore/reports-docs-update"
           base: main
+          add-paths: |
+            docs/platform-adoption-dashboard.md
+            sync/divergence-report.combined.csv
+            sync/divergence-report.combined.errors.csv
+            sync/divergence-report.combined.errors.trend.csv
           labels: |
             asdev-sync
 
@@ -268,5 +290,6 @@ jobs:
             echo "- create_pr_outcome: ${{ steps.create_update_pr.outcome || 'n/a' }}"
             echo "- auto_merge_safe: ${{ steps.guard_auto_merge.outputs.safe || 'n/a' }}"
             echo "- fingerprint_trend_artifact: sync/divergence-report.combined.errors.trend.csv"
+            echo "- report_attestation: sync/generated-reports.attestation"
             echo "- latest_weekly_digest_url: ${{ steps.latest_digest.outputs.url || 'n/a' }}"
           } >> "$GITHUB_STEP_SUMMARY"
