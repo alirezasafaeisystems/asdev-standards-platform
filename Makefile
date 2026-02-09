@@ -5,6 +5,7 @@ SHELL := /bin/bash
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
 	@command -v gh >/dev/null || (echo "gh is required" && exit 1)
+	@YQ_BIN="$$(bash scripts/ensure-yq.sh)" && echo "yq ready: $$YQ_BIN"
 	@echo "Setup complete."
 
 lint:
@@ -19,7 +20,7 @@ lint:
 	@echo "Lint checks passed."
 
 test:
-	@if command -v yq >/dev/null 2>&1; then bash scripts/validate-target-template-ids.sh; else echo "Skipping template-id validation (yq not found)."; fi
+	@YQ_BIN="$$(bash scripts/ensure-yq.sh)" && PATH="$$(dirname "$$YQ_BIN"):$$PATH" bash scripts/validate-target-template-ids.sh
 	@bash tests/test_scripts.sh
 
 run:

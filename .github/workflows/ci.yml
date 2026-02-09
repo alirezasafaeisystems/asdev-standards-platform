@@ -9,16 +9,17 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install yq
+      - name: Ensure yq
         run: |
-          curl -fsSL https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_linux_amd64 -o /tmp/yq
-          chmod +x /tmp/yq
-          echo "/tmp" >> "$GITHUB_PATH"
+          YQ_BIN="$(bash scripts/ensure-yq.sh)"
+          echo "$(dirname "$YQ_BIN")" >> "$GITHUB_PATH"
 
       - name: Lint
         run: make lint
@@ -28,3 +29,91 @@ jobs:
 
       - name: Test
         run: make test
+
+  generate-reports-docs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure yq
+        run: |
+          YQ_BIN="$(bash scripts/ensure-yq.sh)"
+          echo "$(dirname "$YQ_BIN")" >> "$GITHUB_PATH"
+
+      - name: Generate combined divergence report
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash platform/scripts/divergence-report-combined.sh \
+            platform/repo-templates/templates.yaml \
+            platform/repo-templates \
+            sync/divergence-report.combined.csv
+
+      - name: Fail on clone_failed rows
+        run: |
+          if awk -F, 'NR>1 && $8=="clone_failed" {print $0}' sync/divergence-report.combined.csv | grep -q .; then
+            echo "clone_failed rows detected in sync/divergence-report.combined.csv" >&2
+            exit 1
+          fi
+
+      - name: Generate dashboard
+        run: bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
+
+      - name: Upload generated outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-docs
+          path: |
+            sync/divergence-report.combined.csv
+            docs/platform-adoption-dashboard.md
+
+  open-update-pr:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: generate-reports-docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download generated outputs
+        uses: actions/download-artifact@v4
+        with:
+          name: reports-docs
+          path: .
+
+      - name: Detect generated changes
+        id: generated_changes
+        run: |
+          if git diff --quiet -- sync/divergence-report.combined.csv docs/platform-adoption-dashboard.md; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create update PR
+        if: steps.generated_changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update divergence report and dashboard"
+          title: "chore: update divergence report and dashboard"
+          body: |
+            Automated update after CI tests passed on main.
+
+            Updated files:
+            - `sync/divergence-report.combined.csv`
+            - `docs/platform-adoption-dashboard.md`
+          branch: "chore/reports-docs-update"
+          base: main
+          labels: |
+            asdev-sync

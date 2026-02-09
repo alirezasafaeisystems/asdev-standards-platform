@@ -3,25 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-ensure_yq() {
-  if command -v yq >/dev/null 2>&1; then
-    command -v yq
-    return
-  fi
-
-  if [[ -x /tmp/yq ]]; then
-    echo "/tmp/yq"
-    return
-  fi
-
-  local tmp_bin
-  tmp_bin="$(mktemp -d)"
-  curl -fsSL https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_linux_amd64 -o "${tmp_bin}/yq"
-  chmod +x "${tmp_bin}/yq"
-  echo "${tmp_bin}/yq"
-}
-
-YQ_BIN="$(ensure_yq)"
+YQ_BIN="$("${ROOT_DIR}/scripts/ensure-yq.sh")"
 WORK_DIR="$(mktemp -d)"
 trap 'rm -rf "${WORK_DIR}"' EXIT
 
