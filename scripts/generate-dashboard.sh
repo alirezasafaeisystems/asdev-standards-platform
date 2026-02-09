@@ -140,6 +140,46 @@ SECTION
     done
   fi
 
+  combined_errors_prev="sync/divergence-report.combined.errors.previous.csv"
+  combined_errors_curr="sync/divergence-report.combined.errors.csv"
+  if [[ -f "$combined_errors_curr" ]]; then
+    cat >> "$OUTPUT_FILE" <<SECTION
+
+## Transient Error Fingerprints (Combined)
+
+| Fingerprint | Previous | Current | Delta |
+|---|---:|---:|---:|
+SECTION
+
+    count_error_fingerprint() {
+      local file="$1"
+      local fingerprint="$2"
+      if [[ ! -f "$file" ]]; then
+        echo 0
+        return
+      fi
+      awk -F, -v f="$fingerprint" 'NR>1 && $3==f {c++} END{print c+0}' "$file"
+    }
+
+    mapfile -t fingerprints < <(
+      {
+        if [[ -f "$combined_errors_prev" ]]; then awk -F, 'NR>1{print $3}' "$combined_errors_prev"; fi
+        if [[ -f "$combined_errors_curr" ]]; then awk -F, 'NR>1{print $3}' "$combined_errors_curr"; fi
+      } | sort -u
+    )
+
+    if [[ "${#fingerprints[@]}" -eq 0 ]]; then
+      echo "| n/a | 0 | 0 | 0 |" >> "$OUTPUT_FILE"
+    else
+      for fingerprint in "${fingerprints[@]}"; do
+        prev="$(count_error_fingerprint "$combined_errors_prev" "$fingerprint")"
+        curr="$(count_error_fingerprint "$combined_errors_curr" "$fingerprint")"
+        delta=$((curr - prev))
+        echo "| ${fingerprint} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
+      done
+    fi
+  fi
+
   cat >> "$OUTPUT_FILE" <<SECTION
 
 ## Combined Report Delta by Repo

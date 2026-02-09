@@ -63,7 +63,9 @@ jobs:
           bash platform/scripts/divergence-report-combined.sh \
             platform/repo-templates/templates.yaml \
             platform/repo-templates \
-            sync/divergence-report.combined.csv
+            sync/divergence-report.combined.csv \
+            "sync/targets*.yaml" \
+            sync/divergence-report.combined.errors.csv
 
       - name: Report clone_failed rows
         run: |
@@ -77,6 +79,10 @@ jobs:
         run: |
           echo "Combined status counts:"
           awk -F, 'NR>1{c[$8]++} END{for (k in c) print k","c[k]}' sync/divergence-report.combined.csv | sort
+          if [[ -f sync/divergence-report.combined.errors.csv ]]; then
+            echo "Error fingerprint counts:"
+            awk -F, 'NR>1{c[$3]++} END{for (k in c) print k","c[k]}' sync/divergence-report.combined.errors.csv | sort
+          fi
 
       - name: Generate dashboard
         run: bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
@@ -87,6 +93,7 @@ jobs:
           name: reports-docs
           path: |
             sync/divergence-report.combined.csv
+            sync/divergence-report.combined.errors.csv
             docs/platform-adoption-dashboard.md
 
   open-update-pr:
@@ -111,7 +118,7 @@ jobs:
       - name: Detect generated changes
         id: generated_changes
         run: |
-          if git diff --quiet -- sync/divergence-report.combined.csv docs/platform-adoption-dashboard.md; then
+          if git diff --quiet -- sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv docs/platform-adoption-dashboard.md; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             echo "update_mode=skipped_no_changes" >> "$GITHUB_OUTPUT"
           else
@@ -132,6 +139,7 @@ jobs:
 
             Updated files:
             - `sync/divergence-report.combined.csv`
+            - `sync/divergence-report.combined.errors.csv`
             - `docs/platform-adoption-dashboard.md`
           branch: "chore/reports-docs-update"
           base: main
@@ -191,10 +199,9 @@ jobs:
         run: |
           pr_number="${{ steps.resolve_pr.outputs.pr_number }}"
           mapfile -t changed_files < <(gh pr view "$pr_number" --json files --jq '.files[].path')
-          allowed=". docs/platform-adoption-dashboard.md sync/divergence-report.combined.csv"
           safe="true"
           for path in "${changed_files[@]}"; do
-            if [[ "$path" != "docs/platform-adoption-dashboard.md" && "$path" != "sync/divergence-report.combined.csv" ]]; then
+            if [[ "$path" != "docs/platform-adoption-dashboard.md" && "$path" != "sync/divergence-report.combined.csv" && "$path" != "sync/divergence-report.combined.errors.csv" ]]; then
               safe="false"
               echo "::warning::Auto-merge blocked due to non-allowed file: $path"
             fi
@@ -213,3 +220,15 @@ jobs:
         run: |
           echo "::warning::Automated PR creation is blocked by repository settings."
           echo "::warning::Enable 'Allow GitHub Actions to create and approve pull requests' to auto-open update PRs."
+
+      - name: Publish workflow summary
+        run: |
+          {
+            echo "## Report PR Lifecycle"
+            echo ""
+            echo "- update_mode: ${{ steps.generated_changes.outputs.update_mode || 'n/a' }}"
+            echo "- has_changes: ${{ steps.generated_changes.outputs.has_changes || 'false' }}"
+            echo "- pr_number: ${{ steps.resolve_pr.outputs.pr_number || 'n/a' }}"
+            echo "- create_pr_outcome: ${{ steps.create_update_pr.outcome || 'n/a' }}"
+            echo "- auto_merge_safe: ${{ steps.guard_auto_merge.outputs.safe || 'n/a' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

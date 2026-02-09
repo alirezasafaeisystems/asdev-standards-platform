@@ -5,6 +5,7 @@ TARGETS_FILE="${1:-sync/targets.example.yaml}"
 TEMPLATES_FILE="${2:-platform/repo-templates/templates.yaml}"
 TEMPLATES_ROOT="${3:-platform/repo-templates}"
 OUTPUT_FILE="${4:-sync/divergence-report.csv}"
+ERRORS_FILE="${5:-}"
 DATE_NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 resolve_path() {
@@ -31,6 +32,8 @@ require_cmd timeout
 RETRY_ATTEMPTS="${RETRY_ATTEMPTS:-3}"
 RETRY_BASE_DELAY="${RETRY_BASE_DELAY:-2}"
 CLONE_TIMEOUT_SECONDS="${CLONE_TIMEOUT_SECONDS:-30}"
+last_retry_output=""
+CLONE_FAILURE_OUTPUT=""
 
 retry_cmd() {
   local attempts="$1"
@@ -39,9 +42,18 @@ retry_cmd() {
   local attempt=1
 
   while true; do
-    if "$@"; then
+    local cmd_output=""
+    if cmd_output="$("$@" 2>&1)"; then
+      if [[ -n "$cmd_output" ]]; then
+        echo "$cmd_output"
+      fi
+      last_retry_output="$cmd_output"
       return 0
     fi
+    if [[ -n "$cmd_output" ]]; then
+      echo "$cmd_output" >&2
+    fi
+    last_retry_output="$cmd_output"
 
     if [[ "$attempt" -ge "$attempts" ]]; then
       echo "Command failed after ${attempts} attempts: $*" >&2
@@ -58,23 +70,63 @@ retry_cmd() {
 clone_repo() {
   local repo="$1"
   local repo_dir="$2"
+  local gh_error_output=""
+  local git_error_output=""
 
   if retry_cmd "$RETRY_ATTEMPTS" timeout "$CLONE_TIMEOUT_SECONDS" gh repo clone "$repo" "$repo_dir" -- -q; then
     return 0
+  else
+    gh_error_output="${last_retry_output:-}"
   fi
 
   local repo_url="https://github.com/${repo}.git"
   if retry_cmd "$RETRY_ATTEMPTS" timeout "$CLONE_TIMEOUT_SECONDS" env GIT_TERMINAL_PROMPT=0 git clone --quiet "$repo_url" "$repo_dir"; then
     return 0
+  else
+    git_error_output="${last_retry_output:-}"
   fi
 
+  CLONE_FAILURE_OUTPUT="${gh_error_output}"$'\n'"${git_error_output}"
   return 1
+}
+
+classify_clone_error() {
+  local message="$1"
+  local normalized
+  normalized="$(tr '[:upper:]' '[:lower:]' <<< "$message")"
+
+  if grep -Eq 'gnutls_handshake|tls connection was non-properly terminated|unexpected eof' <<< "$normalized"; then
+    echo "tls_error"
+    return
+  fi
+
+  if grep -Eq 'requested url returned error: 502|502 bad gateway' <<< "$normalized"; then
+    echo "http_502"
+    return
+  fi
+
+  if grep -Eq 'timed out|timeout' <<< "$normalized"; then
+    echo "timeout"
+    return
+  fi
+
+  if grep -Eq 'could not read username|terminal prompts disabled|authentication failed|permission denied' <<< "$normalized"; then
+    echo "auth_or_access"
+    return
+  fi
+
+  echo "unknown_transient"
 }
 
 TARGETS_FILE="$(resolve_path "$TARGETS_FILE")"
 TEMPLATES_FILE="$(resolve_path "$TEMPLATES_FILE")"
 TEMPLATES_ROOT="$(resolve_path "$TEMPLATES_ROOT")"
 OUTPUT_FILE="$(resolve_path "$OUTPUT_FILE")"
+if [[ -n "$ERRORS_FILE" ]]; then
+  ERRORS_FILE="$(resolve_path "$ERRORS_FILE")"
+else
+  ERRORS_FILE="${OUTPUT_FILE%.csv}.errors.csv"
+fi
 
 lookup_template_value() {
   local template_id="$1"
@@ -111,6 +163,8 @@ trap 'rm -rf "$work_root"' EXIT
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
 echo "repo,template_id,expected_version,detected_version,mode,source_ref,status,last_checked_at" > "$OUTPUT_FILE"
+mkdir -p "$(dirname "$ERRORS_FILE")"
+echo "repo,error_fingerprint,last_checked_at" > "$ERRORS_FILE"
 
 for ((i=0; i<count_targets; i++)); do
   repo="$(yq -r ".targets[$i].repo" "$TARGETS_FILE")"
@@ -121,6 +175,8 @@ for ((i=0; i<count_targets; i++)); do
 
   if ! clone_repo "$repo" "$repo_dir"; then
     echo "${repo},all,n/a,n/a,n/a,n/a,clone_failed,${DATE_NOW}" >> "$OUTPUT_FILE"
+    error_fingerprint="$(classify_clone_error "${CLONE_FAILURE_OUTPUT:-}")"
+    echo "${repo},${error_fingerprint},${DATE_NOW}" >> "$ERRORS_FILE"
     continue
   fi
 

@@ -5,6 +5,7 @@ TEMPLATES_FILE="${1:-platform/repo-templates/templates.yaml}"
 TEMPLATES_ROOT="${2:-platform/repo-templates}"
 OUTPUT_FILE="${3:-sync/divergence-report.combined.csv}"
 TARGET_GLOB="${4:-sync/targets*.yaml}"
+ERRORS_OUTPUT_FILE="${5:-}"
 
 resolve_path() {
   local path_value="$1"
@@ -29,10 +30,17 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 TEMPLATES_FILE="$(resolve_path "$TEMPLATES_FILE")"
 TEMPLATES_ROOT="$(resolve_path "$TEMPLATES_ROOT")"
 OUTPUT_FILE="$(resolve_path "$OUTPUT_FILE")"
+if [[ -n "$ERRORS_OUTPUT_FILE" ]]; then
+  ERRORS_OUTPUT_FILE="$(resolve_path "$ERRORS_OUTPUT_FILE")"
+else
+  ERRORS_OUTPUT_FILE="${OUTPUT_FILE%.csv}.errors.csv"
+fi
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
+mkdir -p "$(dirname "$ERRORS_OUTPUT_FILE")"
 
 echo "target_file,repo,template_id,expected_version,detected_version,mode,source_ref,status,last_checked_at" > "$OUTPUT_FILE"
+echo "target_file,repo,error_fingerprint,last_checked_at" > "$ERRORS_OUTPUT_FILE"
 
 mapfile -t target_files < <(find "${ROOT_DIR}/sync" -maxdepth 1 -type f -name 'targets*.yaml' ! -name 'targets.example.yaml' | sort)
 if [[ "${#target_files[@]}" -eq 0 ]]; then
@@ -42,11 +50,17 @@ fi
 
 for target_file in "${target_files[@]}"; do
   tmp_csv="$(mktemp)"
-  bash "${ROOT_DIR}/platform/scripts/divergence-report.sh" "$target_file" "$TEMPLATES_FILE" "$TEMPLATES_ROOT" "$tmp_csv"
+  tmp_errors_csv="$(mktemp)"
+  bash "${ROOT_DIR}/platform/scripts/divergence-report.sh" "$target_file" "$TEMPLATES_FILE" "$TEMPLATES_ROOT" "$tmp_csv" "$tmp_errors_csv"
   if [[ -s "$tmp_csv" ]]; then
     tail -n +2 "$tmp_csv" | awk -F, -v tf="$(basename "$target_file")" 'BEGIN{OFS=","} {print tf,$0}' >> "$OUTPUT_FILE"
   fi
+  if [[ -s "$tmp_errors_csv" ]]; then
+    tail -n +2 "$tmp_errors_csv" | awk -F, -v tf="$(basename "$target_file")" 'BEGIN{OFS=","} {print tf,$0}' >> "$ERRORS_OUTPUT_FILE"
+  fi
   rm -f "$tmp_csv"
+  rm -f "$tmp_errors_csv"
 done
 
 echo "Combined divergence report generated: $OUTPUT_FILE"
+echo "Combined divergence error fingerprint report generated: $ERRORS_OUTPUT_FILE"

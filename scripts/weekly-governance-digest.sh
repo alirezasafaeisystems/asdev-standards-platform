@@ -29,9 +29,11 @@ require_cmd yq
 
 cd "$ROOT_DIR"
 
-bash platform/scripts/divergence-report.sh sync/targets.yaml platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.csv
-bash platform/scripts/divergence-report-combined.sh platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.combined.csv
-bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
+if [[ "${SKIP_REPORT_REGEN:-false}" != "true" ]]; then
+  bash platform/scripts/divergence-report.sh sync/targets.yaml platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.csv
+  bash platform/scripts/divergence-report-combined.sh platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.combined.csv
+  bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
+fi
 
 prev_file="sync/divergence-report.previous.csv"
 curr_file="sync/divergence-report.csv"
