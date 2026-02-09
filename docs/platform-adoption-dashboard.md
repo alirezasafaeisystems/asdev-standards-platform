@@ -1,6 +1,7 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-09T21:53:57Z
+- Generated at: 2026-02-09T22:24:00Z
+- Latest Weekly Governance Digest: https://github.com/alirezasafaeiiidev/asdev_platform/issues/2
 
 ## Level 0 Adoption (from divergence report)
 
