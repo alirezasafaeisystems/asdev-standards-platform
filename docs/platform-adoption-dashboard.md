@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-09T21:43:29Z
+- Generated at: 2026-02-09T21:53:57Z
 
 ## Level 0 Adoption (from divergence report)
 
@@ -23,11 +23,11 @@
 
 | Status | Previous | Current | Delta |
 |---|---:|---:|---:|
-| aligned | 0 | 23 | 23 |
+| aligned | 23 | 23 | 0 |
 | diverged | 0 | 0 | 0 |
-| missing | 0 | 2 | 2 |
-| opted_out | 0 | 1 | 1 |
-| clone_failed | 0 | 2 | 2 |
+| missing | 2 | 2 | 0 |
+| opted_out | 1 | 1 | 0 |
+| clone_failed | 2 | 2 | 0 |
 | unknown_template | 0 | 0 | 0 |
 | unknown | 0 | 0 | 0 |
 
@@ -35,30 +35,30 @@
 
 | Metric | Previous | Current | Delta |
 |---|---:|---:|---:|
-| clone_failed rows | 0 | 2 | 2 |
+| clone_failed rows | 2 | 2 | 0 |
 
 ### clone_failed by Repository
 
 | Repository | Previous | Current | Delta |
 |---|---:|---:|---:|
-| alirezasafaeiiidev/go-level1-pilot | 0 | 1 | 1 |
-| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
+| alirezasafaeiiidev/go-level1-pilot | 1 | 1 | 0 |
+| alirezasafaeiiidev/python-level1-pilot | 1 | 1 | 0 |
 
 ## Transient Error Fingerprints (Combined)
 
 | Fingerprint | Previous | Current | Delta |
 |---|---:|---:|---:|
-| auth_or_access | 0 | 2 | 2 |
+| auth_or_access | 2 | 2 | 0 |
 
 ## Combined Report Delta by Repo
 
 | Repository | Previous Non-aligned | Current Non-aligned | Delta |
 |---|---:|---:|---:|
-| alirezasafaeiiidev/go-level1-pilot | 0 | 1 | 1 |
-| alirezasafaeiiidev/my_portfolio | 0 | 1 | 1 |
-| alirezasafaeiiidev/patreon_iran | 0 | 1 | 1 |
-| alirezasafaeiiidev/persian_tools | 0 | 1 | 1 |
-| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
+| alirezasafaeiiidev/go-level1-pilot | 1 | 1 | 0 |
+| alirezasafaeiiidev/my_portfolio | 1 | 1 | 0 |
+| alirezasafaeiiidev/patreon_iran | 1 | 1 | 0 |
+| alirezasafaeiiidev/persian_tools | 1 | 1 | 0 |
+| alirezasafaeiiidev/python-level1-pilot | 1 | 1 | 0 |
 
 ## Level 1 Rollout Targets
 
