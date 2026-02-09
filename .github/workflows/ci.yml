@@ -162,7 +162,7 @@ jobs:
       - name: Detect generated changes
         id: generated_changes
         run: |
-          if git diff --quiet -- sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv docs/platform-adoption-dashboard.md; then
+          if git diff --quiet -- sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation docs/platform-adoption-dashboard.md; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             echo "update_mode=skipped_no_changes" >> "$GITHUB_OUTPUT"
           else
@@ -195,6 +195,7 @@ jobs:
             - `sync/divergence-report.combined.csv`
             - `sync/divergence-report.combined.errors.csv`
             - `sync/divergence-report.combined.errors.trend.csv`
+            - `sync/generated-reports.attestation`
             - `docs/platform-adoption-dashboard.md`
           branch: "chore/reports-docs-update"
           base: main
@@ -203,6 +204,7 @@ jobs:
             sync/divergence-report.combined.csv
             sync/divergence-report.combined.errors.csv
             sync/divergence-report.combined.errors.trend.csv
+            sync/generated-reports.attestation
           labels: |
             asdev-sync
 
@@ -232,6 +234,7 @@ jobs:
 
       - name: Report update PR mode
         if: steps.generated_changes.outputs.has_changes == 'true'
+        id: report_update_mode
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -240,6 +243,8 @@ jobs:
           if [[ -z "$operation" || "$operation" == "null" ]]; then
             operation="updated_or_existing"
           fi
+          echo "update_mode=${operation}" >> "$GITHUB_OUTPUT"
+          echo "pr_number=${pr_number}" >> "$GITHUB_OUTPUT"
           echo "update_mode=${operation}"
           if [[ -n "$pr_number" ]]; then
             echo "update_pr=#${pr_number}"
@@ -247,7 +252,9 @@ jobs:
 
       - name: Report skipped update mode
         if: steps.generated_changes.outputs.has_changes != 'true'
+        id: report_skipped_mode
         run: |
+          echo "update_mode=skipped_no_changes" >> "$GITHUB_OUTPUT"
           echo "update_mode=skipped_no_changes"
 
       - name: Guard auto-merge files
@@ -260,7 +267,7 @@ jobs:
           mapfile -t changed_files < <(bash scripts/retry-cmd.sh 3 2 -- gh pr view "$pr_number" --json files --jq '.files[].path')
           safe="true"
           for path in "${changed_files[@]}"; do
-            if [[ "$path" != "docs/platform-adoption-dashboard.md" && "$path" != "sync/divergence-report.combined.csv" && "$path" != "sync/divergence-report.combined.errors.csv" && "$path" != "sync/divergence-report.combined.errors.trend.csv" ]]; then
+            if [[ "$path" != "docs/platform-adoption-dashboard.md" && "$path" != "sync/divergence-report.combined.csv" && "$path" != "sync/divergence-report.combined.errors.csv" && "$path" != "sync/divergence-report.combined.errors.trend.csv" && "$path" != "sync/generated-reports.attestation" ]]; then
               safe="false"
               echo "::warning::Auto-merge blocked due to non-allowed file: $path"
             fi
@@ -285,9 +292,9 @@ jobs:
           {
             echo "## Report PR Lifecycle"
             echo ""
-            echo "- update_mode: ${{ steps.generated_changes.outputs.update_mode || 'n/a' }}"
+            echo "- update_mode: ${{ steps.report_update_mode.outputs.update_mode || steps.report_skipped_mode.outputs.update_mode || steps.generated_changes.outputs.update_mode || 'n/a' }}"
             echo "- has_changes: ${{ steps.generated_changes.outputs.has_changes || 'false' }}"
-            echo "- pr_number: ${{ steps.resolve_pr.outputs.pr_number || 'n/a' }}"
+            echo "- pr_number: ${{ steps.report_update_mode.outputs.pr_number || steps.resolve_pr.outputs.pr_number || 'n/a' }}"
             echo "- create_pr_outcome: ${{ steps.create_update_pr.outcome || 'n/a' }}"
             echo "- auto_merge_safe: ${{ steps.guard_auto_merge.outputs.safe || 'n/a' }}"
             echo "- update_pr_lifecycle_dry_run: ${{ steps.lifecycle_policy.outputs.dry_run_enabled || 'false' }}"

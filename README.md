@@ -33,11 +33,13 @@ asdev_platform/
 ```bash
 make setup
 make lint
+make ci
 make test
 make run
 ```
 
 `make test` always runs the full test suite and does not skip `yq`-dependent checks.
+`make ci` mirrors CI gating order locally: lint -> policy check -> test.
 
 ## Reporting
 

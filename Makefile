@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint test run
+.PHONY: setup lint test run ci
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -32,6 +32,11 @@ lint:
 test:
 	@YQ_BIN="$$(bash scripts/ensure-yq.sh)" && PATH="$$(dirname "$$YQ_BIN"):$$PATH" bash scripts/validate-target-template-ids.sh
 	@bash tests/test_scripts.sh
+
+ci:
+	@$(MAKE) lint
+	@bash scripts/validate-template-version-policy.sh origin/main
+	@$(MAKE) test
 
 run:
 	@echo "ASDEV Platform is a standards/governance repository; use scripts under platform/scripts/."
