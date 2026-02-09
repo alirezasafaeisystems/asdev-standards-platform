@@ -14,11 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install yq
+      - name: Ensure yq
         run: |
-          curl -fsSL https://github.com/mikefarah/yq/releases/download/v4.44.6/yq_linux_amd64 -o /tmp/yq
-          chmod +x /tmp/yq
-          echo "/tmp" >> "$GITHUB_PATH"
+          YQ_BIN="$(bash scripts/ensure-yq.sh)"
+          echo "$(dirname "$YQ_BIN")" >> "$GITHUB_PATH"
 
       - name: Run monthly release script
         env:

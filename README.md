@@ -37,6 +37,8 @@ make test
 make run
 ```
 
+`make test` always runs the full test suite and does not skip `yq`-dependent checks.
+
 ## Reporting
 
 ```bash
@@ -47,6 +49,15 @@ bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
 
 - Combined trend uses `sync/divergence-report.combined.csv` and optional `sync/divergence-report.combined.previous.csv`.
 - If GitHub API is unstable, divergence scripts may emit `clone_failed` rows; rerun after connectivity recovers.
+
+## CI Automation
+
+- CI is stage-gated: reports/docs generation starts only after lint and tests pass.
+- On `push` to `main`, CI regenerates:
+  - `sync/divergence-report.combined.csv`
+  - `docs/platform-adoption-dashboard.md`
+- If generated outputs change, CI opens an automated PR.
+- If the combined report contains `clone_failed`, CI fails to avoid publishing incomplete data.
 
 ## Phase B Deliverables
 
