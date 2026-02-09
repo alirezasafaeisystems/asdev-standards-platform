@@ -62,6 +62,68 @@ for st in aligned diverged missing opted_out; do
   echo "| ${st} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
 done
 
+combined_prev="sync/divergence-report.combined.previous.csv"
+combined_curr="sync/divergence-report.combined.csv"
+
+if [[ -f "$combined_curr" ]]; then
+  cat >> "$OUTPUT_FILE" <<SECTION
+
+## Combined Report Trend (Current vs Previous Snapshot)
+
+| Status | Previous | Current | Delta |
+|---|---:|---:|---:|
+SECTION
+
+  count_combined_status() {
+    local file="$1"
+    local status="$2"
+    if [[ ! -f "$file" ]]; then
+      echo 0
+      return
+    fi
+    awk -F, -v s="$status" 'NR>1 && $8==s {c++} END{print c+0}' "$file"
+  }
+
+  for st in aligned diverged missing opted_out clone_failed unknown_template unknown; do
+    prev="$(count_combined_status "$combined_prev" "$st")"
+    curr="$(count_combined_status "$combined_curr" "$st")"
+    delta=$((curr - prev))
+    echo "| ${st} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
+  done
+
+  cat >> "$OUTPUT_FILE" <<SECTION
+
+## Combined Report Delta by Repo
+
+| Repository | Previous Non-aligned | Current Non-aligned | Delta |
+|---|---:|---:|---:|
+SECTION
+
+  mapfile -t combined_repos < <(
+    {
+      if [[ -f "$combined_prev" ]]; then awk -F, 'NR>1{print $2}' "$combined_prev"; fi
+      if [[ -f "$combined_curr" ]]; then awk -F, 'NR>1{print $2}' "$combined_curr"; fi
+    } | sort -u
+  )
+
+  count_non_aligned() {
+    local file="$1"
+    local repo="$2"
+    if [[ ! -f "$file" ]]; then
+      echo 0
+      return
+    fi
+    awk -F, -v r="$repo" 'NR>1 && $2==r && $8!="aligned" {c++} END{print c+0}' "$file"
+  }
+
+  for repo in "${combined_repos[@]}"; do
+    prev="$(count_non_aligned "$combined_prev" "$repo")"
+    curr="$(count_non_aligned "$combined_curr" "$repo")"
+    delta=$((curr - prev))
+    echo "| ${repo} | ${prev} | ${curr} | ${delta} |" >> "$OUTPUT_FILE"
+  done
+fi
+
 cat >> "$OUTPUT_FILE" <<SECTION
 
 ## Level 1 Rollout Targets

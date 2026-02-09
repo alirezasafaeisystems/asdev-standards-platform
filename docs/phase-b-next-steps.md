@@ -87,8 +87,8 @@
 
 ## Next Execution Tasks (Phase G)
 - Refer to `docs/phase-g-execution-plan.md` for prioritized execution order and DoD.
-- [ ] Retry Go pilot repository provisioning and run first Go Level 1 sync PR when GitHub API connectivity is stable.
-- [ ] Execute `scripts/weekly-governance-digest.sh` once manually and verify digest issue creation/update.
-- [ ] Add combined-report trend section to dashboard (`sync/divergence-report.combined.csv` deltas).
+- [ ] Retry Go pilot repository provisioning and run first Go Level 1 sync PR when GitHub API connectivity is stable. (blocked: GitHub API TLS handshake timeout)
+- [ ] Execute `scripts/weekly-governance-digest.sh` once manually and verify digest issue creation/update. (blocked: GitHub API TLS handshake timeout)
+- [x] Add combined-report trend section to dashboard (`sync/divergence-report.combined.csv` deltas).
 - [x] Add lightweight retry/backoff to scripts that call GitHub API-heavy operations (`sync.sh`, divergence scripts).
 - [x] Add runbook section for outage handling and recovery steps in `docs/`.

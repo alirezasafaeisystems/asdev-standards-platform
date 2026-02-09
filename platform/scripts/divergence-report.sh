@@ -26,9 +26,11 @@ require_cmd() {
 require_cmd gh
 require_cmd yq
 require_cmd git
+require_cmd timeout
 
 RETRY_ATTEMPTS="${RETRY_ATTEMPTS:-3}"
 RETRY_BASE_DELAY="${RETRY_BASE_DELAY:-2}"
+CLONE_TIMEOUT_SECONDS="${CLONE_TIMEOUT_SECONDS:-30}"
 
 retry_cmd() {
   local attempts="$1"
@@ -51,6 +53,22 @@ retry_cmd() {
     delay=$((delay * 2))
     attempt=$((attempt + 1))
   done
+}
+
+clone_repo() {
+  local repo="$1"
+  local repo_dir="$2"
+
+  if retry_cmd "$RETRY_ATTEMPTS" timeout "$CLONE_TIMEOUT_SECONDS" gh repo clone "$repo" "$repo_dir" -- -q; then
+    return 0
+  fi
+
+  local repo_url="https://github.com/${repo}.git"
+  if retry_cmd "$RETRY_ATTEMPTS" timeout "$CLONE_TIMEOUT_SECONDS" env GIT_TERMINAL_PROMPT=0 git clone --quiet "$repo_url" "$repo_dir"; then
+    return 0
+  fi
+
+  return 1
 }
 
 TARGETS_FILE="$(resolve_path "$TARGETS_FILE")"
@@ -101,7 +119,7 @@ for ((i=0; i<count_targets; i++)); do
 
   repo_dir="$work_root/${repo##*/}"
 
-  if ! retry_cmd "$RETRY_ATTEMPTS" gh repo clone "$repo" "$repo_dir" -- -q; then
+  if ! clone_repo "$repo" "$repo_dir"; then
     echo "${repo},all,n/a,n/a,n/a,n/a,clone_failed,${DATE_NOW}" >> "$OUTPUT_FILE"
     continue
   fi

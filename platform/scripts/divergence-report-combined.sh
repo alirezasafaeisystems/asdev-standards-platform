@@ -34,7 +34,7 @@ mkdir -p "$(dirname "$OUTPUT_FILE")"
 
 echo "target_file,repo,template_id,expected_version,detected_version,mode,source_ref,status,last_checked_at" > "$OUTPUT_FILE"
 
-mapfile -t target_files < <(find "${ROOT_DIR}/sync" -maxdepth 1 -type f -name 'targets*.yaml' | sort)
+mapfile -t target_files < <(find "${ROOT_DIR}/sync" -maxdepth 1 -type f -name 'targets*.yaml' ! -name 'targets.example.yaml' | sort)
 if [[ "${#target_files[@]}" -eq 0 ]]; then
   echo "No target files found under sync/"
   exit 0

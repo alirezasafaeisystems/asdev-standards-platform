@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-08T21:25:55Z
+- Generated at: 2026-02-09T16:54:26Z
 
 ## Level 0 Adoption (from divergence report)
 
@@ -18,6 +18,28 @@
 | diverged | 0 | 0 | 0 |
 | missing | 0 | 0 | 0 |
 | opted_out | 1 | 1 | 0 |
+
+## Combined Report Trend (Current vs Previous Snapshot)
+
+| Status | Previous | Current | Delta |
+|---|---:|---:|---:|
+| aligned | 0 | 0 | 0 |
+| diverged | 0 | 0 | 0 |
+| missing | 0 | 0 | 0 |
+| opted_out | 0 | 0 | 0 |
+| clone_failed | 0 | 9 | 9 |
+| unknown_template | 0 | 0 | 0 |
+| unknown | 0 | 0 | 0 |
+
+## Combined Report Delta by Repo
+
+| Repository | Previous Non-aligned | Current Non-aligned | Delta |
+|---|---:|---:|---:|
+| alirezasafaeiiidev/go-level1-pilot | 0 | 1 | 1 |
+| alirezasafaeiiidev/my_portfolio | 0 | 2 | 2 |
+| alirezasafaeiiidev/patreon_iran | 0 | 3 | 3 |
+| alirezasafaeiiidev/persian_tools | 0 | 2 | 2 |
+| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
 
 ## Level 1 Rollout Targets
 
