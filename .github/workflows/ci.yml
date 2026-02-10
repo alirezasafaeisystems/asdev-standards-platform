@@ -39,7 +39,7 @@ jobs:
         run: make test
 
   generate-reports-docs:
-    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, 'chore: update divergence report and dashboard'))
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, 'chore: update divergence report and dashboard')) }}
     needs: lint-and-test
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -174,7 +174,7 @@ jobs:
             docs/platform-adoption-dashboard.md
 
   open-update-pr:
-    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, 'chore: update divergence report and dashboard'))
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, 'chore: update divergence report and dashboard')) }}
     needs: generate-reports-docs
     runs-on: ubuntu-latest
     timeout-minutes: 10
