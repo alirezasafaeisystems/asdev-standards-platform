@@ -128,3 +128,10 @@
 - [x] Tighten `patreon_iran` quality scripts from transitional checks to implementation-grade checks.
 - [x] Expand payment webhook replay/signature hardening coverage and runbook guidance.
 - [x] Operationalize resource-policy caps in runtime scripts with traceable logs.
+
+## Next Execution Tasks (Phase N)
+- Refer to `docs/phase-n-execution-plan.md` for prioritized execution order and DoD.
+- [ ] Break report-update PR churn loop on `main` (no infinite report PR chain).
+- [ ] Enforce idempotent generated-output policy (open PR only on meaningful delta).
+- [ ] Add CI guardrail test for `open-update-pr` non-recursive behavior.
+- [ ] Publish post-fix governance note with before/after run evidence.
