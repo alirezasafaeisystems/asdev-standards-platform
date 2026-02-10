@@ -113,3 +113,9 @@
 - [x] Re-run reporting and weekly digest flows to verify no runtime `yq` errors remain.
 - [x] Stabilize dashboard reliability test by isolating snapshot fixtures from real snapshot history.
 - [x] Re-run full validation (`make ci`) after fixes.
+
+## Next Execution Tasks (Phase L)
+- [x] Complete public-release hardening for `asdev_platform` (license, security policy, community docs).
+- [x] Add release-readiness report and sanitize policy for report artifacts.
+- [x] Enable repository-level security controls and branch protection on `main`.
+- [x] Switch repository visibility to public after full gate checks.

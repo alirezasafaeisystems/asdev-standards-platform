@@ -1,0 +1,13 @@
+ASDEV Platform - Chat Snapshot (2026-02-10)
+
+Highlights:
+- Level1 rollout gaps were closed across target repositories.
+- Divergence reports were regenerated and aligned status reached target.
+- Public-release hardening completed: LICENSE, SECURITY, CODE_OF_CONDUCT, SUPPORT.
+- Public sanitize policy added for report artifacts under sync/.
+- asdev_platform visibility changed from PRIVATE to PUBLIC.
+- Branch protection and security controls were enabled.
+- Public release notice issue created: #100.
+
+This snapshot file is created because OS-level screenshot capture was unavailable
+in the current headless environment.
