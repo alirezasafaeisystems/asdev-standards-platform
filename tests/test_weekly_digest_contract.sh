@@ -100,6 +100,11 @@ grep -q "### Linked Operational Issues" "${CAPTURED_BODY}" || {
   exit 1
 }
 
+grep -q "### clone_failed Repository Highlights" "${CAPTURED_BODY}" || {
+  echo "Missing clone_failed highlights section" >&2
+  exit 1
+}
+
 grep -q "#16" "${CAPTURED_BODY}" || {
   echo "Missing linked issue #16" >&2
   exit 1

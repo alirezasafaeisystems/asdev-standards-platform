@@ -3,6 +3,8 @@ set -euo pipefail
 
 report_csv="${1:-sync/divergence-report.combined.csv}"
 limit="${2:-10}"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${ROOT_DIR}/scripts/csv-utils.sh"
 
 if [[ ! -f "$report_csv" ]]; then
   echo "report file not found: $report_csv" >&2
@@ -14,17 +16,12 @@ if ! [[ "$limit" =~ ^[0-9]+$ ]] || [[ "$limit" -le 0 ]]; then
   exit 1
 fi
 
+status_idx="$(csv_col_idx "$report_csv" "status")"
+repo_idx="$(csv_col_idx "$report_csv" "repo")"
 mapfile -t repos < <(
-  awk -F, '
-    NR==1 {
-      for (i = 1; i <= NF; i++) {
-        if ($i == "repo") repo_idx = i
-        if ($i == "status") status_idx = i
-      }
-      next
-    }
-    repo_idx && status_idx && $status_idx == "clone_failed" {print $repo_idx}
-  ' "$report_csv" | sort -u
+  if [[ -n "$status_idx" && -n "$repo_idx" ]]; then
+    awk -F, -v si="$status_idx" -v ri="$repo_idx" 'NR>1 && $si=="clone_failed" {print $ri}' "$report_csv" | sort -u
+  fi
 )
 count="${#repos[@]}"
 

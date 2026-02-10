@@ -6,6 +6,7 @@ DATE_TAG="$(date -u +%Y-%m-%d)"
 TITLE="Weekly Governance Digest ${DATE_TAG}"
 DIGEST_OWNER="${DIGEST_OWNER:-@alirezasafaeiiidev}"
 DIGEST_REVIEW_SLA="${DIGEST_REVIEW_SLA:-24h from issue update}"
+DIGEST_CLONE_FAILED_LIMIT="${DIGEST_CLONE_FAILED_LIMIT:-5}"
 source "${ROOT_DIR}/scripts/csv-utils.sh"
 
 require_cmd() {
@@ -52,6 +53,7 @@ opted_now="$(count_status "$curr_file" opted_out)"
 
 body_file="$(mktemp)"
 actions_file="$(mktemp)"
+clone_failed_file="$(mktemp)"
 
 gh issue list \
   --repo alirezasafaeiiidev/asdev_platform \
@@ -62,6 +64,29 @@ gh issue list \
 
 if [[ ! -s "$actions_file" ]]; then
   echo "- [ ] none" > "$actions_file"
+fi
+
+combined_file="sync/divergence-report.combined.csv"
+if [[ -f "$combined_file" ]]; then
+  status_idx="$(csv_col_idx "$combined_file" "status")"
+  repo_idx="$(csv_col_idx "$combined_file" "repo")"
+  if [[ -n "$status_idx" && -n "$repo_idx" ]]; then
+    mapfile -t digest_clone_failed_repos < <(
+      awk -F, -v si="$status_idx" -v ri="$repo_idx" 'NR>1 && $si=="clone_failed" {print $ri}' "$combined_file" | sort -u | head -n "$DIGEST_CLONE_FAILED_LIMIT"
+    )
+  else
+    digest_clone_failed_repos=()
+  fi
+else
+  digest_clone_failed_repos=()
+fi
+
+if [[ "${#digest_clone_failed_repos[@]}" -eq 0 ]]; then
+  echo "- none" > "$clone_failed_file"
+else
+  for repo in "${digest_clone_failed_repos[@]}"; do
+    echo "- ${repo}" >> "$clone_failed_file"
+  done
 fi
 
 cat > "$body_file" <<BODY
@@ -81,6 +106,10 @@ cat > "$body_file" <<BODY
 - diverged: ${diverged_prev} -> ${diverged_now}
 - missing: ${missing_prev} -> ${missing_now}
 - opted_out: ${opted_prev} -> ${opted_now}
+
+### clone_failed Repository Highlights
+
+$(cat "$clone_failed_file")
 
 ### Actions
 
@@ -143,4 +172,4 @@ if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
   } >> "$GITHUB_STEP_SUMMARY"
 fi
 
-rm -f "$body_file" "$actions_file"
+rm -f "$body_file" "$actions_file" "$clone_failed_file"

@@ -37,4 +37,24 @@ grep -q 'source "${ROOT_DIR}/scripts/csv-utils.sh"' "${ROOT_DIR}/scripts/monthly
   exit 1
 }
 
+grep -q 'source "${ROOT_DIR}/scripts/csv-utils.sh"' "${ROOT_DIR}/scripts/generate-dashboard.sh" || {
+  echo "generate-dashboard.sh must source csv-utils.sh" >&2
+  exit 1
+}
+
+grep -q 'source "${ROOT_DIR}/scripts/csv-utils.sh"' "${ROOT_DIR}/scripts/generate-error-fingerprint-trend.sh" || {
+  echo "generate-error-fingerprint-trend.sh must source csv-utils.sh" >&2
+  exit 1
+}
+
+grep -q 'source "${ROOT_DIR}/scripts/csv-utils.sh"' "${ROOT_DIR}/scripts/summarize-error-fingerprint-trend.sh" || {
+  echo "summarize-error-fingerprint-trend.sh must source csv-utils.sh" >&2
+  exit 1
+}
+
+grep -q 'source "${ROOT_DIR}/scripts/csv-utils.sh"' "${ROOT_DIR}/scripts/summarize-clone-failed.sh" || {
+  echo "summarize-clone-failed.sh must source csv-utils.sh" >&2
+  exit 1
+}
+
 echo "status counter contract checks passed."
