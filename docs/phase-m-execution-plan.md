@@ -1,5 +1,11 @@
 # Phase M Execution Plan
 
+## Execution Status (2026-02-10)
+- M1 complete: PR wave merged in required order (PR-1 -> PR-2 -> PR-4 -> PR-3).
+- M2 complete: reports regenerated and dashboard refreshed.
+- M6 complete: hub verification commands and target-repo CI-equivalent status snapshot recorded.
+- M3/M4/M5 remain open follow-up tasks.
+
 ## M1) Merge and close current standardization PR wave (high)
 - **Task ID:** M1
 - **Goal:** Land the open PR sequence (PR-1/PR-2/PR-4/PR-3) in a controlled order and verify repository health after each merge.
@@ -74,4 +80,3 @@
 4. M3
 5. M4
 6. M5
-
