@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint test run ci
+.PHONY: setup lint test run ci reports
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -27,6 +27,7 @@ lint:
 	@bash -n scripts/write-report-attestation.sh
 	@bash -n scripts/validate-report-attestation.sh
 	@bash -n scripts/close-stale-report-update-prs.sh
+	@bash -n scripts/summarize-clone-failed.sh
 	@echo "Lint checks passed."
 
 test:
@@ -37,6 +38,15 @@ ci:
 	@$(MAKE) lint
 	@bash scripts/validate-template-version-policy.sh origin/main
 	@$(MAKE) test
+
+reports:
+	@bash scripts/rotate-report-snapshots.sh
+	@bash platform/scripts/divergence-report-combined.sh platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.combined.csv "sync/targets*.yaml" sync/divergence-report.combined.errors.csv
+	@bash scripts/generate-error-fingerprint-trend.sh sync/divergence-report.combined.errors.previous.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv
+	@bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
+	@bash scripts/validate-generated-reports.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv
+	@bash scripts/write-report-attestation.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation
+	@bash scripts/validate-report-attestation.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation
 
 run:
 	@echo "ASDEV Platform is a standards/governance repository; use scripts under platform/scripts/."

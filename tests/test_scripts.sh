@@ -21,5 +21,7 @@ bash tests/test_sync_untracked_detection.sh
 bash tests/test_target_template_validation.sh
 bash tests/test_template_version_policy.sh
 bash tests/test_make_ci_target.sh
+bash tests/test_make_reports_target.sh
+bash tests/test_summarize_clone_failed.sh
 
 echo "Script checks passed."

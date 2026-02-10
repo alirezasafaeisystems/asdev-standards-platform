@@ -31,7 +31,7 @@ require_cmd date
 require_cmd awk
 require_cmd grep
 
-now_epoch="$(date -u +%s)"
+now_epoch="${DIGEST_STALE_NOW_EPOCH:-$(date -u +%s)}"
 closed_count=0
 dry_run_candidates=0
 evaluated_count=0

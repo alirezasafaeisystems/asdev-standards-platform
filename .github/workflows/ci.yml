@@ -73,16 +73,47 @@ jobs:
 
       - name: Report clone_failed rows
         run: |
-          if awk -F, 'NR>1 && $8=="clone_failed" {print $1}' sync/divergence-report.combined.csv | grep -q .; then
+          if awk -F, '
+            NR==1 {
+              for (i = 1; i <= NF; i++) {
+                if ($i == "repo") repo_idx = i
+                if ($i == "status") status_idx = i
+              }
+              next
+            }
+            repo_idx && status_idx && $status_idx == "clone_failed" {print $repo_idx}
+          ' sync/divergence-report.combined.csv | grep -q .; then
             echo "::warning::clone_failed rows detected in sync/divergence-report.combined.csv"
             echo "Repositories with clone_failed:"
-            awk -F, 'NR>1 && $8=="clone_failed" {print "- " $1}' sync/divergence-report.combined.csv | sort -u
+            awk -F, '
+              NR==1 {
+                for (i = 1; i <= NF; i++) {
+                  if ($i == "repo") repo_idx = i
+                  if ($i == "status") status_idx = i
+                }
+                next
+              }
+              repo_idx && status_idx && $status_idx == "clone_failed" {print "- " $repo_idx}
+            ' sync/divergence-report.combined.csv | sort -u
           fi
+
+      - name: Append clone_failed summary
+        run: |
+          bash scripts/summarize-clone-failed.sh sync/divergence-report.combined.csv >> "$GITHUB_STEP_SUMMARY"
 
       - name: Summarize divergence status counts
         run: |
           echo "Combined status counts:"
-          awk -F, 'NR>1{c[$8]++} END{for (k in c) print k","c[k]}' sync/divergence-report.combined.csv | sort
+          awk -F, '
+            NR==1 {
+              for (i = 1; i <= NF; i++) {
+                if ($i == "status") status_idx = i
+              }
+              next
+            }
+            status_idx {c[$status_idx]++}
+            END {for (k in c) print k","c[k]}
+          ' sync/divergence-report.combined.csv | sort
           if [[ -f sync/divergence-report.combined.errors.csv ]]; then
             echo "Error fingerprint counts:"
             awk -F, 'NR>1{c[$3]++} END{for (k in c) print k","c[k]}' sync/divergence-report.combined.errors.csv | sort
@@ -273,6 +304,28 @@ jobs:
             fi
           done
           echo "safe=${safe}" >> "$GITHUB_OUTPUT"
+
+      - name: Enforce attestation file in update PR
+        if: steps.generated_changes.outputs.has_changes == 'true' && steps.resolve_pr.outputs.pr_number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number="${{ steps.resolve_pr.outputs.pr_number }}"
+          mapfile -t changed_files < <(bash scripts/retry-cmd.sh 3 2 -- gh pr view "$pr_number" --json files --jq '.files[].path')
+          has_report_csv="false"
+          has_attestation="false"
+          for path in "${changed_files[@]}"; do
+            if [[ "$path" == "sync/divergence-report.combined.csv" || "$path" == "sync/divergence-report.combined.errors.csv" || "$path" == "sync/divergence-report.combined.errors.trend.csv" ]]; then
+              has_report_csv="true"
+            fi
+            if [[ "$path" == "sync/generated-reports.attestation" ]]; then
+              has_attestation="true"
+            fi
+          done
+          if [[ "$has_report_csv" == "true" && "$has_attestation" != "true" ]]; then
+            echo "::error::Update PR is missing sync/generated-reports.attestation while report outputs changed."
+            exit 1
+          fi
 
       - name: Enable auto-merge
         if: steps.generated_changes.outputs.has_changes == 'true' && steps.resolve_pr.outputs.pr_number != '' && steps.guard_auto_merge.outputs.safe == 'true'

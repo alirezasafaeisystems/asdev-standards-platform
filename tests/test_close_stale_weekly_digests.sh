@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WORK_DIR="$(mktemp -d)"
 trap 'rm -rf "${WORK_DIR}"' EXIT
+NOW_EPOCH="$(date -u -d '2026-02-09T00:00:00Z' +%s 2>/dev/null || date -u -jf "%Y-%m-%dT%H:%M:%SZ" '2026-02-09T00:00:00Z' +%s)"
 
 FAKE_BIN="${WORK_DIR}/fakebin"
 mkdir -p "${FAKE_BIN}"
@@ -47,6 +48,7 @@ chmod +x "${FAKE_BIN}/gh"
   CLOSE_LOG_PATH="${CLOSE_LOG}" \
   DIGEST_STALE_SUMMARY_FILE="${SUMMARY_LOG}" \
   DIGEST_STALE_DAYS=7 \
+  DIGEST_STALE_NOW_EPOCH="${NOW_EPOCH}" \
   PATH="${FAKE_BIN}:${PATH}" \
   bash scripts/close-stale-weekly-digests.sh \
     "owner/repo" \
@@ -94,6 +96,7 @@ echo "stale weekly digest lifecycle checks passed."
   DIGEST_STALE_SUMMARY_FILE="${DRY_SUMMARY_LOG}" \
   DIGEST_STALE_DAYS=7 \
   DIGEST_STALE_DRY_RUN=true \
+  DIGEST_STALE_NOW_EPOCH="${NOW_EPOCH}" \
   PATH="${FAKE_BIN}:${PATH}" \
   bash scripts/close-stale-weekly-digests.sh \
     "owner/repo" \

@@ -35,11 +35,13 @@ make setup
 make lint
 make ci
 make test
+make reports
 make run
 ```
 
 `make test` always runs the full test suite and does not skip `yq`-dependent checks.
 `make ci` mirrors CI gating order locally: lint -> policy check -> test.
+`make reports` runs the local report pipeline: combined report -> trend -> dashboard -> schema checks -> attestation write/validate.
 
 ## Reporting
 
