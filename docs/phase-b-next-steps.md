@@ -119,3 +119,12 @@
 - [x] Add release-readiness report and sanitize policy for report artifacts.
 - [x] Enable repository-level security controls and branch protection on `main`.
 - [x] Switch repository visibility to public after full gate checks.
+
+## Next Execution Tasks (Phase M)
+- Refer to `docs/phase-m-execution-plan.md` for prioritized execution order and DoD.
+- [ ] Merge and close current standardization PR wave (PR-1/PR-2/PR-4/PR-3) in controlled order.
+- [ ] Refresh hub reports/dashboard and publish rollout governance update.
+- [ ] Run full verification evidence pass after merge wave (`make setup`, `make ci`, `make test` + target repo CI-equivalent checks).
+- [ ] Tighten `patreon_iran` quality scripts from transitional checks to implementation-grade checks.
+- [ ] Expand payment webhook replay/signature hardening coverage and runbook guidance.
+- [ ] Operationalize resource-policy caps in runtime scripts with traceable logs.

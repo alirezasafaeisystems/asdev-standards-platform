@@ -1,0 +1,25 @@
+# Chat Snapshot — 2026-02-10 (Rest Break)
+
+## Session Summary
+
+- Planned and executed staged rollout in this order:
+  1. PR-1 docs/templates
+  2. PR-2 CI normalization
+  3. PR-4 resource policy (hub)
+  4. PR-3 high-risk hardening (after explicit approval)
+- Opened PRs across hub and target repositories with validation notes.
+- Added next-step tasking for Phase M in:
+  - `docs/phase-m-execution-plan.md`
+  - `docs/phase-b-next-steps.md`
+
+## Current State
+
+- Branch: `chore/phase-m-docs-and-snapshot-20260210`
+- This snapshot captures where to resume after break.
+
+## Resume Checklist
+
+1. Review open PR statuses and CI outcomes.
+2. Merge PRs in controlled order (PR-1 -> PR-2 -> PR-4 -> PR-3).
+3. Run post-merge hub verification (`make setup`, `make ci`, `make test`).
+4. Regenerate reports/dashboard and publish closure update.
