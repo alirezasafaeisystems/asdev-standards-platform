@@ -131,7 +131,7 @@
 
 ## Next Execution Tasks (Phase N)
 - Refer to `docs/phase-n-execution-plan.md` for prioritized execution order and DoD.
-- [ ] Break report-update PR churn loop on `main` (no infinite report PR chain).
-- [ ] Enforce idempotent generated-output policy (open PR only on meaningful delta).
-- [ ] Add CI guardrail test for `open-update-pr` non-recursive behavior.
-- [ ] Publish post-fix governance note with before/after run evidence.
+- [x] Break report-update PR churn loop on `main` (no infinite report PR chain).
+- [x] Enforce idempotent generated-output policy (open PR only on meaningful delta).
+- [x] Add CI guardrail test for `open-update-pr` non-recursive behavior.
+- [x] Publish post-fix governance note with before/after run evidence.

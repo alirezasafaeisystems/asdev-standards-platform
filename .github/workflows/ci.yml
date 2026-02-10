@@ -195,11 +195,23 @@ jobs:
       - name: Detect generated changes
         id: generated_changes
         run: |
-          if git diff --quiet -- sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation docs/platform-adoption-dashboard.md; then
+          detection_output="$(
+            bash scripts/detect-meaningful-report-delta.sh \
+              sync/divergence-report.combined.csv \
+              sync/divergence-report.combined.errors.csv \
+              sync/divergence-report.combined.errors.trend.csv \
+              sync/generated-reports.attestation \
+              docs/platform-adoption-dashboard.md
+          )"
+          echo "$detection_output"
+          has_meaningful_changes="$(echo "$detection_output" | awk -F= '/^has_meaningful_changes=/{print $2}')"
+          changed_files="$(echo "$detection_output" | awk -F= '/^changed_files=/{print $2}')"
+          if [[ "$has_meaningful_changes" != "true" ]]; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             echo "update_mode=skipped_no_changes" >> "$GITHUB_OUTPUT"
           else
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "meaningful_changed_files=${changed_files}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Validate report attestation presence
@@ -357,6 +369,7 @@ jobs:
             echo ""
             echo "- update_mode: ${{ steps.report_update_mode.outputs.update_mode || steps.report_skipped_mode.outputs.update_mode || steps.generated_changes.outputs.update_mode || 'n/a' }}"
             echo "- has_changes: ${{ steps.generated_changes.outputs.has_changes || 'false' }}"
+            echo "- meaningful_changed_files: ${{ steps.generated_changes.outputs.meaningful_changed_files || 'n/a' }}"
             echo "- pr_number: ${{ steps.report_update_mode.outputs.pr_number || steps.resolve_pr.outputs.pr_number || 'n/a' }}"
             echo "- create_pr_outcome: ${{ steps.create_update_pr.outcome || 'n/a' }}"
             echo "- auto_merge_safe: ${{ steps.guard_auto_merge.outputs.safe || 'n/a' }}"

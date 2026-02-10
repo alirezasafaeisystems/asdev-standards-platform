@@ -32,6 +32,8 @@ lint:
 	@bash -n scripts/close-stale-report-update-prs.sh
 	@bash -n scripts/summarize-clone-failed.sh
 	@bash -n scripts/csv-utils.sh
+	@bash -n scripts/normalize-report-output.sh
+	@bash -n scripts/detect-meaningful-report-delta.sh
 	@echo "Lint checks passed."
 
 test:

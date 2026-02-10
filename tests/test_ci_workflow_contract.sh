@@ -14,6 +14,11 @@ grep -q '^  generate-reports-docs:' "${WORKFLOW_FILE}" || {
   exit 1
 }
 
+grep -q "^    if: github.event_name == 'schedule'" "${WORKFLOW_FILE}" || {
+  echo "report update jobs must run on schedule only" >&2
+  exit 1
+}
+
 grep -q '^    needs: lint-and-test' "${WORKFLOW_FILE}" || {
   echo "generate-reports-docs must need lint-and-test" >&2
   exit 1
@@ -34,6 +39,16 @@ grep -q 'name: Validate report attestation presence' "${WORKFLOW_FILE}" || {
   exit 1
 }
 
+grep -q 'name: Detect generated changes' "${WORKFLOW_FILE}" || {
+  echo "Missing generated changes detection step" >&2
+  exit 1
+}
+
+grep -q 'scripts/detect-meaningful-report-delta.sh' "${WORKFLOW_FILE}" || {
+  echo "Missing meaningful delta detector in workflow" >&2
+  exit 1
+}
+
 grep -q 'name: Append clone_failed summary' "${WORKFLOW_FILE}" || {
   echo "Missing clone_failed summary step" >&2
   exit 1
@@ -51,6 +66,16 @@ grep -q 'name: Enforce attestation file in update PR' "${WORKFLOW_FILE}" || {
 
 grep -q 'name: Publish workflow summary' "${WORKFLOW_FILE}" || {
   echo "Missing workflow summary step" >&2
+  exit 1
+}
+
+grep -q 'name: Report auto-merge limitation' "${WORKFLOW_FILE}" || {
+  echo "Missing auto-merge limitation reporting step" >&2
+  exit 1
+}
+
+grep -q 'gh pr list --head chore/reports-docs-update --base main' "${WORKFLOW_FILE}" || {
+  echo "Missing existing update-branch PR fallback lookup" >&2
   exit 1
 }
 

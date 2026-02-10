@@ -28,6 +28,7 @@ bash tests/test_make_ci_target.sh
 bash tests/test_make_reports_target.sh
 bash tests/test_summarize_clone_failed.sh
 bash tests/test_ci_workflow_contract.sh
+bash tests/test_detect_meaningful_report_delta.sh
 bash tests/test_status_counter_contract.sh
 bash tests/test_clone_failed_summary_contract.sh
 bash tests/test_reports_attestation_contract.sh

@@ -43,3 +43,15 @@
 2. N2
 3. N3
 4. N4
+
+## Execution status (2026-02-10)
+- [x] N1 completed via schedule-only gating for report-update jobs on push.
+- [x] N2 completed via normalized meaningful-delta detection:
+  - `scripts/normalize-report-output.sh`
+  - `scripts/detect-meaningful-report-delta.sh`
+  - `open-update-pr` now skips no-op deltas caused only by runtime timestamps.
+- [x] N3 completed with CI guardrail extensions:
+  - `tests/test_detect_meaningful_report_delta.sh`
+  - `tests/test_ci_workflow_contract.sh` additions for schedule-only + fallback lifecycle assertions.
+- [x] N4 completed with governance evidence:
+  - `governance/updates-2026-02-10-phase-n.md`
