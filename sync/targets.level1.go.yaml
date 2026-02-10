@@ -3,7 +3,8 @@ targets:
     default_branch: main
     templates:
       - go-level1-ci
-    optional_features: []
+    optional_features:
+      - agent-guidelines
     opt_outs: []
     labels:
       - asdev-sync

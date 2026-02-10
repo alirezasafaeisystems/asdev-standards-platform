@@ -27,3 +27,7 @@ See `CONTRIBUTING.md`.
 ## License
 
 State license or internal-use policy.
+
+## Agent Guide
+
+Add `AGENT.md` from templates when agent execution policy must be repository-specific.

@@ -22,3 +22,10 @@ body:
       label: Steps to reproduce
     validations:
       required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: User impact and risk
+      description: Who is impacted and how severe is it?
+    validations:
+      required: true

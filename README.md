@@ -10,6 +10,19 @@ This repository defines:
 - Reusable templates and helper tooling (`platform/`)
 - Sync configuration and rollout artifacts (`sync/`)
 
+Core process contracts:
+
+- Agent specification: `standards/process/agent-spec-v1.md`
+- Definition of Done policy: `governance/policies/definition-of-done.md`
+- CI expectations policy: `governance/policies/ci-expectations.md`
+- Security checklist policy: `governance/policies/security-checklist.md`
+- Agent rollout template pack:
+  - `platform/agent/AGENT_TEMPLATE.md`
+  - `platform/agent/HUMAN_GATES.md`
+  - `platform/agent/REPO_LENSES.md`
+  - `platform/scripts/generate-agent-md.py`
+- Resource execution policy: `docs/resource-policy.md`
+
 This repository does not own consumer-repo business logic.
 
 ## Public Scope
@@ -147,10 +160,23 @@ echo "run_id=${run_id} conclusion=${conclusion}"
 ```bash
 make ci
 make reports
+make agent-generate
 make ci-last-run
 make ci-last-run-compact
 make digest-cleanup-dry-run
 ```
+
+## Agent Rollout
+
+```bash
+# preview summary only
+make agent-generate
+
+# apply AGENT.md generation in temp clones
+APPLY=true make agent-generate
+```
+
+- See `docs/agent-rollout.md` for the end-to-end workflow and PR strategy.
 
 ## Phase B Deliverables
 

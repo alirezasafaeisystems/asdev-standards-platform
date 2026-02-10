@@ -24,6 +24,11 @@ templates:
     mode: must
     source_ref: standards/docs/readme-minimum.md
     path: README.md
+  - id: agent-guidelines
+    version: 1.0.0
+    mode: optional
+    source_ref: standards/process/agent-spec-v1.md
+    path: AGENT.md
   - id: ci-quality-gate
     version: 1.0.1
     mode: must

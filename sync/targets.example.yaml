@@ -10,6 +10,7 @@ targets:
       - ci-quality-gate
     optional_features:
       - editorconfig-default
+      - agent-guidelines
     opt_outs: []
     labels:
       - asdev-sync
@@ -26,6 +27,7 @@ targets:
     optional_features:
       - editorconfig-default
       - codeowners-default
+      - agent-guidelines
     opt_outs:
       - README.md
     labels:

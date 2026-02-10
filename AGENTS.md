@@ -1,48 +1,59 @@
-# Repository Guidelines
+# Codex Runtime Guidance (ASDEV Hub)
 
-## Project Structure & Module Organization
-This repository is currently a clean scaffold with no committed source files yet. Use the structure below as the default layout for new work:
-- `src/`: application code organized by feature (for example, `src/auth/`, `src/api/`).
-- `tests/`: automated tests mirroring `src/` paths.
-- `assets/`: static assets (images, fixtures, sample data).
-- `scripts/`: local automation (build/test helpers, migration scripts).
-- `docs/`: design notes, architecture decisions, and onboarding docs.
+This file is the runtime contract for Codex when working in `asdev_platform`.
 
-Keep modules small and cohesive. Prefer feature-first folders over large utility dumps.
+## Mission
 
-## Build, Test, and Development Commands
-No build tooling is configured yet. When initializing the project, expose a minimal, consistent command set:
-- `make setup`: install dependencies and prepare local tooling.
-- `make test`: run the full automated test suite.
-- `make lint`: run static checks/format validation.
-- `make run`: start the app locally.
+- Maintain multi-repo standards and governance without monorepo lock-in.
+- Keep rollouts incremental, reversible, and traceable.
+- Prefer evidence-based changes with reproducible verification.
 
-If `make` is not used, provide equivalent `npm`, `pytest`, or language-native commands in `README.md`.
+## Repo Commands
 
-## Coding Style & Naming Conventions
-- Use 4 spaces for Python, 2 spaces for JavaScript/TypeScript/JSON/YAML.
-- File and module names: `snake_case` for Python, `kebab-case` for frontend assets, `PascalCase` for React components/classes.
-- Function names: descriptive verbs (`create_user`, `fetchMetrics`).
-- Run formatter/linter before pushing (for example, `ruff format`, `eslint --fix`, `prettier --write`).
+- `make setup`
+- `make lint`
+- `make ci`
+- `make test`
+- `make reports`
+- `make run`
 
-## Testing Guidelines
-Place tests under `tests/` with names matching source modules:
-- Python: `tests/test_<module>.py`
-- JS/TS: `<name>.test.ts` or `<name>.spec.ts`
+## Workflow
 
-Add unit tests for all new logic and regression tests for bug fixes. Target meaningful coverage on changed code, not only global percentages.
+`Discover -> Plan -> Task -> Execute -> Verify -> Document`
 
-## Commit & Pull Request Guidelines
-Git history is not available yet, so adopt Conventional Commits from the start:
-- `feat: add user session validator`
-- `fix: handle null API response`
-- `docs: add local setup steps`
+## Mandatory Verification
 
-PRs should include:
-- concise summary of what changed and why,
-- linked issue/ticket (if applicable),
-- test evidence (command + result),
-- screenshots for UI changes.
+For standards/template/process changes run:
 
-## Security & Configuration Tips
-Never commit secrets. Keep local overrides in ignored files such as `.env.local`. Document required environment variables in `.env.example` as the project grows.
+1. `make setup`
+2. `make ci`
+3. `make test`
+
+Include command outcomes in PR description.
+
+## Human Approval Gates (Stop and Ask)
+
+Always pause for explicit approval before:
+
+- Auth/permissions/roles/security policy changes
+- Breaking API/schema/db changes, destructive migrations, data deletion
+- Adding dependencies or major-version upgrades
+- Telemetry/external data transfer/secret handling changes
+- Legal text changes (Terms/Privacy) or sensitive claims
+- Critical UX flow changes (signup/checkout/pricing/payment)
+
+## Allowed Without Approval
+
+- Documentation and templates
+- Repo-local `AGENT.md` updates
+- Non-breaking CI checks that do not alter deployment behavior
+- Code-quality improvements with passing tests
+
+## Source Documents
+
+- `AGENT.md` (hub-specific portable agent guide)
+- `standards/process/agent-spec-v1.md`
+- `platform/agent/AGENT_TEMPLATE.md`
+- `platform/agent/HUMAN_GATES.md`
+- `platform/agent/REPO_LENSES.md`
+- `docs/resource-policy.md`
