@@ -331,10 +331,18 @@ jobs:
 
       - name: Enable auto-merge
         if: steps.generated_changes.outputs.has_changes == 'true' && steps.resolve_pr.outputs.pr_number != '' && steps.guard_auto_merge.outputs.safe == 'true'
+        id: enable_auto_merge
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bash scripts/retry-cmd.sh 3 2 -- gh pr merge "${{ steps.resolve_pr.outputs.pr_number }}" --auto --squash --delete-branch
+
+      - name: Report auto-merge limitation
+        if: steps.enable_auto_merge.outcome == 'failure'
+        run: |
+          echo "::warning::Auto-merge could not be enabled for the generated report PR."
+          echo "::warning::Enable repository auto-merge support to allow this step."
 
       - name: Report PR creation limitation
         if: steps.generated_changes.outputs.has_changes == 'true' && steps.create_update_pr.outcome == 'failure'
