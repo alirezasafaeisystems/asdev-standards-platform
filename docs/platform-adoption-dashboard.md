@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-10T18:36:39Z
+- Generated at: 2026-02-10T18:58:50Z
 ## Level 0 Adoption (from divergence report)
 
 | Repository | Aligned | Diverged | Missing | Opted-out |
@@ -22,11 +22,11 @@
 
 | Status | Previous | Current | Delta |
 |---|---:|---:|---:|
-| aligned | 27 | 13 | -14 |
-| diverged | 0 | 20 | 20 |
-| missing | 0 | 3 | 3 |
+| aligned | 13 | 12 | -1 |
+| diverged | 20 | 19 | -1 |
+| missing | 3 | 3 | 0 |
 | opted_out | 1 | 1 | 0 |
-| clone_failed | 0 | 0 | 0 |
+| clone_failed | 0 | 1 | 1 |
 | unknown_template | 0 | 0 | 0 |
 | unknown | 0 | 0 | 0 |
 
@@ -34,7 +34,7 @@
 
 | Metric | Previous | Current | Delta |
 |---|---:|---:|---:|
-| clone_failed rows | 0 | 0 | 0 |
+| clone_failed rows | 0 | 1 | 1 |
 
 ### clone_failed Trend by Run
 
@@ -43,7 +43,8 @@
 | 20260209T100000Z | 2 |
 | 20260210T134011Z | 2 |
 | 20260210T183518Z | 0 |
-| current | 0 |
+| 20260210T185815Z | 0 |
+| current | 1 |
 | previous | 0 |
 
 ### unknown_template Trend by Run
@@ -53,6 +54,7 @@
 | 20260209T100000Z | 1 |
 | 20260210T134011Z | 0 |
 | 20260210T183518Z | 0 |
+| 20260210T185815Z | 0 |
 | current | 0 |
 | previous | 0 |
 
@@ -60,13 +62,13 @@
 
 | Repository | Previous | Current | Delta |
 |---|---:|---:|---:|
-| n/a | 0 | 0 | 0 |
+| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
 
 ## Transient Error Fingerprints (Combined)
 
 | Fingerprint | Previous | Current | Delta |
 |---|---:|---:|---:|
-| n/a | 0 | 0 | 0 |
+| auth_or_access | 0 | 1 | 1 |
 
 ## Top Fingerprint Deltas (Current Run)
 
@@ -74,7 +76,7 @@
 
 | Fingerprint | Delta |
 |---|---:|
-| none | 0 |
+| auth_or_access | 1 |
 
 ### Top Negative Deltas
 
@@ -86,15 +88,13 @@
 
 | Run | Fingerprint | Delta |
 |---|---|---:|
-| 20260209T100000Z | auth_or_access | 3 |
-| 20260209T100000Z | timeout | 5 |
-| 20260209T100000Z | tls_error | 2 |
 | 20260210T134011Z | auth_or_access | 3 |
 | 20260210T134011Z | timeout | -1 |
 | 20260210T134011Z | tls_error | 2 |
 | 20260210T183518Z | auth_or_access | -2 |
-| current | none | 0 |
-| previous | auth_or_access | -2 |
+| 20260210T185815Z | none | 0 |
+| current | auth_or_access | 1 |
+| previous | none | 0 |
 
 ## auth_or_access Trend by Run
 
@@ -103,7 +103,8 @@
 | 20260209T100000Z | 3 |
 | 20260210T134011Z | 4 |
 | 20260210T183518Z | 0 |
-| current | 0 |
+| 20260210T185815Z | 0 |
+| current | 1 |
 | previous | 0 |
 
 ## timeout Trend by Run
@@ -113,6 +114,7 @@
 | 20260209T100000Z | 5 |
 | 20260210T134011Z | 1 |
 | 20260210T183518Z | 0 |
+| 20260210T185815Z | 0 |
 | current | 0 |
 | previous | 0 |
 
@@ -120,16 +122,11 @@
 
 | Repository | Previous Non-aligned | Current Non-aligned | Delta |
 |---|---:|---:|---:|
-| alirezasafaeiiidev/go-level1-pilot | 0 | 1 | 1 |
-| alirezasafaeiiidev/my_portfolio | 0 | 7 | 7 |
-| alirezasafaeiiidev/patreon_iran | 0 | 8 | 8 |
-| alirezasafaeiiidev/persian_tools | 0 | 7 | 7 |
-| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
-| go-level1-pilot | 0 | 0 | 0 |
-| my_portfolio | 0 | 0 | 0 |
-| patreon_iran | 1 | 0 | -1 |
-| persian_tools | 0 | 0 | 0 |
-| python-level1-pilot | 0 | 0 | 0 |
+| alirezasafaeiiidev/go-level1-pilot | 1 | 1 | 0 |
+| alirezasafaeiiidev/my_portfolio | 7 | 7 | 0 |
+| alirezasafaeiiidev/patreon_iran | 8 | 8 | 0 |
+| alirezasafaeiiidev/persian_tools | 7 | 7 | 0 |
+| alirezasafaeiiidev/python-level1-pilot | 1 | 1 | 0 |
 
 ## Level 1 Rollout Targets
 
