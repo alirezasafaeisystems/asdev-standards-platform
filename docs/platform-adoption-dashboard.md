@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-10T18:58:50Z
+- Generated at: 2026-02-10T19:04:15Z
 ## Level 0 Adoption (from divergence report)
 
 | Repository | Aligned | Diverged | Missing | Opted-out |
@@ -22,11 +22,11 @@
 
 | Status | Previous | Current | Delta |
 |---|---:|---:|---:|
-| aligned | 13 | 12 | -1 |
-| diverged | 20 | 19 | -1 |
+| aligned | 12 | 12 | 0 |
+| diverged | 19 | 19 | 0 |
 | missing | 3 | 3 | 0 |
 | opted_out | 1 | 1 | 0 |
-| clone_failed | 0 | 1 | 1 |
+| clone_failed | 1 | 1 | 0 |
 | unknown_template | 0 | 0 | 0 |
 | unknown | 0 | 0 | 0 |
 
@@ -34,7 +34,7 @@
 
 | Metric | Previous | Current | Delta |
 |---|---:|---:|---:|
-| clone_failed rows | 0 | 1 | 1 |
+| clone_failed rows | 1 | 1 | 0 |
 
 ### clone_failed Trend by Run
 
@@ -43,9 +43,9 @@
 | 20260209T100000Z | 2 |
 | 20260210T134011Z | 2 |
 | 20260210T183518Z | 0 |
-| 20260210T185815Z | 0 |
+| 20260210T190335Z | 1 |
 | current | 1 |
-| previous | 0 |
+| previous | 1 |
 
 ### unknown_template Trend by Run
 
@@ -54,7 +54,7 @@
 | 20260209T100000Z | 1 |
 | 20260210T134011Z | 0 |
 | 20260210T183518Z | 0 |
-| 20260210T185815Z | 0 |
+| 20260210T190335Z | 0 |
 | current | 0 |
 | previous | 0 |
 
@@ -62,13 +62,13 @@
 
 | Repository | Previous | Current | Delta |
 |---|---:|---:|---:|
-| alirezasafaeiiidev/python-level1-pilot | 0 | 1 | 1 |
+| alirezasafaeiiidev/python-level1-pilot | 1 | 1 | 0 |
 
 ## Transient Error Fingerprints (Combined)
 
 | Fingerprint | Previous | Current | Delta |
 |---|---:|---:|---:|
-| auth_or_access | 0 | 1 | 1 |
+| auth_or_access | 1 | 1 | 0 |
 
 ## Top Fingerprint Deltas (Current Run)
 
@@ -76,7 +76,7 @@
 
 | Fingerprint | Delta |
 |---|---:|
-| auth_or_access | 1 |
+| none | 0 |
 
 ### Top Negative Deltas
 
@@ -92,9 +92,9 @@
 | 20260210T134011Z | timeout | -1 |
 | 20260210T134011Z | tls_error | 2 |
 | 20260210T183518Z | auth_or_access | -2 |
-| 20260210T185815Z | none | 0 |
-| current | auth_or_access | 1 |
-| previous | none | 0 |
+| 20260210T190335Z | auth_or_access | 1 |
+| current | auth_or_access | 0 |
+| previous | auth_or_access | 1 |
 
 ## auth_or_access Trend by Run
 
@@ -103,9 +103,9 @@
 | 20260209T100000Z | 3 |
 | 20260210T134011Z | 4 |
 | 20260210T183518Z | 0 |
-| 20260210T185815Z | 0 |
+| 20260210T190335Z | 1 |
 | current | 1 |
-| previous | 0 |
+| previous | 1 |
 
 ## timeout Trend by Run
 
@@ -114,7 +114,7 @@
 | 20260209T100000Z | 5 |
 | 20260210T134011Z | 1 |
 | 20260210T183518Z | 0 |
-| 20260210T185815Z | 0 |
+| 20260210T190335Z | 0 |
 | current | 0 |
 | previous | 0 |
 
