@@ -3,7 +3,8 @@ targets:
     default_branch: main
     templates:
       - js-ts-level1-ci
-    optional_features: []
+    optional_features:
+      - agent-guidelines
     opt_outs: []
     labels:
       - asdev-sync
@@ -13,7 +14,8 @@ targets:
     default_branch: main
     templates:
       - js-ts-level1-ci
-    optional_features: []
+    optional_features:
+      - agent-guidelines
     opt_outs: []
     labels:
       - asdev-sync
@@ -23,7 +25,8 @@ targets:
     default_branch: main
     templates:
       - js-ts-level1-ci
-    optional_features: []
+    optional_features:
+      - agent-guidelines
     opt_outs: []
     labels:
       - asdev-sync

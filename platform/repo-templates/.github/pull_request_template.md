@@ -11,7 +11,21 @@ Describe what changed and why.
 
 - [ ] Tests executed
 - [ ] Lint/format checks executed
+- [ ] Type checks executed (if applicable)
+- [ ] Build executed (if applicable)
 - [ ] Screenshots attached (if UI)
+
+## Definition of Done
+
+- [ ] Scope is complete and minimal
+- [ ] No unrelated files changed
+- [ ] Docs/changelog updated (if behavior changed)
+
+## Security Checklist
+
+- [ ] No secrets or sensitive data introduced
+- [ ] No auth/permission/security policy changes without approval
+- [ ] Dependency additions/major upgrades are documented and approved
 
 ## Adoption Mode
 

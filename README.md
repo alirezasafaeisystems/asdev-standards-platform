@@ -10,6 +10,13 @@ This repository defines:
 - Reusable templates and helper tooling (`platform/`)
 - Sync configuration and rollout artifacts (`sync/`)
 
+Core process contracts:
+
+- Agent specification: `standards/process/agent-spec-v1.md`
+- Definition of Done policy: `governance/policies/definition-of-done.md`
+- CI expectations policy: `governance/policies/ci-expectations.md`
+- Security checklist policy: `governance/policies/security-checklist.md`
+
 This repository does not own consumer-repo business logic.
 
 ## Public Scope
