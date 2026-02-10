@@ -29,6 +29,26 @@ grep -q "DIGEST_STALE_DAYS: .*vars.DIGEST_STALE_DAYS" "${WORKFLOW_FILE}" || {
   exit 1
 }
 
+grep -q '^      - name: Resolve latest open digest$' "${WORKFLOW_FILE}" || {
+  echo "Missing latest digest resolution step" >&2
+  exit 1
+}
+
+grep -q '^      - name: Close stale weekly digests$' "${WORKFLOW_FILE}" || {
+  echo "Missing stale digest close step" >&2
+  exit 1
+}
+
+grep -q '^      - name: Report skipped cleanup$' "${WORKFLOW_FILE}" || {
+  echo "Missing skipped cleanup reporting step" >&2
+  exit 1
+}
+
+grep -q "if: \${{ vars.DIGEST_CLEANUP_ENABLED != 'false' }}" "${WORKFLOW_FILE}" || {
+  echo "Missing DIGEST_CLEANUP_ENABLED gate" >&2
+  exit 1
+}
+
 grep -q "## Daily Weekly Digest Stale Cleanup" "${WORKFLOW_FILE}" || {
   echo "Missing workflow summary heading" >&2
   exit 1

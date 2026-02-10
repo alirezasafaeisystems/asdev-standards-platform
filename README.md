@@ -75,6 +75,11 @@ bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
 - Attestation includes explicit `checksum_algorithm` metadata with compatibility checks (`ATTESTATION_EXPECTED_CHECKSUM_ALGORITHM`, default `sha256`).
 - Attestation validation also verifies attested file-path metadata (`combined_file`, `errors_file`, `trend_file`) against validator inputs.
 - Weekly digest automation closes stale open digest issues beyond SLA (`DIGEST_STALE_DAYS`, default `8`) and references the active digest issue; dry-run preview is available via `DIGEST_STALE_DRY_RUN=true`.
+- Daily stale-digest cleanup workflow (`.github/workflows/digest-stale-cleanup.yml`) is enabled unless `DIGEST_CLEANUP_ENABLED=false`.
+- Cleanup workflow toggle vars:
+  - `DIGEST_STALE_DRY_RUN` (`true` for preview, `false` to enforce closures)
+  - `DIGEST_STALE_DAYS` (stale threshold in days, default `8`)
+- Recommended rollout: run cleanup in dry-run mode first, review summary metrics, then switch to enforce mode.
 - Snapshot rotation archives report snapshots under `sync/snapshots/` and prunes by retention (`REPORT_SNAPSHOT_RETENTION_DAYS`, default `14`).
 - Dashboard includes recent fingerprint delta history from current/previous trend files and retained snapshot trend files.
 - Dashboard also highlights top positive/negative fingerprint deltas from current trend output.
@@ -85,6 +90,14 @@ bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
 - Update PR lifecycle supports dry-run mode (`REPORT_UPDATE_PR_STALE_DRY_RUN=true`) and emits candidate/closure counts into workflow summary.
 - Weekly digest stale-closure automation emits deterministic lifecycle summary metrics for both active-close and dry-run modes.
 - Weekly digest workflow supports CI policy toggle for stale closure dry-run via `DIGEST_STALE_DRY_RUN` and surfaces toggle state in step summary.
+
+## Local Operations
+
+```bash
+make digest-cleanup-dry-run
+```
+
+- `make digest-cleanup-dry-run` resolves the latest open weekly digest and runs stale lifecycle cleanup in dry-run mode.
 
 ## Phase B Deliverables
 

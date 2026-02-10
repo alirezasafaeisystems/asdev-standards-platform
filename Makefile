@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint test run ci reports
+.PHONY: setup lint test run ci reports digest-cleanup-dry-run
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -48,6 +48,19 @@ reports:
 	@bash scripts/validate-generated-reports.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv
 	@bash scripts/write-report-attestation.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation
 	@bash scripts/validate-report-attestation.sh sync/divergence-report.combined.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv sync/generated-reports.attestation
+
+digest-cleanup-dry-run:
+	@repo="$${REPO:-alirezasafaeiiidev/asdev_platform}"; \
+	latest_number="$$(gh issue list --repo "$$repo" --state open --search "Weekly Governance Digest in:title" --limit 1 --json number --jq '.[0].number // empty')"; \
+	latest_url="$$(gh issue list --repo "$$repo" --state open --search "Weekly Governance Digest in:title" --limit 1 --json url --jq '.[0].url // empty')"; \
+	if [[ -z "$$latest_number" || -z "$$latest_url" ]]; then \
+		echo "No open weekly digest found for $$repo"; \
+		exit 0; \
+	fi; \
+	summary_file="$$(mktemp)"; \
+	DIGEST_STALE_DRY_RUN=true DIGEST_STALE_SUMMARY_FILE="$$summary_file" bash scripts/close-stale-weekly-digests.sh "$$repo" "$$latest_number" "$$latest_url" "Weekly Governance Digest"; \
+	cat "$$summary_file"; \
+	rm -f "$$summary_file"
 
 run:
 	@echo "ASDEV Platform is a standards/governance repository; use scripts under platform/scripts/."
