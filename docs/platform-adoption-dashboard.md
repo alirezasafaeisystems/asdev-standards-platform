@@ -1,6 +1,6 @@
 # Platform Adoption Dashboard
 
-- Generated at: 2026-02-10T00:49:20Z
+- Generated at: 2026-02-10T00:56:46Z
 - Latest Weekly Governance Digest: https://github.com/alirezasafaeiiidev/asdev_platform/issues/2
 
 ## Level 0 Adoption (from divergence report)
@@ -42,7 +42,7 @@
 
 | Run | clone_failed rows |
 |---|---:|
-| 20260210T004816Z | 2 |
+| 20260210T005541Z | 2 |
 | current | 2 |
 | previous | 2 |
 
@@ -50,7 +50,7 @@
 
 | Run | unknown_template rows |
 |---|---:|
-| 20260210T004816Z | 0 |
+| 20260210T005541Z | 0 |
 | current | 0 |
 | previous | 0 |
 
@@ -85,7 +85,7 @@
 
 | Run | Fingerprint | Delta |
 |---|---|---:|
-| 20260210T004816Z | auth_or_access | 0 |
+| 20260210T005541Z | auth_or_access | 0 |
 | current | auth_or_access | 0 |
 | previous | auth_or_access | 0 |
 
@@ -93,7 +93,7 @@
 
 | Run | auth_or_access count |
 |---|---:|
-| 20260210T004816Z | 2 |
+| 20260210T005541Z | 2 |
 | current | 2 |
 | previous | 2 |
 
@@ -101,7 +101,7 @@
 
 | Run | timeout count |
 |---|---:|
-| 20260210T004816Z | 0 |
+| 20260210T005541Z | 0 |
 | current | 0 |
 | previous | 0 |
 
