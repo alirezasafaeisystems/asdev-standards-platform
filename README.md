@@ -201,3 +201,11 @@ APPLY=true make agent-generate
 - Versioned repo templates with source traceability
 - Sync MVP scripts for PR-driven adoption and divergence reporting
 - Level 1 JS/TS baseline kickoff (draft)
+
+## Technical Execution v2
+
+- Execution status report: `docs/technical-execution-v2-status-2026-02-13.md`
+- Related rollout PRs:
+  - `asdev_platform`: `hotfix/pr-flow` -> PR #121
+  - `my_portfolio`: `feat/phase0-critical-risk-hardening` -> PR #11
+  - `persian_tools`: `feat/phase2-phase3-migration-observability` -> PR #13
