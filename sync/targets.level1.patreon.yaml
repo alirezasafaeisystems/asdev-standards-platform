@@ -3,6 +3,8 @@ targets:
     default_branch: main
     templates:
       - js-ts-level1-ci
+      - agents-runtime-guidance
+      - codex-automation-spec
     optional_features:
       - agent-guidelines
     opt_outs: []

@@ -30,4 +30,5 @@ State license or internal-use policy.
 
 ## Agent Guide
 
-Add `AGENT.md` from templates when agent execution policy must be repository-specific.
+Add `AGENTS.md` and `CODEX_AUTOMATION_SPEC.md` from templates.
+Use `AGENT.md` when agent execution policy must be repository-specific.

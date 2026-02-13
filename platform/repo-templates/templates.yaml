@@ -29,6 +29,16 @@ templates:
     mode: optional
     source_ref: standards/process/agent-spec-v1.md
     path: AGENT.md
+  - id: agents-runtime-guidance
+    version: 1.0.0
+    mode: must
+    source_ref: standards/process/agent-spec-v1.md
+    path: AGENTS.md
+  - id: codex-automation-spec
+    version: 1.0.0
+    mode: must
+    source_ref: CODEX_AUTOMATION_SPEC.md
+    path: CODEX_AUTOMATION_SPEC.md
   - id: ci-quality-gate
     version: 1.0.1
     mode: must

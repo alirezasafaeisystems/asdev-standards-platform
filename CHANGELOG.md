@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `scripts/check-coverage-threshold.sh`
 - Added make targets for acceptance gates: `typecheck`, `e2e`, `build`, `security-audit`, `coverage`, and `verify`.
 - Added contract tests for verification wiring, task logging, coverage threshold, and security-audit behavior.
+- Added new sync templates:
+  - `platform/repo-templates/AGENTS.md`
+  - `platform/repo-templates/CODEX_AUTOMATION_SPEC.md`
+- Added new template IDs:
+  - `agents-runtime-guidance`
+  - `codex-automation-spec`
 
 ### Changed
 - Updated `README.md` quickstart and automation verification guidance to include new acceptance-gate commands.
+- Updated all sync target manifests to roll out `AGENTS.md` and `CODEX_AUTOMATION_SPEC.md` across target repositories.

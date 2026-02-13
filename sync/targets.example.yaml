@@ -5,6 +5,8 @@ targets:
       - pr-template
       - issue-bug
       - issue-feature
+      - agents-runtime-guidance
+      - codex-automation-spec
       - contributing-minimum
       - readme-minimum
       - ci-quality-gate
@@ -21,6 +23,8 @@ targets:
       - pr-template
       - issue-bug
       - issue-feature
+      - agents-runtime-guidance
+      - codex-automation-spec
       - contributing-minimum
       - readme-minimum
       - ci-quality-gate
