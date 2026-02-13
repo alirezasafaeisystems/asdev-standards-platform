@@ -1,0 +1,223 @@
+name: Cross-Repo Standards Sync
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/merge-runbook.md
+      - docs/reviewer-rotation.md
+      - sync/targets.yml
+
+concurrency:
+  group: cross-repo-standards-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      targets_json: ${{ steps.cfg.outputs.targets_json }}
+      target_count: ${{ steps.cfg.outputs.target_count }}
+      managed_paths_json: ${{ steps.cfg.outputs.managed_paths_json }}
+      managed_paths_csv: ${{ steps.cfg.outputs.managed_paths_csv }}
+      managed_paths_multiline: ${{ steps.cfg.outputs.managed_paths_multiline }}
+      reviewers_csv: ${{ steps.cfg.outputs.reviewers_csv }}
+      labels_multiline: ${{ steps.cfg.outputs.labels_multiline }}
+      branch_prefix: ${{ steps.cfg.outputs.branch_prefix }}
+      pr_title: ${{ steps.cfg.outputs.pr_title }}
+      pr_body: ${{ steps.cfg.outputs.pr_body }}
+      merge_method: ${{ steps.cfg.outputs.merge_method }}
+      enable_auto_merge: ${{ steps.cfg.outputs.enable_auto_merge }}
+
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+
+      - name: Install workflow parser dependency
+        run: python3 -m pip install --quiet pyyaml
+
+      - name: Parse sync config
+        id: cfg
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import pathlib
+          import re
+          import yaml
+
+          cfg_path = pathlib.Path('sync/targets.yml')
+          cfg = yaml.safe_load(cfg_path.read_text(encoding='utf-8')) or {}
+
+          managed = cfg.get('managed_paths') or []
+          if not managed:
+            raise SystemExit('sync/targets.yml: managed_paths must not be empty')
+
+          targets_raw = cfg.get('targets') or []
+          targets = []
+          for item in targets_raw:
+            if isinstance(item, str):
+              repo = item
+            elif isinstance(item, dict):
+              repo = item.get('repo', '')
+            else:
+              repo = ''
+            if not isinstance(repo, str) or '/' not in repo:
+              raise SystemExit(f'invalid target repo: {item!r}')
+            slug = re.sub(r'[^a-zA-Z0-9._-]', '-', repo)
+            targets.append({'repo': repo, 'slug': slug})
+
+          reviewers = cfg.get('review', {}).get('request_reviewers', []) or []
+          pr = cfg.get('pr', {}) or {}
+          merge = cfg.get('merge', {}) or {}
+
+          source_repo = cfg.get('source_repo') or os.getenv('GITHUB_REPOSITORY', '')
+          source_sha = os.getenv('SOURCE_SHA', '')
+          managed_csv = ', '.join(managed)
+
+          body_template = pr.get('body', 'Automated sync.')
+          body_rendered = (
+            body_template
+            .replace('{SOURCE_REPO}', source_repo)
+            .replace('{SOURCE_SHA}', source_sha)
+            .replace('{MANAGED_PATHS}', managed_csv)
+          )
+
+          outputs = {
+            'targets_json': json.dumps(targets),
+            'target_count': str(len(targets)),
+            'managed_paths_json': json.dumps(managed),
+            'managed_paths_csv': managed_csv,
+            'managed_paths_multiline': '\n'.join(managed),
+            'reviewers_csv': ','.join(reviewers),
+            'labels_multiline': '\n'.join(pr.get('labels', []) or []),
+            'branch_prefix': (pr.get('branch_prefix', 'chore/auto-sync-standards').rstrip('/')),
+            'pr_title': pr.get('title', 'chore: sync standards from standards-platform'),
+            'pr_body': body_rendered,
+            'merge_method': merge.get('method', 'squash'),
+            'enable_auto_merge': 'true' if bool(merge.get('enable_auto_merge', True)) else 'false',
+          }
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+            for key, value in outputs.items():
+              f.write(f'{key}<<EOF\n{value}\nEOF\n')
+          PY
+
+  sync:
+    needs: prepare
+    if: needs.prepare.outputs.target_count != '0'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJson(needs.prepare.outputs.targets_json) }}
+
+    env:
+      SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+
+    steps:
+      - name: Validate SYNC_TOKEN
+        run: |
+          if [ -z "${SYNC_TOKEN}" ]; then
+            echo "SYNC_TOKEN secret is required and was not provided."
+            exit 1
+          fi
+
+      - name: Checkout source (standards-platform)
+        uses: actions/checkout@v4
+        with:
+          path: source
+          fetch-depth: 1
+
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.target.repo }}
+          token: ${{ env.SYNC_TOKEN }}
+          path: target
+          fetch-depth: 0
+
+      - name: Copy managed files into target
+        env:
+          MANAGED_PATHS_JSON: ${{ needs.prepare.outputs.managed_paths_json }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import shutil
+          import os
+
+          managed = json.loads(os.environ['MANAGED_PATHS_JSON'])
+          src_root = pathlib.Path('source').resolve()
+          dst_root = pathlib.Path('target').resolve()
+
+          for rel in managed:
+            src = src_root / rel
+            dst = dst_root / rel
+            if not src.exists():
+              raise SystemExit(f'Source file not found: {src}')
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+
+          print('Copied managed paths:', ', '.join(managed))
+          PY
+
+      - name: Create or update PR in target repo
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ env.SYNC_TOKEN }}
+          path: target
+          commit-message: "chore: sync standards from standards-platform"
+          committer: "standards-bot <standards-bot@users.noreply.github.com>"
+          author: "standards-bot <standards-bot@users.noreply.github.com>"
+          branch: ${{ needs.prepare.outputs.branch_prefix }}/${{ matrix.target.slug }}
+          delete-branch: true
+          title: ${{ needs.prepare.outputs.pr_title }}
+          body: ${{ needs.prepare.outputs.pr_body }}
+          labels: ${{ needs.prepare.outputs.labels_multiline }}
+          add-paths: ${{ needs.prepare.outputs.managed_paths_multiline }}
+
+      - name: Request reviewer(s)
+        if: steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.reviewers_csv != ''
+        uses: peter-evans/request-review@v3
+        with:
+          token: ${{ env.SYNC_TOKEN }}
+          repository: ${{ matrix.target.repo }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          reviewers: ${{ needs.prepare.outputs.reviewers_csv }}
+
+      - name: Enable auto-merge
+        if: steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.enable_auto_merge == 'true'
+        continue-on-error: true
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ env.SYNC_TOKEN }}
+          repository: ${{ matrix.target.repo }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: ${{ needs.prepare.outputs.merge_method }}
+
+      - name: Write sync summary
+        run: |
+          echo "### Standards Sync Result" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Target: **${{ matrix.target.repo }}**" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Managed paths: ${{ needs.prepare.outputs.managed_paths_csv }}" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.cpr.outputs.pull-request-number }}" = "" ]; then
+            echo "- Changes: **none** (no PR created)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- PR operation: ${{ steps.cpr.outputs.pull-request-operation }}" >> "$GITHUB_STEP_SUMMARY"
+            echo "- PR: ${{ steps.cpr.outputs.pull-request-url }}" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Auto-merge attempted when enabled by config and allowed by target policy." >> "$GITHUB_STEP_SUMMARY"
+          fi

@@ -1,0 +1,36 @@
+version: 1
+source_repo: alirezasafaeiiidev/asdev-standards-platform
+
+# Canonical files copied from source to each target.
+managed_paths:
+  - docs/merge-runbook.md
+  - docs/reviewer-rotation.md
+
+targets:
+  - repo: alirezasafaeiiidev/asdev-automation-hub
+  - repo: alirezasafaeiiidev/asdev-portfolio
+  - repo: alirezasafaeiiidev/asdev-persiantoolbox
+
+pr:
+  branch_prefix: chore/auto-sync-standards
+  title: "chore: sync standards from standards-platform"
+  body: |
+    Automated sync of managed standards files from **asdev-standards-platform**.
+
+    - Source: {SOURCE_REPO}@{SOURCE_SHA}
+    - Managed paths: {MANAGED_PATHS}
+
+    Notes:
+    - This PR is generated automatically.
+    - Branch protection rules are respected (PR + checks + review).
+  labels:
+    - standards-sync
+    - automation
+
+review:
+  request_reviewers:
+    - parsairaniiidev
+
+merge:
+  enable_auto_merge: true
+  method: squash
