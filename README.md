@@ -214,3 +214,9 @@ APPLY=true make agent-generate
   - `asdev-creator-membership-ir`: PR #10 (merged), PR #9 (closed as superseded)
   - `asdev-portfolio`: PR #13 and PR #11 (merged), PR #12 and PR #10 (closed as superseded)
   - `asdev-persiantoolbox`: PR #14, PR #11, and PR #13 (merged), PR #12 (closed as superseded)
+
+## Merge Runbook
+See: `docs/merge-runbook.md`
+
+## Reviewer Rotation (CODEOWNERS)
+See: `docs/reviewer-rotation.md`
