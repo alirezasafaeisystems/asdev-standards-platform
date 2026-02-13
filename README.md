@@ -207,6 +207,8 @@ APPLY=true make agent-generate
 
 - Execution status report: `docs/technical-execution-v2-status-2026-02-13.md`
 - Related rollout PRs:
-  - `asdev-standards-platform`: `hotfix/pr-flow` -> PR #121
-  - `asdev-portfolio`: `feat/phase0-critical-risk-hardening` -> PR #11
-  - `asdev-persiantoolbox`: `feat/phase2-phase3-migration-observability` -> PR #13
+  - `asdev-standards-platform`: PR #122 (merged), PR #121 (closed as superseded)
+  - `asdev-automation-hub`: PR #1 (merged)
+  - `asdev-creator-membership-ir`: PR #10 (merged), PR #9 (closed as superseded)
+  - `asdev-portfolio`: PR #13 and PR #11 (merged), PR #12 and PR #10 (closed as superseded)
+  - `asdev-persiantoolbox`: PR #14, PR #11, and PR #13 (merged), PR #12 (closed as superseded)
