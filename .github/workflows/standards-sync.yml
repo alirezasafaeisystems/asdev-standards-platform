@@ -197,16 +197,8 @@ jobs:
           title: ${{ needs.prepare.outputs.pr_title }}
           body: ${{ needs.prepare.outputs.pr_body }}
           labels: ${{ needs.prepare.outputs.labels_multiline }}
-          add-paths: ${{ needs.prepare.outputs.managed_paths_multiline }}
-
-      - name: Request reviewer(s)
-        if: steps.token_gate.outputs.has_token == 'true' && steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.reviewers_csv != ''
-        uses: peter-evans/request-review@v3
-        with:
-          token: ${{ env.SYNC_TOKEN }}
-          repository: ${{ matrix.target.repo }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           reviewers: ${{ needs.prepare.outputs.reviewers_csv }}
+          add-paths: ${{ needs.prepare.outputs.managed_paths_multiline }}
 
       - name: Enable auto-merge
         if: steps.token_gate.outputs.has_token == 'true' && steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.enable_auto_merge == 'true'
