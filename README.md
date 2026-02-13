@@ -136,6 +136,8 @@ bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
 - Update PR lifecycle supports dry-run mode (`REPORT_UPDATE_PR_STALE_DRY_RUN=true`) and emits candidate/closure counts into workflow summary.
 - Weekly digest stale-closure automation emits deterministic lifecycle summary metrics for both active-close and dry-run modes.
 - Weekly digest workflow supports CI policy toggle for stale closure dry-run via `DIGEST_STALE_DRY_RUN` and surfaces toggle state in step summary.
+- Cross-repo standards sync workflow (`.github/workflows/standards-sync.yml`) reads declarative config from `sync/targets.yml` and opens target-repo PRs (no direct push to `main`).
+- Cross-repo sync runbook and behavior notes: `sync/README.md`.
 
 ## Local Operations
 
