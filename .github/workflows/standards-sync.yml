@@ -32,6 +32,7 @@ jobs:
       pr_body: ${{ steps.cfg.outputs.pr_body }}
       merge_method: ${{ steps.cfg.outputs.merge_method }}
       enable_auto_merge: ${{ steps.cfg.outputs.enable_auto_merge }}
+      sync_token_available: ${{ steps.cfg.outputs.sync_token_available }}
 
     steps:
       - name: Checkout source repo
@@ -44,6 +45,7 @@ jobs:
         id: cfg
         env:
           SOURCE_SHA: ${{ github.sha }}
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
         run: |
           python3 - <<'PY'
           import json
@@ -102,6 +104,7 @@ jobs:
             'pr_body': body_rendered,
             'merge_method': merge.get('method', 'squash'),
             'enable_auto_merge': 'true' if bool(merge.get('enable_auto_merge', True)) else 'false',
+            'sync_token_available': 'true' if os.getenv('SYNC_TOKEN', '') else 'false',
           }
 
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
@@ -111,7 +114,7 @@ jobs:
 
   sync:
     needs: prepare
-    if: needs.prepare.outputs.target_count != '0' && secrets.SYNC_TOKEN != ''
+    if: needs.prepare.outputs.target_count != '0' && needs.prepare.outputs.sync_token_available == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -217,7 +220,7 @@ jobs:
 
   sync-not-configured:
     needs: prepare
-    if: needs.prepare.outputs.target_count != '0' && secrets.SYNC_TOKEN == ''
+    if: needs.prepare.outputs.target_count != '0' && needs.prepare.outputs.sync_token_available != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
