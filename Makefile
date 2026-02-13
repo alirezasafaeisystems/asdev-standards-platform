@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -147,3 +147,6 @@ verify-hub:
 	@$(MAKE) setup
 	@$(MAKE) ci
 	@$(MAKE) test
+
+fast-parallel-local:
+	@bash scripts/fast-parallel-local.sh

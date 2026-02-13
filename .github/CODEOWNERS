@@ -1,0 +1,8 @@
+# Default owner for this repository.
+* @alirezasafaeiiidev
+
+# Governance and automation assets.
+/.github/ @alirezasafaeiiidev
+/scripts/ @alirezasafaeiiidev
+/platform/ @alirezasafaeiiidev
+/templates/ @alirezasafaeiiidev

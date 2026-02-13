@@ -71,12 +71,14 @@ make reports
 make run
 make hygiene
 make verify-hub
+make fast-parallel-local
 ```
 
 `make test` always runs the full test suite and does not skip `yq`-dependent checks.
 `make ci` mirrors CI gating order locally: lint -> policy check -> test.
 `make verify` runs deterministic acceptance gates with task-level logs under `logs/{task-id}.log`.
 `make reports` runs the local report pipeline: combined report -> trend -> dashboard -> schema checks -> attestation write/validate.
+`make fast-parallel-local` runs aggressive parallel verification for the four primary repositories and writes per-repo logs under `asdev-standards-platform/logs/fast-parallel/`.
 
 Automation acceptance contract:
 
