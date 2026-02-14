@@ -5,7 +5,7 @@ After=default.target
 [Service]
 Type=simple
 WorkingDirectory={{ROOT}}
-EnvironmentFile={{ROOT}}/asdev-standards-platform/ops/autonomous-executor.env
+Environment=AUTOMATION_CONFIG_FILE={{ROOT}}/asdev-standards-platform/ops/automation/codex-automation.yaml
 ExecStart={{ROOT}}/asdev-standards-platform/platform/scripts/execution/autonomous/autonomous-executor.sh
 Restart=always
 RestartSec=10

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SERVICE_NAME="asdev-autopilot.service"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/lib/codex-automation-config.sh"
+
+SERVICE_NAME="$(cfg_get '.autopilot.service_name' 'asdev-autopilot.service')"
 USER_SYSTEMD_DIR="${HOME}/.config/systemd/user"
 TARGET_SERVICE_FILE="${USER_SYSTEMD_DIR}/${SERVICE_NAME}"
 

@@ -1,0 +1,127 @@
+version: 1
+updated_at_utc: "2026-02-14T14:52:00Z"
+
+workspace:
+  root: /home/dev/Project_Me
+  hub_repo: asdev-standards-platform
+
+paths:
+  reports_dir: var/automation/reports
+  manual_actions_file: MANUAL_EXTERNAL_ACTIONS.md
+  blueprint_zip: /home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip
+  autonomous_runtime_dir: var/automation/autonomous-executor
+  autonomous_log_dir: var/automation/autonomous-executor/logs
+  autonomous_state_dir: var/automation/autonomous-executor/state
+  autopilot_log_dir: var/automation/autopilot
+  pipeline_log_dir: var/automation/pipelines
+
+autonomous_executor:
+  service_name: asdev-autonomous-executor.service
+  idle_wait_seconds: 180
+  post_complete_wait_seconds: 240
+  loop_pause_seconds: 20
+  execution_profile: max
+  safe_commit: false
+
+pipelines:
+  max_parallel_jobs: 8
+  node_max_old_space_mb: 4096
+  uv_threadpool_size_override: 16
+  turbo_concurrency: 8
+
+autopilot:
+  service_name: asdev-autopilot.service
+  idle_seconds: 180
+  post_complete_wait_seconds: 180
+  healthcheck_seconds: 300
+  tasks:
+    - id: sp_shell_syntax
+      mode: once
+      repo_path: asdev-standards-platform
+      command: find platform/scripts scripts -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+      fix_command: "-"
+    - id: sp_config_read
+      mode: once
+      repo_path: asdev-standards-platform
+      command: test -f ops/automation/codex-automation.yaml
+      fix_command: "-"
+    - id: repo_standards_present
+      mode: once
+      repo_path: asdev-standards-platform
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_persiantoolbox_present
+      mode: once
+      repo_path: asdev-persiantoolbox
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_portfolio_present
+      mode: once
+      repo_path: asdev-portfolio
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_creator_membership_present
+      mode: once
+      repo_path: asdev-creator-membership-ir
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_automation_hub_present
+      mode: once
+      repo_path: asdev-automation-hub
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_family_rosca_present
+      mode: once
+      repo_path: asdev-family-rosca
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_nexa_vpn_present
+      mode: once
+      repo_path: asdev-nexa-vpn
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: repo_codex_reviewer_present
+      mode: once
+      repo_path: asdev-codex-reviewer
+      command: git rev-parse --is-inside-work-tree >/dev/null
+      fix_command: "-"
+    - id: sp_health
+      mode: health
+      repo_path: asdev-standards-platform
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: pt_health
+      mode: health
+      repo_path: asdev-persiantoolbox
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: pf_health
+      mode: health
+      repo_path: asdev-portfolio
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: ah_health
+      mode: health
+      repo_path: asdev-automation-hub
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: cm_health
+      mode: health
+      repo_path: asdev-creator-membership-ir
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: fr_health
+      mode: health
+      repo_path: asdev-family-rosca
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: nv_health
+      mode: health
+      repo_path: asdev-nexa-vpn
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"
+    - id: cr_health
+      mode: health
+      repo_path: asdev-codex-reviewer
+      command: git rev-parse --is-inside-work-tree >/dev/null && git status --porcelain >/dev/null
+      fix_command: "-"

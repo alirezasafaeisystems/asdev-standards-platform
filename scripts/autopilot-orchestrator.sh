@@ -2,22 +2,27 @@
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PLATFORM_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-WORKSPACE_ROOT="${WORKSPACE_ROOT:-/home/dev/Project_Me}"
-TASK_FILE="${TASK_FILE:-${SCRIPT_DIR}/autopilot-tasks.tsv}"
-LOG_DIR="${LOG_DIR:-${PLATFORM_ROOT}/var/autopilot}"
+source "${SCRIPT_DIR}/lib/codex-automation-config.sh"
+
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cfg_workspace_root)}"
+HUB_REPO="$(cfg_hub_repo)"
+PLATFORM_ROOT="${WORKSPACE_ROOT}/${HUB_REPO}"
+
+AUTOPILOT_LOG_REL="$(cfg_get '.paths.autopilot_log_dir' 'var/automation/autopilot')"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+LOG_DIR="${LOG_DIR:-${PLATFORM_ROOT}/${AUTOPILOT_LOG_REL}}"
+REPORT_FILE="${REPORT_FILE:-${PLATFORM_ROOT}/${REPORTS_REL}/AUTOPILOT_EXECUTION_REPORT.md}"
 RUN_LOG="${LOG_DIR}/autopilot.log"
 ERROR_LOG="${LOG_DIR}/errors.log"
 DONE_DIR="${LOG_DIR}/done"
 PID_FILE="${LOG_DIR}/autopilot.pid"
-REPORT_FILE="${PLATFORM_ROOT}/docs/reports/AUTOPILOT_EXECUTION_REPORT.md"
-IDLE_SECONDS="${IDLE_SECONDS:-180}"
-HEALTHCHECK_SECONDS="${HEALTHCHECK_SECONDS:-300}"
-POST_COMPLETE_WAIT_SECONDS="${POST_COMPLETE_WAIT_SECONDS:-180}"
 
-mkdir -p "${LOG_DIR}" "${DONE_DIR}"
-touch "${RUN_LOG}" "${ERROR_LOG}"
-touch "${DONE_DIR}/.keep"
+IDLE_SECONDS="${IDLE_SECONDS:-$(cfg_get '.autopilot.idle_seconds' '180')}"
+HEALTHCHECK_SECONDS="${HEALTHCHECK_SECONDS:-$(cfg_get '.autopilot.healthcheck_seconds' '300')}"
+POST_COMPLETE_WAIT_SECONDS="${POST_COMPLETE_WAIT_SECONDS:-$(cfg_get '.autopilot.post_complete_wait_seconds' '180')}"
+
+mkdir -p "${LOG_DIR}" "${DONE_DIR}" "$(dirname "${REPORT_FILE}")"
+touch "${RUN_LOG}" "${ERROR_LOG}" "${DONE_DIR}/.keep"
 
 if [[ -f "${PID_FILE}" ]]; then
   existing_pid="$(cat "${PID_FILE}" 2>/dev/null || true)"
@@ -139,14 +144,14 @@ run_fix_and_retry() {
 
 has_pending_once_tasks() {
   local pending=1
-  while IFS='|' read -r task_id mode repo_path command fix_command; do
-    [[ -z "${task_id}" || "${task_id}" == \#* ]] && continue
+  while IFS=$'\t' read -r task_id mode repo_path command fix_command; do
+    [[ -z "${task_id}" ]] && continue
     [[ "${mode}" != "once" ]] && continue
     if [[ ! -f "${DONE_DIR}/${task_id}" ]]; then
       pending=0
       break
     fi
-  done < "${TASK_FILE}"
+  done < <(cfg_task_lines_tsv)
 
   return ${pending}
 }
@@ -159,8 +164,8 @@ run_cycle() {
   local failed_count=0
   local failed_tasks=()
 
-  while IFS='|' read -r task_id mode repo_path command fix_command; do
-    [[ -z "${task_id}" || "${task_id}" == \#* ]] && continue
+  while IFS=$'\t' read -r task_id mode repo_path command fix_command; do
+    [[ -z "${task_id}" ]] && continue
     [[ "${mode}" != "${target_mode}" ]] && continue
 
     if [[ "${mode}" == "once" && -f "${DONE_DIR}/${task_id}" ]]; then
@@ -175,7 +180,7 @@ run_cycle() {
       failed_count=$((failed_count + 1))
       failed_tasks+=("${task_id}")
     fi
-  done < "${TASK_FILE}"
+  done < <(cfg_task_lines_tsv)
 
   echo "[$(timestamp)] cycle mode=${target_mode} success=${success_count} failed=${failed_count}" >> "${RUN_LOG}"
   if [[ ${#failed_tasks[@]} -eq 0 ]]; then

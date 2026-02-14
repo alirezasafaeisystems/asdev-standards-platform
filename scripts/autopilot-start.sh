@@ -2,12 +2,16 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PLATFORM_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-LOG_DIR="${LOG_DIR:-${PLATFORM_ROOT}/var/autopilot}"
-SERVICE_NAME="${SERVICE_NAME:-asdev-autopilot.service}"
+source "${SCRIPT_DIR}/lib/codex-automation-config.sh"
+
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cfg_workspace_root)}"
+HUB_REPO="$(cfg_hub_repo)"
+PLATFORM_ROOT="${WORKSPACE_ROOT}/${HUB_REPO}"
+AUTOPILOT_LOG_REL="$(cfg_get '.paths.autopilot_log_dir' 'var/automation/autopilot')"
+LOG_DIR="${LOG_DIR:-${PLATFORM_ROOT}/${AUTOPILOT_LOG_REL}}"
+SERVICE_NAME="${SERVICE_NAME:-$(cfg_get '.autopilot.service_name' 'asdev-autopilot.service')}"
 USER_SERVICE_FILE="${HOME}/.config/systemd/user/${SERVICE_NAME}"
-mkdir -p "${LOG_DIR}"
-mkdir -p "${LOG_DIR}/done"
+mkdir -p "${LOG_DIR}" "${LOG_DIR}/done"
 touch "${LOG_DIR}/done/.keep"
 
 PID_FILE="${LOG_DIR}/autopilot.pid"

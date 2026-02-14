@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="${ROOT:-/home/dev/Project_Me}"
-SESSION="${TMUX_SESSION_NAME:-asdev-max}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../.." && pwd)"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+
+ROOT="${ROOT:-$(cfg_workspace_root)}"
+HUB_REPO="$(cfg_hub_repo)"
+HUB="${ROOT}/${HUB_REPO}"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+AUTONOMOUS_LOG_REL="$(cfg_get '.paths.autonomous_log_dir' 'var/automation/autonomous-executor/logs')"
+
+SESSION="${1:-asdev-autonomous}"
 
 if ! command -v tmux >/dev/null 2>&1; then
-  echo "tmux not installed"
+  echo "tmux is required" >&2
   exit 1
 fi
 
-if tmux has-session -t "$SESSION" 2>/dev/null; then
-  echo "session_exists $SESSION"
+if tmux has-session -t "${SESSION}" 2>/dev/null; then
+  echo "session_exists: ${SESSION}"
   exit 0
 fi
 
-tmux new-session -d -s "$SESSION" -n "orchestrator" "cd $ROOT && ${SCRIPT_DIR}/status-autonomous-executor.sh; bash"
-tmux new-window -t "$SESSION" -n "pipelines-max" "cd $ROOT && ${SCRIPT_DIR}/../pipelines/run-priority-pipelines-max.sh; bash"
-tmux new-window -t "$SESSION" -n "reports" "cd $ROOT && watch -n 5 'ls -lt asdev-standards-platform/docs/reports | head -n 20'; bash"
-tmux new-window -t "$SESSION" -n "logs" "cd $ROOT && tail -f asdev-standards-platform/var/autonomous-executor/logs/autonomous-executor.log"
+tmux new-session -d -s "${SESSION}" -n "executor" "cd ${ROOT} && bash ${HUB}/platform/scripts/execution/autonomous/autonomous-executor.sh"
+tmux new-window -t "${SESSION}" -n "reports" "cd ${ROOT} && watch -n 5 'ls -lt ${HUB}/${REPORTS_REL} 2>/dev/null | head -n 20'; bash"
+tmux new-window -t "${SESSION}" -n "logs" "cd ${ROOT} && tail -f ${HUB}/${AUTONOMOUS_LOG_REL}/autonomous-executor.log"
 
-echo "tmux_session_started $SESSION"
+tmux select-window -t "${SESSION}:0"
+echo "session_started: ${SESSION}"

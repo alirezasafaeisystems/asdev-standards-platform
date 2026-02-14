@@ -3,8 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
-WORKSPACE_ROOT_DEFAULT="$(cd "${REPO_ROOT}/.." && pwd)"
-ZIP_PATH_DEFAULT="/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+WORKSPACE_ROOT_DEFAULT="$(cfg_workspace_root)"
+ZIP_PATH_DEFAULT="$(cfg_get '.paths.blueprint_zip' '/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip')"
 
 usage() {
   cat <<USAGE
@@ -150,7 +151,9 @@ fi
 
 DATE_UTC="$(date -u +%F)"
 DATE_LOCAL="$(date +%F)"
-REPORT_DIR="$REPO_ROOT/docs/reports"
+HUB_REPO="$(cfg_hub_repo)"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+REPORT_DIR="${WORKSPACE_ROOT}/${HUB_REPO}/${REPORTS_REL}"
 REPORT_FILE="$REPORT_DIR/STRATEGIC_EXECUTION_ROLLOUT_${DATE_LOCAL}.md"
 mkdir -p "$REPORT_DIR"
 

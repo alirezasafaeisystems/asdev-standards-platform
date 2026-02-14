@@ -3,12 +3,18 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
-WORKSPACE_ROOT="$(cd "${REPO_ROOT}/.." && pwd)"
-ZIP_PATH="/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cfg_workspace_root)}"
+HUB_REPO="$(cfg_hub_repo)"
+HUB_PATH="${WORKSPACE_ROOT}/${HUB_REPO}"
+ZIP_PATH="$(cfg_get '.paths.blueprint_zip' '/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip')"
 APPLY_SCRIPT="${SCRIPT_DIR}/apply-strategic-execution-blueprint.sh"
 TODAY="$(date +%F)"
 NOW_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-REPORT_FILE="${REPO_ROOT}/docs/reports/STRATEGIC_EXECUTION_AUTOPILOT_${TODAY}.md"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+REPORT_DIR="${HUB_PATH}/${REPORTS_REL}"
+REPORT_FILE="${REPORT_DIR}/STRATEGIC_EXECUTION_AUTOPILOT_${TODAY}.md"
+mkdir -p "${REPORT_DIR}"
 
 if [[ ! -x "$APPLY_SCRIPT" ]]; then
   echo "Missing apply script: $APPLY_SCRIPT" >&2

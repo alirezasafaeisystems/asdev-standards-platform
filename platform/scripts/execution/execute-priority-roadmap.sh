@@ -3,7 +3,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
-WORKSPACE_ROOT="$(cd "${REPO_ROOT}/.." && pwd)"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cfg_workspace_root)}"
 TODAY="$(date +%F)"
 NOW_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
 
@@ -11,7 +12,12 @@ APPLY_SCRIPT="${SCRIPT_DIR}/apply-strategic-execution-blueprint.sh"
 AUTOPILOT_SCRIPT="${SCRIPT_DIR}/run-strategic-execution-autopilot.sh"
 PRIORITIZE_SCRIPT="${SCRIPT_DIR}/prioritize-roadmap-tasks.sh"
 
-EXEC_REPORT="${REPO_ROOT}/docs/reports/PRIORITY_EXECUTION_RUN_${TODAY}.md"
+HUB_REPO="$(cfg_hub_repo)"
+HUB_PATH="${WORKSPACE_ROOT}/${HUB_REPO}"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+REPORT_DIR="${HUB_PATH}/${REPORTS_REL}"
+EXEC_REPORT="${REPORT_DIR}/PRIORITY_EXECUTION_RUN_${TODAY}.md"
+mkdir -p "${REPORT_DIR}"
 
 PRIORITY_REPOS=(
   "asdev-portfolio"
@@ -61,8 +67,10 @@ ensure_header() {
 }
 
 run_baseline_scripts() {
+  local blueprint_zip
+  blueprint_zip="$(cfg_get '.paths.blueprint_zip' '/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip')"
   if [[ -x "$APPLY_SCRIPT" ]]; then
-    "$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip /home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip >/dev/null
+    "$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip "$blueprint_zip" >/dev/null
   fi
 
   if [[ -x "$AUTOPILOT_SCRIPT" ]]; then

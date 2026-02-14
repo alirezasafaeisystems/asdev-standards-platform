@@ -5,13 +5,10 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/home/dev/Project_Me/asdev-standards-platform
+Environment=AUTOMATION_CONFIG_FILE=/home/dev/Project_Me/asdev-standards-platform/ops/automation/codex-automation.yaml
 ExecStart=/usr/bin/env bash /home/dev/Project_Me/asdev-standards-platform/scripts/autopilot-orchestrator.sh
 Restart=always
 RestartSec=15
-Environment=WORKSPACE_ROOT=/home/dev/Project_Me
-Environment=IDLE_SECONDS=180
-Environment=POST_COMPLETE_WAIT_SECONDS=180
-Environment=HEALTHCHECK_SECONDS=300
 Environment=PATH=/home/dev/.bun/bin:/home/dev/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 [Install]

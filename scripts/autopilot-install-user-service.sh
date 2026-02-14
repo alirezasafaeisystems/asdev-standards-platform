@@ -3,7 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLATFORM_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-SERVICE_NAME="asdev-autopilot.service"
+source "${SCRIPT_DIR}/lib/codex-automation-config.sh"
+
+SERVICE_NAME="$(cfg_get '.autopilot.service_name' 'asdev-autopilot.service')"
 SOURCE_SERVICE_FILE="${PLATFORM_ROOT}/ops/systemd/${SERVICE_NAME}"
 USER_SYSTEMD_DIR="${HOME}/.config/systemd/user"
 TARGET_SERVICE_FILE="${USER_SYSTEMD_DIR}/${SERVICE_NAME}"

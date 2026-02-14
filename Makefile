@@ -165,7 +165,7 @@ autopilot-stop:
 	@bash scripts/autopilot-stop.sh
 
 autopilot-status:
-	@log_dir="$${LOG_DIR:-$(CURDIR)/var/autopilot}"; \
+	@log_dir="$${LOG_DIR:-$(CURDIR)/var/automation/autopilot}"; \
 	pid_file="$$log_dir/autopilot.pid"; \
 	if [[ -f "$$pid_file" ]]; then \
 		pid="$$(cat "$$pid_file")"; \

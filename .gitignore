@@ -8,6 +8,7 @@ sync/divergence-report.csv
 *.tmp
 logs/
 var/autopilot/
+var/automation/
 
 # Python cache artifacts
 __pycache__/

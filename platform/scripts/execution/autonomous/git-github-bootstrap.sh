@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="${ROOT:-/home/dev/Project_Me}"
-HUB="$ROOT/asdev-standards-platform"
-WORKSPACE_ROOT="${WORKSPACE_ROOT:-$ROOT}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../.." && pwd)"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+ROOT="${ROOT:-$(cfg_workspace_root)}"
+HUB_REPO="$(cfg_hub_repo)"
+HUB="${ROOT}/${HUB_REPO}"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-${ROOT}}"
 CODEX_HOME_DIR="${CODEX_HOME:-$HOME/.codex}"
 STATE_DIR="$CODEX_HOME_DIR/bootstrap-state"
 LOG_FILE="$STATE_DIR/git-github-bootstrap.log"
 DATE_LOCAL="$(date +%F)"
 DATE_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-REPORT="$HUB/docs/reports/GIT_GITHUB_BOOTSTRAP_${DATE_LOCAL}.md"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+REPORT_DIR="${HUB}/${REPORTS_REL}"
+REPORT="${REPORT_DIR}/GIT_GITHUB_BOOTSTRAP_${DATE_LOCAL}.md"
 
-mkdir -p "$STATE_DIR" "$HOME/.ssh"
+mkdir -p "$STATE_DIR" "$HOME/.ssh" "$REPORT_DIR"
 touch "$LOG_FILE"
 
 log() {

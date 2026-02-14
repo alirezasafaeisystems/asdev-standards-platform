@@ -3,10 +3,16 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
-WORKSPACE_ROOT="$(cd "${REPO_ROOT}/.." && pwd)"
+source "${REPO_ROOT}/scripts/lib/codex-automation-config.sh"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cfg_workspace_root)}"
 TODAY="$(date +%F)"
 NOW_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-REPORT_FILE="${REPO_ROOT}/docs/reports/ROADMAP_PRIORITY_TASKS_${TODAY}.md"
+HUB_REPO="$(cfg_hub_repo)"
+HUB_PATH="${WORKSPACE_ROOT}/${HUB_REPO}"
+REPORTS_REL="$(cfg_get '.paths.reports_dir' 'var/automation/reports')"
+REPORT_DIR="${HUB_PATH}/${REPORTS_REL}"
+REPORT_FILE="${REPORT_DIR}/ROADMAP_PRIORITY_TASKS_${TODAY}.md"
+mkdir -p "${REPORT_DIR}"
 
 escape_csv() {
   local val="$1"
