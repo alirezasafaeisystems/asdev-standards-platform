@@ -1,6 +1,6 @@
 # Priority Pipeline MAX Run (2026-02-14)
 
-- Executed (UTC): 2026-02-14 12:56:30 UTC
+- Executed (UTC): 2026-02-14 13:11:35 UTC
 - CPU threads: 12
 - Max parallel jobs: 12
 - Node max old space: 12288 MB
@@ -18,7 +18,7 @@
 | asdev-nexa-vpn | 127 | 0 | `bun test && pnpm -s build` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-nexa-vpn.log` |
 | asdev-creator-membership-ir | 127 | 0 | `pnpm -s test && pnpm -s build` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-creator-membership-ir.log` |
 | asdev-automation-hub | 127 | 0 | `pnpm -s test && pnpm -s build` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-automation-hub.log` |
-| asdev-standards-platform | 2 | 16 | `make ci` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-standards-platform.log` |
+| asdev-standards-platform | 2 | 8 | `make ci` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-standards-platform.log` |
 | asdev-codex-reviewer | 0 | 0 | `test -f README.md` | `/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-codex-reviewer.log` |
 
 ## Tail Logs
@@ -56,13 +56,13 @@ bash: line 1: pnpm: command not found
 ### asdev-standards-platform
 ```text
 Report attestation validation passed.
-Generated report attestation: /tmp/tmp.IjznaerOWn/attestation.txt
-Generated report attestation: /tmp/tmp.IjznaerOWn/attestation.txt
-Generated report attestation: /tmp/tmp.IjznaerOWn/attestation.txt
-Generated report attestation: /tmp/tmp.IjznaerOWn/attestation.txt
-Generated report attestation: /tmp/tmp.IjznaerOWn/attestation.txt
+Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
+Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
+Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
+Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
+Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
 report attestation checks passed.
-Report snapshots rotated under /tmp/tmp.CkBqnRIvoo/sync
+Report snapshots rotated under /tmp/tmp.YkDssUnm5l/sync
 rotate snapshot retention checks passed.
 error fingerprint trend summary checks passed.
 Closed stale weekly digest #2 (https://example.invalid/issues/2)
@@ -97,7 +97,7 @@ ci workflow contract checks passed.
 meaningful report delta checks passed.
 status counter contract checks passed.
 clone_failed summary contract checks passed.
-Generated report attestation: /tmp/tmp.dkM2eXjN3v/attestation.txt
+Generated report attestation: /tmp/tmp.9AYjaNh5Wq/attestation.txt
 Report attestation validation passed.
 reports attestation contract checks passed.
 digest stale cleanup workflow checks passed.

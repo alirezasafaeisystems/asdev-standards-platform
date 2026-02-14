@@ -24,3 +24,10 @@
 1. External environment verification where applicable.
 2. Continuous refresh of evidence.
 3. Weekly operational iteration.
+
+## 6) Repo Sync Audit
+- Audit timestamp (UTC): 2026-02-14 13:16:33 UTC
+- Branch: docs/merge-wave-closure-20260214
+- HEAD: a170fdd
+- Upstream divergence: ahead=0, behind=0
+- Working tree clean before doc update: no
