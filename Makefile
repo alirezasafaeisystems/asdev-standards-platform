@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -32,6 +32,7 @@ lint:
 	@bash -n scripts/validate-report-attestation.sh
 	@bash -n scripts/close-stale-report-update-prs.sh
 	@bash -n scripts/summarize-clone-failed.sh
+	@find platform/scripts/execution -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
 	@bash -n scripts/autopilot-orchestrator.sh
 	@bash -n scripts/autopilot-start.sh
 	@bash -n scripts/autopilot-stop.sh
@@ -181,3 +182,12 @@ autopilot-install-user-service:
 
 autopilot-uninstall-user-service:
 	@bash scripts/autopilot-uninstall-user-service.sh
+
+execution-sync:
+	@bash platform/scripts/sync-autonomous-stack.sh
+
+execution-status:
+	@bash platform/scripts/status-autonomous-executor.sh
+
+execution-max:
+	@bash platform/scripts/run-priority-pipelines-max.sh
