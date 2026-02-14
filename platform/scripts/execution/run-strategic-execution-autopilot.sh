@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 WORKSPACE_ROOT="$(cd "${REPO_ROOT}/.." && pwd)"
 ZIP_PATH="/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip"
 APPLY_SCRIPT="${SCRIPT_DIR}/apply-strategic-execution-blueprint.sh"
