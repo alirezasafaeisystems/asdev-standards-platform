@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-02-14T21:04:52Z",
+  "generated_at": "2026-02-14T21:50:04Z",
   "kpis": {
-    "readiness_avg": "100",
-    "roadmap_todo": 23,
-    "roadmap_done": 6,
-    "autopilot_failed": 1
+    "readiness_avg": "55",
+    "roadmap_todo": 29,
+    "roadmap_done": 0,
+    "autopilot_failed": 0
   },
   "autopilot": {
-    "stamp": "2026-02-14T20:55:20Z",
+    "stamp": "2026-02-14T21:44:55Z",
     "phase": "health",
-    "success": 6,
-    "failed": 1
+    "success": 7,
+    "failed": 0
   },
   "p0": [
     {"check":"Freeze Guard","status":"PASS"},
@@ -27,20 +27,21 @@
     {"step":"readiness_score","status":"PASS"}
   ],
   "queue": {
-    "todo": 23,
-    "done": 6,
+    "todo": 29,
+    "done": 0,
     "by_priority": [
-      {"priority":"P1","todo":6},
-      {"priority":"P2","todo":17}
+      {"priority":"P0","todo":16},
+      {"priority":"P1","todo":43},
+      {"priority":"P2","todo":15}
     ]
   },
   "readiness": [
-    {"repo":"asdev-portfolio","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-persiantoolbox","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-family-rosca","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-nexa-vpn","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-creator-membership-ir","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-automation-hub","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-portfolio","exit":"127","readiness":"degraded","score":40},
+    {"repo":"asdev-persiantoolbox","exit":"127","readiness":"degraded","score":40},
+    {"repo":"asdev-family-rosca","exit":"127","readiness":"degraded","score":40},
+    {"repo":"asdev-nexa-vpn","exit":"127","readiness":"degraded","score":40},
+    {"repo":"asdev-creator-membership-ir","exit":"127","readiness":"degraded","score":40},
+    {"repo":"asdev-automation-hub","exit":"127","readiness":"degraded","score":40},
     {"repo":"asdev-standards-platform","exit":"0","readiness":"ready","score":100},
     {"repo":"asdev-codex-reviewer","exit":"0","readiness":"ready","score":100}
   ],
@@ -48,7 +49,7 @@
     "docs/reports/PRODUCTION_READINESS_SCORE_2026-02-14.md",
     "docs/reports/P0_STABILIZATION_2026-02-14.md",
     "docs/reports/PRIORITY_EXECUTION_RUN_2026-02-14.md",
-    "docs/reports/ROADMAP_TASK_QUEUE_2026-02-14.csv",
+    "docs/reports/ROADMAP_PRIORITY_TASKS_2026-02-14.md",
     "docs/reports/AUTOPILOT_EXECUTION_REPORT.md"
   ]
 }
