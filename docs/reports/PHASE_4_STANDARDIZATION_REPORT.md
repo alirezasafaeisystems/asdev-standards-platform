@@ -2,7 +2,7 @@
 
 - Date: 2026-02-14
 - Repo: `asdev-standards-platform`
-- Status: in_progress (standards + templates + guardrails implemented, remote PR wave pending)
+- Status: done (standards + templates + guardrails implemented, remote merge wave completed)
 
 ## Implemented Standards
 
@@ -102,7 +102,12 @@ Latest incremental once-cycle after task-matrix upgrade:
     - `docs/reports/PHASE_2_SEO_REPORT.md`
     - `docs/reports/PHASE_4_STANDARDIZATION_REPORT.md`
 
-## Pending Items
+## Closure Status
 
-- Cross-repo PR merge wave (all PRs created; merge and CI closure pending).
+- Cross-repo PR wave is fully merged (`7/7` repositories).
+- CI checks completed during PR wave and branch-protection requirements were satisfied.
+
+## Remaining External Actions
+
 - Production domains + Search Console verification for newly added brand routes in staging/production.
+- KPI monitoring after go-live (indexation, lead conversion, service-page funnel performance).
