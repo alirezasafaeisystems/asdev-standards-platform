@@ -14,13 +14,18 @@ This automation makes `asdev-standards-platform` the source of truth for shared 
 - Workflow: `.github/workflows/standards-sync.yml`
 - Declarative config: `sync/targets.yml`
 
-## Required secret
+## Required secrets (GitHub App)
 In `asdev-standards-platform` repository secrets:
-- `SYNC_TOKEN`: token with access to all target repositories.
+- `SYNC_APP_ID`: GitHub App ID used for cross-repo sync.
+- `SYNC_APP_PRIVATE_KEY`: private key for the same GitHub App installation.
+
+Legacy PAT secret `SYNC_TOKEN` is deprecated and ignored by the workflow.
 
 ## Behavior
 - Triggered manually (`workflow_dispatch`) or when managed files/config change on `main`.
 - Runs a matrix job for each target repository.
+- Generates a short-lived GitHub App installation token per target repository.
+- Runs preflight auth diagnostics before target checkout/PR creation.
 - Copies only `managed_paths` from source into target checkout.
 - Creates or updates a PR via `peter-evans/create-pull-request`.
 - Requests configured reviewers.
@@ -39,10 +44,9 @@ In `asdev-standards-platform` repository secrets:
   - `alirezasafaeiiidev/asdev-portfolio`: synced, no PR required (already aligned).
   - `alirezasafaeiiidev/asdev-persiantoolbox`: sync PR created and merged (`#19`).
 
-## Remaining Tasks
-- SYNC-OPS token hardening: GitHub App migration (issue `#130`)
-  - https://github.com/alirezasafaeiiidev/asdev-standards-platform/issues/130
-- SYNC-OPS diagnostics hardening: preflight auth/repo access checks (issue `#131`)
-  - https://github.com/alirezasafaeiiidev/asdev-standards-platform/issues/131
+## Sync-Ops Hardening Status
+- SYNC-OPS token hardening (PAT -> GitHub App token): implemented in workflow.
+- SYNC-OPS diagnostics hardening (preflight auth/repo checks): implemented via `scripts/sync-auth-preflight.sh`.
+- Failure troubleshooting runbook: `docs/automation/sync-auth-failure-runbook.md`.
 - Target repository follow-up: licensing contract gap in `asdev-persiantoolbox` (issue `#20`)
   - https://github.com/alirezasafaeiiidev/asdev-persiantoolbox/issues/20

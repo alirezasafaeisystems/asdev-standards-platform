@@ -28,3 +28,7 @@
 2. سرویس systemd user را از template رندر و نصب می‌کند.
 3. سرویس را enable/restart می‌کند.
 4. گزارش همگام‌سازی تولید می‌کند.
+
+## Sync Auth Diagnostics
+- `scripts/sync-auth-preflight.sh`
+- `docs/automation/sync-auth-failure-runbook.md`

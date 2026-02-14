@@ -10,6 +10,7 @@ bash tests/test_divergence_report_combined.sh
 bash tests/test_divergence_report_combined_target_glob.sh
 bash tests/test_divergence_error_fingerprint.sh
 bash tests/test_retry_cmd.sh
+bash tests/test_sync_auth_preflight.sh
 bash tests/test_error_fingerprint_trend.sh
 bash tests/test_validate_generated_reports.sh
 bash tests/test_report_attestation.sh

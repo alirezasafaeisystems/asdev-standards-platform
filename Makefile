@@ -41,6 +41,7 @@ lint:
 	@bash -n scripts/csv-utils.sh
 	@bash -n scripts/normalize-report-output.sh
 	@bash -n scripts/detect-meaningful-report-delta.sh
+	@bash -n scripts/sync-auth-preflight.sh
 	@bash -n scripts/typecheck.sh
 	@bash -n scripts/build-check.sh
 	@bash -n scripts/security-audit.sh

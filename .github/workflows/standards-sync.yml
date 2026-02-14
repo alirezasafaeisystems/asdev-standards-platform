@@ -123,40 +123,82 @@ jobs:
         target: ${{ fromJson(needs.prepare.outputs.targets_json) }}
 
     env:
-      SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+      SYNC_APP_ID: ${{ secrets.SYNC_APP_ID }}
+      SYNC_APP_PRIVATE_KEY: ${{ secrets.SYNC_APP_PRIVATE_KEY }}
+      LEGACY_SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
 
     steps:
-      - name: Resolve sync token availability
-        id: token_gate
+      - name: Resolve sync auth availability
+        id: auth_gate
         run: |
-          if [ -n "${SYNC_TOKEN}" ]; then
-            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          if [ -n "${SYNC_APP_ID}" ] && [ -n "${SYNC_APP_PRIVATE_KEY}" ]; then
+            if ! [[ "${SYNC_APP_ID}" =~ ^[0-9]+$ ]]; then
+              echo "has_app_auth=false" >> "$GITHUB_OUTPUT"
+              echo "### Standards Sync Configuration" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "- Sync skipped because \`SYNC_APP_ID\` is not numeric." >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "has_app_auth=true" >> "$GITHUB_OUTPUT"
+            fi
           else
-            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            echo "has_app_auth=false" >> "$GITHUB_OUTPUT"
             echo "### Standards Sync Configuration" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "- Sync skipped because \`SYNC_TOKEN\` is not configured." >> "$GITHUB_STEP_SUMMARY"
-            echo "- Configure repository secret \`SYNC_TOKEN\` in asdev-standards-platform to enable cross-repo PR sync." >> "$GITHUB_STEP_SUMMARY"
+            echo "- Sync skipped because GitHub App credentials are not configured." >> "$GITHUB_STEP_SUMMARY"
+            echo "- Required secrets: \`SYNC_APP_ID\` and \`SYNC_APP_PRIVATE_KEY\`." >> "$GITHUB_STEP_SUMMARY"
+            echo "- PAT-based \`SYNC_TOKEN\` is deprecated for this workflow." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ -n "${LEGACY_SYNC_TOKEN}" ]; then
+            echo "- Legacy secret \`SYNC_TOKEN\` is present but ignored by this workflow." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Checkout source (standards-platform)
-        if: steps.token_gate.outputs.has_token == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
         uses: actions/checkout@v4
         with:
           path: source
           fetch-depth: 1
 
+      - name: Resolve target repository metadata
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
+        id: target_meta
+        env:
+          TARGET_REPO: ${{ matrix.target.repo }}
+        run: |
+          owner="${TARGET_REPO%%/*}"
+          repo="${TARGET_REPO##*/}"
+          echo "owner=${owner}" >> "$GITHUB_OUTPUT"
+          echo "repo=${repo}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate GitHub App token
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
+        id: app_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SYNC_APP_ID }}
+          private-key: ${{ secrets.SYNC_APP_PRIVATE_KEY }}
+          owner: ${{ steps.target_meta.outputs.owner }}
+          repositories: ${{ steps.target_meta.outputs.repo }}
+
+      - name: Run auth preflight diagnostics
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
+        env:
+          SYNC_AUTH_TOKEN: ${{ steps.app_token.outputs.token }}
+          TARGET_REPO: ${{ matrix.target.repo }}
+        run: |
+          bash source/scripts/sync-auth-preflight.sh "${TARGET_REPO}"
+
       - name: Checkout target repo
-        if: steps.token_gate.outputs.has_token == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
         uses: actions/checkout@v4
         with:
           repository: ${{ matrix.target.repo }}
-          token: ${{ env.SYNC_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
           path: target
           fetch-depth: 0
 
       - name: Copy managed files into target
-        if: steps.token_gate.outputs.has_token == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
         env:
           MANAGED_PATHS_JSON: ${{ needs.prepare.outputs.managed_paths_json }}
         run: |
@@ -183,11 +225,11 @@ jobs:
           PY
 
       - name: Create or update PR in target repo
-        if: steps.token_gate.outputs.has_token == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ env.SYNC_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
           path: target
           commit-message: "chore: sync standards from standards-platform"
           committer: "standards-bot <standards-bot@users.noreply.github.com>"
@@ -201,17 +243,17 @@ jobs:
           add-paths: ${{ needs.prepare.outputs.managed_paths_multiline }}
 
       - name: Enable auto-merge
-        if: steps.token_gate.outputs.has_token == 'true' && steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.enable_auto_merge == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true' && steps.cpr.outputs.pull-request-number != '' && needs.prepare.outputs.enable_auto_merge == 'true'
         continue-on-error: true
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
-          token: ${{ env.SYNC_TOKEN }}
+          token: ${{ steps.app_token.outputs.token }}
           repository: ${{ matrix.target.repo }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: ${{ needs.prepare.outputs.merge_method }}
 
       - name: Write sync summary
-        if: steps.token_gate.outputs.has_token == 'true'
+        if: steps.auth_gate.outputs.has_app_auth == 'true'
         run: |
           echo "### Standards Sync Result" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
