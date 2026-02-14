@@ -1,6 +1,6 @@
 # Priority Pipeline MAX Run (2026-02-14)
 
-- Executed (UTC): 2026-02-14 13:11:35 UTC
+- Executed (UTC): 2026-02-14 13:31:32 UTC
 - CPU threads: 12
 - Max parallel jobs: 12
 - Node max old space: 12288 MB
@@ -56,13 +56,13 @@ bash: line 1: pnpm: command not found
 ### asdev-standards-platform
 ```text
 Report attestation validation passed.
-Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
-Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
-Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
-Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
-Generated report attestation: /tmp/tmp.Mza1hDpFPc/attestation.txt
+Generated report attestation: /tmp/tmp.pwZtuW4SjD/attestation.txt
+Generated report attestation: /tmp/tmp.pwZtuW4SjD/attestation.txt
+Generated report attestation: /tmp/tmp.pwZtuW4SjD/attestation.txt
+Generated report attestation: /tmp/tmp.pwZtuW4SjD/attestation.txt
+Generated report attestation: /tmp/tmp.pwZtuW4SjD/attestation.txt
 report attestation checks passed.
-Report snapshots rotated under /tmp/tmp.YkDssUnm5l/sync
+Report snapshots rotated under /tmp/tmp.tNwVAAv3PG/sync
 rotate snapshot retention checks passed.
 error fingerprint trend summary checks passed.
 Closed stale weekly digest #2 (https://example.invalid/issues/2)
@@ -97,7 +97,7 @@ ci workflow contract checks passed.
 meaningful report delta checks passed.
 status counter contract checks passed.
 clone_failed summary contract checks passed.
-Generated report attestation: /tmp/tmp.9AYjaNh5Wq/attestation.txt
+Generated report attestation: /tmp/tmp.3VmlmhI4E7/attestation.txt
 Report attestation validation passed.
 reports attestation contract checks passed.
 digest stale cleanup workflow checks passed.
