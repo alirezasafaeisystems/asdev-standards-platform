@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASDEV Management Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ASDEV Standards Platform</p>
+        <h1>Management Dashboard</h1>
+      </div>
+      <div class="meta">
+        <span id="last-refresh">Refreshing...</span>
+        <button id="refresh-btn" type="button">Refresh</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card kpis">
+        <h2>Executive Snapshot</h2>
+        <div class="kpi-grid">
+          <article>
+            <p class="kpi-label">Readiness Avg</p>
+            <p class="kpi-value" id="kpi-readiness">-</p>
+          </article>
+          <article>
+            <p class="kpi-label">Roadmap Todo</p>
+            <p class="kpi-value" id="kpi-todo">-</p>
+          </article>
+          <article>
+            <p class="kpi-label">Roadmap Done</p>
+            <p class="kpi-value" id="kpi-done">-</p>
+          </article>
+          <article>
+            <p class="kpi-label">Autopilot Failed</p>
+            <p class="kpi-value" id="kpi-failed">-</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Autopilot</h2>
+        <div id="autopilot-summary" class="status-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>P0 Stabilization</h2>
+        <div id="p0-summary" class="status-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Priority Execution</h2>
+        <div id="priority-steps" class="status-list"></div>
+      </section>
+
+      <section class="card wide">
+        <h2>Roadmap Queue by Priority</h2>
+        <div id="priority-bars" class="bar-list"></div>
+      </section>
+
+      <section class="card wide">
+        <h2>Readiness by Repository</h2>
+        <div id="readiness-table" class="table-wrap"></div>
+      </section>
+
+      <section class="card wide">
+        <h2>Data Sources</h2>
+        <ul id="data-sources" class="sources"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -21,6 +21,8 @@ lint:
 	@bash -n scripts/sanitize-public-reports.sh
 	@bash -n scripts/validate-template-version-policy.sh
 	@bash -n scripts/weekly-governance-digest.sh
+	@bash -n scripts/management-dashboard.sh
+	@bash -n scripts/generate-management-dashboard-data.sh
 	@bash -n scripts/classify-divergence-error.sh
 	@bash -n scripts/retry-cmd.sh
 	@bash -n scripts/rotate-report-snapshots.sh
@@ -94,6 +96,7 @@ ci:
 
 reports:
 	@bash scripts/rotate-report-snapshots.sh
+	@bash platform/scripts/divergence-report.sh sync/targets.yaml platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.csv
 	@bash platform/scripts/divergence-report-combined.sh platform/repo-templates/templates.yaml platform/repo-templates sync/divergence-report.combined.csv "sync/targets*.yaml" sync/divergence-report.combined.errors.csv
 	@bash scripts/generate-error-fingerprint-trend.sh sync/divergence-report.combined.errors.previous.csv sync/divergence-report.combined.errors.csv sync/divergence-report.combined.errors.trend.csv
 	@bash scripts/generate-dashboard.sh docs/platform-adoption-dashboard.md
@@ -205,3 +208,9 @@ github-app-auth-check:
 
 p0-stabilization:
 	@bash scripts/p0-stabilization.sh
+
+management-dashboard:
+	@bash scripts/management-dashboard.sh
+
+management-dashboard-data:
+	@bash scripts/generate-management-dashboard-data.sh

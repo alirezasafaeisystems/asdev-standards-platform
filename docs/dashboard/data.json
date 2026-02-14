@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-02-14T21:04:52Z",
+  "kpis": {
+    "readiness_avg": "100",
+    "roadmap_todo": 23,
+    "roadmap_done": 6,
+    "autopilot_failed": 1
+  },
+  "autopilot": {
+    "stamp": "2026-02-14T20:55:20Z",
+    "phase": "health",
+    "success": 6,
+    "failed": 1
+  },
+  "p0": [
+    {"check":"Freeze Guard","status":"PASS"},
+    {"check":"Main Branch Sync Policy","status":"PASS"},
+    {"check":"GitHub App Auth Guard","status":"PASS"},
+    {"check":"Baseline Health (lint/typecheck/test/build)","status":"PASS"}
+  ],
+  "priority_steps": [
+    {"step":"apply_blueprint","status":"PASS"},
+    {"step":"autopilot_scan","status":"PASS"},
+    {"step":"prioritize_tasks","status":"PASS"},
+    {"step":"p0_stabilization","status":"PASS"},
+    {"step":"pipeline_max","status":"PASS"},
+    {"step":"readiness_score","status":"PASS"}
+  ],
+  "queue": {
+    "todo": 23,
+    "done": 6,
+    "by_priority": [
+      {"priority":"P1","todo":6},
+      {"priority":"P2","todo":17}
+    ]
+  },
+  "readiness": [
+    {"repo":"asdev-portfolio","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-persiantoolbox","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-family-rosca","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-nexa-vpn","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-creator-membership-ir","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-automation-hub","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-standards-platform","exit":"0","readiness":"ready","score":100},
+    {"repo":"asdev-codex-reviewer","exit":"0","readiness":"ready","score":100}
+  ],
+  "sources": [
+    "docs/reports/PRODUCTION_READINESS_SCORE_2026-02-14.md",
+    "docs/reports/P0_STABILIZATION_2026-02-14.md",
+    "docs/reports/PRIORITY_EXECUTION_RUN_2026-02-14.md",
+    "docs/reports/ROADMAP_TASK_QUEUE_2026-02-14.csv",
+    "docs/reports/AUTOPILOT_EXECUTION_REPORT.md"
+  ]
+}
