@@ -11,7 +11,7 @@ mkdir -p "$(dirname "$OUT_FILE")"
 latest_file() {
   local prefix="$1"
   local suffix="$2"
-  ls -1 "${REPORTS_DIR}/${prefix}"*"${suffix}" 2>/dev/null | sort | tail -n 1
+  find "${REPORTS_DIR}" -maxdepth 1 -type f -name "${prefix}*${suffix}" -print 2>/dev/null | sort | tail -n 1 || true
 }
 
 esc() {
@@ -21,10 +21,12 @@ esc() {
 readiness_file="$(latest_file "PRODUCTION_READINESS_SCORE_" ".md")"
 p0_file="$(latest_file "P0_STABILIZATION_" ".md")"
 queue_file="$(latest_file "ROADMAP_TASK_QUEUE_" ".csv")"
+priority_tasks_file="$(latest_file "ROADMAP_PRIORITY_TASKS_" ".md")"
 priority_file="$(latest_file "PRIORITY_EXECUTION_RUN_" ".md")"
 autopilot_file="${REPORTS_DIR}/AUTOPILOT_EXECUTION_REPORT.md"
+roadmap_file="${ROOT_DIR}/ROADMAP_EXECUTION_UNIFIED.md"
 
-if [[ -z "${readiness_file}" || -z "${p0_file}" || -z "${queue_file}" || -z "${priority_file}" || ! -f "${autopilot_file}" ]]; then
+if [[ -z "${readiness_file}" || -z "${p0_file}" || -z "${priority_file}" || ! -f "${autopilot_file}" ]]; then
   echo "Missing dashboard source files under ${REPORTS_DIR}" >&2
   exit 1
 fi
@@ -32,12 +34,25 @@ fi
 readiness_avg="$(awk -F': ' '/Average readiness score:/ {print $2; exit}' "$readiness_file" | tr -d '[:space:]')"
 [[ -n "${readiness_avg}" ]] || readiness_avg="n/a"
 
-queue_todo="$(awk -F',' 'NR>1{gsub(/"/,"",$5); if ($5=="todo") c++} END{print c+0}' "$queue_file")"
-queue_done="$(awk -F',' 'NR>1{gsub(/"/,"",$5); if ($5=="done") c++} END{print c+0}' "$queue_file")"
-
-# Priority buckets
 queue_priorities_tmp="$(mktemp)"
-awk -F',' 'NR>1{gsub(/"/,"",$2); gsub(/"/,"",$5); p=$2; s=$5; if(s=="todo") c[p]++} END{for (k in c) printf "%s,%d\n", k, c[k]}' "$queue_file" | sort > "$queue_priorities_tmp"
+if [[ -n "${queue_file}" && -f "${queue_file}" ]]; then
+  queue_todo="$(awk -F',' 'NR>1{gsub(/"/,"",$5); if ($5=="todo") c++} END{print c+0}' "$queue_file")"
+  queue_done="$(awk -F',' 'NR>1{gsub(/"/,"",$5); if ($5=="done") c++} END{print c+0}' "$queue_file")"
+  awk -F',' 'NR>1{gsub(/"/,"",$2); gsub(/"/,"",$5); p=$2; s=$5; if(s=="todo") c[p]++} END{for (k in c) printf "%s,%d\n", k, c[k]}' "$queue_file" | sort > "$queue_priorities_tmp"
+else
+  queue_todo="$(awk '/^- \[ \]/{c++} END{print c+0}' "$roadmap_file")"
+  queue_done="$(awk '/^- \[[xX]\]/{c++} END{print c+0}' "$roadmap_file")"
+  if [[ -n "${priority_tasks_file}" && -f "${priority_tasks_file}" ]]; then
+    p0_sum="$(awk -F'|' '/^\|/{c2=$3; gsub(/ /,"",c2); if (c2 ~ /^[0-9]+$/) s+=c2} END{print s+0}' "$priority_tasks_file")"
+    p1_sum="$(awk -F'|' '/^\|/{c3=$4; gsub(/ /,"",c3); if (c3 ~ /^[0-9]+$/) s+=c3} END{print s+0}' "$priority_tasks_file")"
+    p2_sum="$(awk -F'|' '/^\|/{c4=$5; gsub(/ /,"",c4); if (c4 ~ /^[0-9]+$/) s+=c4} END{print s+0}' "$priority_tasks_file")"
+    {
+      printf "P0,%s\n" "$p0_sum"
+      printf "P1,%s\n" "$p1_sum"
+      printf "P2,%s\n" "$p2_sum"
+    } > "$queue_priorities_tmp"
+  fi
+fi
 
 # Readiness rows
 readiness_rows_tmp="$(mktemp)"
@@ -135,7 +150,13 @@ fi
   printf '    "%s",\n' "docs/reports/$(basename "$readiness_file")"
   printf '    "%s",\n' "docs/reports/$(basename "$p0_file")"
   printf '    "%s",\n' "docs/reports/$(basename "$priority_file")"
-  printf '    "%s",\n' "docs/reports/$(basename "$queue_file")"
+  if [[ -n "${queue_file}" && -f "${queue_file}" ]]; then
+    printf '    "%s",\n' "docs/reports/$(basename "$queue_file")"
+  elif [[ -n "${priority_tasks_file}" && -f "${priority_tasks_file}" ]]; then
+    printf '    "%s",\n' "docs/reports/$(basename "$priority_tasks_file")"
+  else
+    printf '    "%s",\n' "ROADMAP_EXECUTION_UNIFIED.md"
+  fi
   printf '    "%s"\n' "docs/reports/$(basename "$autopilot_file")"
   echo "  ]"
   echo "}"
