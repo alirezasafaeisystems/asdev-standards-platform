@@ -104,5 +104,5 @@ Latest incremental once-cycle after task-matrix upgrade:
 
 ## Pending Items
 
-- Cross-repo sync PR wave execution on remote GitHub (automation token + PR merge flow).
+- Cross-repo PR merge wave (all PRs created; merge and CI closure pending).
 - Production domains + Search Console verification for newly added brand routes in staging/production.

@@ -18,7 +18,7 @@
 | Phase 1 — Portfolio Consulting Funnel | done (local) | `asdev-portfolio` funnel/service/lead changes + `docs/reports/EXECUTION_LOG_2026-02-14.md` | production activation + CRM operational ownership |
 | Phase 2 — SEO Production Hardening | done (local) | canonical/sitemap/schema updates + SEO tests in core repos | production indexation verification in Search Console/Bing |
 | Phase 3 — Release Governance & Ops Maturity | in_progress | release-state policy + autopilot runbook + systemd orchestration | final go/no-go release signoff and production rollout window |
-| Phase 4 — Standards Externalization & Adoption | in_progress (remote-only) | standards pack + templates + cross-repo branding rollout + autopilot evidence | remote sync PR wave and final compliance closeout |
+| Phase 4 — Standards Externalization & Adoption | in_progress (merge wave) | standards pack + templates + cross-repo branding rollout + autopilot evidence + open PRs in all repos | controlled merge wave and final compliance closeout |
 
 ## Quantitative Progress (Execution Scope)
 
@@ -36,7 +36,7 @@
 
 ## Remaining Tasks (Executable Next)
 
-1. Run remote PR wave for standardized contracts where required by governance.
+1. Merge wave for open PRs in all 7 repositories and capture CI evidence per merge.
 2. Continue periodic autopilot health monitoring and capture weekly evidence snapshots.
 
 ## Human External Tasks (Out of Repo)
