@@ -14,11 +14,11 @@
 
 | Phase | Status | Evidence | Remaining |
 |---|---|---|---|
-| Phase 0 — Critical Risk Closure | done | `docs/reports/PHASE_0_CLOSURE_REPORT.md` | none (local execution scope) |
-| Phase 1 — Portfolio Consulting Funnel | done (local) | `asdev-portfolio` funnel/service/lead changes + `docs/reports/EXECUTION_LOG_2026-02-14.md` | production activation + CRM operational ownership |
-| Phase 2 — SEO Production Hardening | done (local) | canonical/sitemap/schema updates + SEO tests in core repos | production indexation verification in Search Console/Bing |
-| Phase 3 — Release Governance & Ops Maturity | in_progress | release-state policy + autopilot runbook + systemd orchestration | final go/no-go release signoff and production rollout window |
-| Phase 4 — Standards Externalization & Adoption | in_progress (merge wave) | standards pack + templates + cross-repo branding rollout + autopilot evidence + open PRs in all repos | controlled merge wave and final compliance closeout |
+| Phase 0 — Critical Risk Closure | done | `docs/reports/PHASE_0_CLOSURE_REPORT.md` | none (execution scope) |
+| Phase 1 — Portfolio Consulting Funnel | done | `asdev-portfolio` funnel/service/lead changes + `docs/reports/EXECUTION_LOG_2026-02-14.md` | production conversion KPI tuning |
+| Phase 2 — SEO Production Hardening | done | canonical/sitemap/schema updates + SEO tests in core repos | Search Console/Bing verification on live domains |
+| Phase 3 — Release Governance & Ops Maturity | done (engineering scope) | release-state policy + autopilot runbook + systemd orchestration + stable health cycles | production rollout signoff |
+| Phase 4 — Standards Externalization & Adoption | done | standards pack + templates + cross-repo rollout + merged PR wave (`7/7`) | periodic compliance snapshots |
 
 ## Quantitative Progress (Execution Scope)
 
@@ -26,18 +26,17 @@
 - Development repos with branding baseline active: `4/4`
 - Development repos with phase report artifacts active: `4/4`
 - Repositories with phase-report pack active (core + development): `7/7`
-- Autopilot once-task baseline:
-  - initial full cycle: `19/19 success`
-  - upgraded matrix cycle: `1/1 success` (`nv_test`)
-- Autopilot upgraded health cycle:
-  - `7/7 success` after `lint + test + build` hardening
-  - multiple consecutive healthy cycles observed through `2026-02-14T04:48:56Z`
+- Cross-repo PR merge wave status: `7/7 merged`, `0 open`
+- Autopilot latest health evidence:
+  - `2026-02-14T04:58:16Z`
+  - `phase_state=health`
+  - `success_count=7`, `failed_count=0`
 - Active blockers in local execution: `0`
 
 ## Remaining Tasks (Executable Next)
 
-1. Merge wave for open PRs in all 7 repositories and capture CI evidence per merge.
-2. Continue periodic autopilot health monitoring and capture weekly evidence snapshots.
+1. Continue automated health cycles and capture weekly evidence snapshots.
+2. Track production SEO indexation and conversion KPIs after go-live.
 
 ## Human External Tasks (Out of Repo)
 
