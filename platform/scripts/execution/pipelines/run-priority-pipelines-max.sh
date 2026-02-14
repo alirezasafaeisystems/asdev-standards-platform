@@ -62,13 +62,13 @@ repo_command() {
       printf '%s' "bun test && pnpm -s build"
       ;;
     asdev-creator-membership-ir)
-      printf '%s' "pnpm -s test && pnpm -s build"
+      printf '%s' "pnpm -s lint && pnpm -s typecheck && pnpm -s test"
       ;;
     asdev-automation-hub)
       printf '%s' "pnpm -s test && pnpm -s build"
       ;;
     asdev-standards-platform)
-      printf '%s' "make ci"
+      printf '%s' "MAKEFLAGS= make ci"
       ;;
     asdev-codex-reviewer)
       printf '%s' "test -f README.md"
