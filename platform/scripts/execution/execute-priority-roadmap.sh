@@ -10,6 +10,7 @@ NOW_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
 APPLY_SCRIPT="${SCRIPT_DIR}/apply-strategic-execution-blueprint.sh"
 AUTOPILOT_SCRIPT="${SCRIPT_DIR}/run-strategic-execution-autopilot.sh"
 PRIORITIZE_SCRIPT="${SCRIPT_DIR}/prioritize-roadmap-tasks.sh"
+BLUEPRINT_ZIP_PATH="${BLUEPRINT_ZIP_PATH:-/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip}"
 
 EXEC_REPORT="${REPO_ROOT}/docs/reports/PRIORITY_EXECUTION_RUN_${TODAY}.md"
 
@@ -62,7 +63,11 @@ ensure_header() {
 
 run_baseline_scripts() {
   if [[ -x "$APPLY_SCRIPT" ]]; then
-    "$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip /home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip >/dev/null
+    if [[ -f "$BLUEPRINT_ZIP_PATH" ]]; then
+      "$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip "$BLUEPRINT_ZIP_PATH" >/dev/null
+    else
+      echo "[execute-priority-roadmap] blueprint zip not found at $BLUEPRINT_ZIP_PATH; skipping blueprint apply step" >&2
+    fi
   fi
 
   if [[ -x "$AUTOPILOT_SCRIPT" ]]; then
@@ -78,7 +83,7 @@ complete_repo() {
   local repo_name="$1"
   local repo_path="$WORKSPACE_ROOT/$repo_name"
 
-  [[ -d "$repo_path/.git" ]] || return 0
+  [[ -d "$repo_path/.git" ]] || return 2
 
   local root="$repo_path/docs/strategic-execution"
   local runtime="$root/runtime"
@@ -357,8 +362,16 @@ main() {
   } > "$EXEC_REPORT"
 
   for repo in "${PRIORITY_REPOS[@]}"; do
-    complete_repo "$repo"
-    printf '| %s | done | done | done | done |\n' "$repo" >> "$EXEC_REPORT"
+    if complete_repo "$repo"; then
+      printf '| %s | done | done | done | done |\n' "$repo" >> "$EXEC_REPORT"
+    else
+      rc=$?
+      if [[ $rc -eq 2 ]]; then
+        printf '| %s | skipped (repo missing) | skipped | skipped | skipped |\n' "$repo" >> "$EXEC_REPORT"
+      else
+        printf '| %s | failed | failed | failed | failed |\n' "$repo" >> "$EXEC_REPORT"
+      fi
+    fi
   done
 
   echo "Priority execution completed: $EXEC_REPORT"
