@@ -1,0 +1,19 @@
+[
+  {
+    "tool": "make",
+    "version": "n/a",
+    "evidence": "Makefile"
+  },
+  {
+    "tool": "bash",
+    "version": "system",
+    "evidence": "scripts/*.sh"
+  },
+  {
+    "tool": "python",
+    "version": "Python 3.10.19",
+    "evidence": [
+      "platform/scripts/generate-agent-md.py"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "file_count": 184,
+  "by_extension": {
+    ".env": 1,
+    ".yaml": 9,
+    ".service": 1,
+    ".tpl": 1,
+    ".sh": 121,
+    ".yml": 1,
+    ".md": 29,
+    "no_ext": 6,
+    ".py": 1,
+    ".json": 4,
+    ".css": 1,
+    ".js": 1,
+    ".html": 1,
+    ".csv": 5,
+    ".mjs": 1,
+    ".tsv": 1
+  },
+  "wc_total": " 11063 total"
+}

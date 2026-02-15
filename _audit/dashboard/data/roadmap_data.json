@@ -1,0 +1,138 @@
+{
+  "projects": [
+    {
+      "id": "asdev-standards-platform",
+      "name": "asdev-standards-platform",
+      "status": "active",
+      "goal": "تثبیت حاکمیت استاندارد، ارتقای CI و امنیت، و افزایش قابلیت اجراپذیری محلی"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase-0",
+      "title": "Phase 0 - خط مبنا و سخت‌سازی",
+      "milestones": [
+        {
+          "id": "m0-1",
+          "title": "امنیت پایه",
+          "tasks": [
+            {
+              "id": "T-SEC-001",
+              "project": "asdev-standards-platform",
+              "goal": "تعریف baseline واحد برای secret scanning و dependency policy",
+              "steps": ["استانداردسازی security-audit در CI", "افزودن گزارش CVE/SCA"],
+              "acceptance": ["گیت CI امنیت fail/pass شفاف داشته باشد", "artifact امنیتی قابل رهگیری تولید شود"],
+              "roles": ["Security", "DevOps/SRE"],
+              "risk": "high",
+              "dependencies": []
+            }
+          ]
+        },
+        {
+          "id": "m0-2",
+          "title": "Governance CI حداقلی",
+          "tasks": [
+            {
+              "id": "T-CI-001",
+              "project": "asdev-standards-platform",
+              "goal": "جایگزینی lint-and-test placeholder با گیت واقعی",
+              "steps": ["اجرای make lint", "اجرای make test"],
+              "acceptance": ["workflow خروجی واقعی gateها را نشان دهد"],
+              "roles": ["DevOps/SRE", "QA"],
+              "risk": "medium",
+              "dependencies": ["T-SEC-001"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-1",
+      "title": "Phase 1 - Testing Uplift",
+      "milestones": [
+        {
+          "id": "m1-1",
+          "title": "پوشش تست و قراردادها",
+          "tasks": [
+            {
+              "id": "T-QA-001",
+              "project": "asdev-standards-platform",
+              "goal": "تعریف آستانه پوشش برای تست‌های اسکریپت",
+              "steps": ["تعریف coverage contract", "بازبینی دوره‌ای fail cases"],
+              "acceptance": ["گزارش پوشش در CI ثبت شود"],
+              "roles": ["QA", "Backend"],
+              "risk": "medium",
+              "dependencies": ["T-CI-001"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-2",
+      "title": "Phase 2 - Performance & Observability",
+      "milestones": [
+        {
+          "id": "m2-1",
+          "title": "Telemetry عملیاتی",
+          "tasks": [
+            {
+              "id": "T-OBS-001",
+              "project": "asdev-standards-platform",
+              "goal": "افزودن متریک runtime و خطا برای jobهای گزارش‌گیری",
+              "steps": ["ثبت duration", "ثبت error fingerprint trend dashboard"],
+              "acceptance": ["dashboard متریک‌های روند را نمایش دهد"],
+              "roles": ["DevOps/SRE", "Product/UX"],
+              "risk": "low",
+              "dependencies": ["T-CI-001"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "title": "Phase 3 - Architecture & Standardization",
+      "milestones": [
+        {
+          "id": "m3-1",
+          "title": "چندسکویی/چندریپویی",
+          "tasks": [
+            {
+              "id": "T-ARC-001",
+              "project": "cross-project",
+              "goal": "تعریف سیاست نسخه‌گذاری و branch protection مشترک",
+              "steps": ["تهیه policy doc", "اعمال policy template"],
+              "acceptance": ["تمام ریپوهای سازمان policy baseline یکسان داشته باشند"],
+              "roles": ["Architect", "Security", "DevOps/SRE"],
+              "risk": "high",
+              "dependencies": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-4",
+      "title": "Phase 4 - Delivery & Reproducibility",
+      "milestones": [
+        {
+          "id": "m4-1",
+          "title": "تحویل پایدار",
+          "tasks": [
+            {
+              "id": "T-REL-001",
+              "project": "asdev-standards-platform",
+              "goal": "تضمین بازتولید local build و هم‌ترازی با Docker parity",
+              "steps": ["مستندسازی runbook", "افزودن smoke build"],
+              "acceptance": ["build محلی در محیط پاک موفق باشد"],
+              "roles": ["DevOps/SRE", "QA"],
+              "risk": "medium",
+              "dependencies": ["T-QA-001"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASDEV Audit Dashboard</title>
+  <style>
+    body{font-family:sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .card{background:#1e293b;padding:12px;border-radius:10px}
+    h1,h2,h3{margin:0 0 8px}
+    .risk-high{color:#ef4444}.risk-medium{color:#f59e0b}.risk-low{color:#22c55e}
+  </style>
+</head>
+<body>
+  <h1>داشبورد آفلاین ممیزی</h1>
+  <p>مسیر داده: <code>dashboard/data/roadmap_data.json</code></p>
+  <div id="projects" class="grid"></div>
+  <h2>فازها و مایلستون‌ها</h2>
+  <div id="phases" class="grid"></div>
+  <script>
+    fetch('data/roadmap_data.json').then(r=>r.json()).then(data=>{
+      const p=document.getElementById('projects');
+      data.projects.forEach(pr=>{
+        p.innerHTML+=`<div class='card'><h3>${pr.name}</h3><div>وضعیت: ${pr.status}</div><div>${pr.goal}</div></div>`;
+      });
+      const phases=document.getElementById('phases');
+      data.phases.forEach(ph=>{
+        let tasks=0, high=0, medium=0, low=0;
+        ph.milestones.forEach(m=>m.tasks.forEach(t=>{tasks++; if(t.risk==='high')high++; else if(t.risk==='medium')medium++; else low++;}));
+        phases.innerHTML+=`<div class='card'><h3>${ph.title}</h3><div>تعداد تسک: ${tasks}</div><div class='risk-high'>High: ${high}</div><div class='risk-medium'>Medium: ${medium}</div><div class='risk-low'>Low: ${low}</div></div>`;
+      });
+    }).catch(e=>document.body.innerHTML+=`<pre>${e}</pre>`)
+  </script>
+</body>
+</html>
