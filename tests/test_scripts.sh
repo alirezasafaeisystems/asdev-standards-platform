@@ -25,6 +25,7 @@ bash tests/test_weekly_digest_contract.sh
 bash tests/test_weekly_digest_repo_config_contract.sh
 bash tests/test_sync_untracked_detection.sh
 bash tests/test_target_template_validation.sh
+bash tests/test_ensure_yq_fallback.sh
 bash tests/test_template_version_policy.sh
 bash tests/test_monthly_release_repo_config_contract.sh
 bash tests/test_make_ci_target.sh
