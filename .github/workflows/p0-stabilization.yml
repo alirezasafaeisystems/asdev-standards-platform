@@ -1,0 +1,30 @@
+name: P0 Stabilization
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * 1-5'
+
+concurrency:
+  group: p0-stabilization-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  p0-stabilization:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      WORKSPACE_ROOT: ${{ github.workspace }}
+      BASELINE_REPOS: asdev-standards-platform
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run P0 stabilization checks
+        run: make p0-stabilization
+      - name: Upload P0 stabilization report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-stabilization-report
+          path: docs/reports/P0_STABILIZATION_*.md
+          if-no-files-found: warn

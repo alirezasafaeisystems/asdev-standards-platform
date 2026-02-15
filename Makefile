@@ -61,7 +61,7 @@ typecheck:
 	@bash scripts/typecheck.sh
 
 test:
-	@YQ_BIN="$$(bash scripts/ensure-yq.sh)" && PATH="$$(dirname "$$YQ_BIN"):$$PATH" bash scripts/validate-target-template-ids.sh
+	@bash scripts/validate-target-template-ids.sh
 	@bash tests/test_scripts.sh
 
 e2e:

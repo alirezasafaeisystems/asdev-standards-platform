@@ -3,6 +3,8 @@ set -euo pipefail
 
 YQ_VERSION="${YQ_VERSION:-v4.44.6}"
 YQ_INSTALL_PATH="${YQ_INSTALL_PATH:-/tmp/yq}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+YQ_LITE_PATH="${SCRIPT_DIR}/yq-lite"
 
 if command -v yq >/dev/null 2>&1; then
   command -v yq
@@ -20,13 +22,21 @@ if [[ "$(uname -s)" != "Linux" ]]; then
   exit 1
 fi
 
-if ! command -v curl >/dev/null 2>&1; then
-  echo "Missing required command: curl" >&2
-  exit 1
+if command -v curl >/dev/null 2>&1; then
+  download_url="https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64"
+  if curl -fsSL "${download_url}" -o "${YQ_INSTALL_PATH}"; then
+    chmod +x "${YQ_INSTALL_PATH}"
+    echo "${YQ_INSTALL_PATH}"
+    exit 0
+  fi
 fi
 
-download_url="https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64"
-curl -fsSL "${download_url}" -o "${YQ_INSTALL_PATH}"
-chmod +x "${YQ_INSTALL_PATH}"
+if [[ -x "${YQ_LITE_PATH}" ]]; then
+  cp "${YQ_LITE_PATH}" "${YQ_INSTALL_PATH}"
+  chmod +x "${YQ_INSTALL_PATH}"
+  echo "${YQ_INSTALL_PATH}"
+  exit 0
+fi
 
-echo "${YQ_INSTALL_PATH}"
+echo "Failed to provision yq and no local fallback is available." >&2
+exit 1

@@ -3,15 +3,19 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MANIFEST="${1:-${ROOT_DIR}/platform/repo-templates/templates.yaml}"
-YQ_BIN="$("${ROOT_DIR}/scripts/ensure-yq.sh")"
-PATH="$(dirname "$YQ_BIN"):$PATH"
 
 if [[ ! -f "$MANIFEST" ]]; then
   echo "Manifest not found: $MANIFEST" >&2
   exit 1
 fi
 
-mapfile -t known_ids < <(yq -r '.templates[].id' "$MANIFEST")
+mapfile -t known_ids < <(ruby -ryaml -e '
+  manifest = YAML.load_file(ARGV[0])
+  (manifest.fetch("templates", [])).each do |entry|
+    id = entry["id"]
+    puts id if id && !id.to_s.empty?
+  end
+' "$MANIFEST")
 known_set="$(printf '%s\n' "${known_ids[@]}" | sort -u)"
 
 failed=0
@@ -22,7 +26,14 @@ while IFS= read -r target_file; do
       echo "Unknown template id '$id' in ${target_file}" >&2
       failed=1
     fi
-  done < <(yq -r '.targets[].templates[]?, .targets[].optional_features[]?' "$target_file")
+  done < <(ruby -ryaml -e '
+    file = YAML.load_file(ARGV[0])
+    (file.fetch("targets", [])).each do |target|
+      ["templates", "optional_features"].each do |key|
+        Array(target[key]).each { |value| puts value }
+      end
+    end
+  ' "$target_file")
 done < <(find "${ROOT_DIR}/sync" -maxdepth 1 -type f -name 'targets*.yaml' | sort)
 
 if [[ "$failed" -ne 0 ]]; then

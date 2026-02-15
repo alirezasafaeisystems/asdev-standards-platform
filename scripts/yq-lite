@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+# Minimal yq-compatible fallback for ASDEV scripts/tests.
+require 'yaml'
+
+args = ARGV.dup
+raw = false
+inplace = false
+
+while args.first&.start_with?('-')
+  flag = args.shift
+  case flag
+  when '-r'
+    raw = true
+  when '-i'
+    inplace = true
+  else
+    warn "unsupported flag: #{flag}"
+    exit 2
+  end
+end
+
+expr = args.shift
+file = args.shift
+if expr.nil? || file.nil?
+  warn 'usage: yq-lite [-r] [-i] <expr> <file>'
+  exit 2
+end
+
+data = YAML.load_file(file)
+
+def print_value(value)
+  if value.nil?
+    puts 'null'
+  elsif value.is_a?(Array)
+    value.each { |v| print_value(v) }
+  else
+    puts value
+  end
+end
+
+case expr
+when '.templates | length'
+  puts Array(data['templates']).length
+when /\A\.templates\[(\d+)\]\.version\z/
+  idx = Regexp.last_match(1).to_i
+  value = Array(data['templates'])[idx]&.fetch('version', nil)
+  print_value(value)
+when /\A\.templates\[(\d+)\]\.version = "([^"]+)"\z/
+  idx = Regexp.last_match(1).to_i
+  next_value = Regexp.last_match(2)
+  unless inplace
+    warn 'assignment requires -i'
+    exit 2
+  end
+  templates = Array(data['templates'])
+  if templates[idx].nil?
+    warn "template index out of range: #{idx}"
+    exit 1
+  end
+  templates[idx]['version'] = next_value
+  File.write(file, YAML.dump(data).sub(/\A---\s*\n/, ''))
+when /\A\.templates\[\] \| select\(\.id == "([^"]+)"\) \| \.([a-zA-Z0-9_]+)\z/
+  tid = Regexp.last_match(1)
+  key = Regexp.last_match(2)
+  found = Array(data['templates']).find { |t| t['id'] == tid }
+  print_value(found&.fetch(key, nil))
+when '.targets | length'
+  puts Array(data['targets']).length
+when /\A\.targets\[(\d+)\]\.repo\z/
+  idx = Regexp.last_match(1).to_i
+  print_value(Array(data['targets'])[idx]&.fetch('repo', nil))
+when /\A\.targets\[(\d+)\]\.default_branch \/\/ "([^"]+)"\z/
+  idx = Regexp.last_match(1).to_i
+  fallback = Regexp.last_match(2)
+  value = Array(data['targets'])[idx]&.fetch('default_branch', nil)
+  puts(value.nil? ? fallback : value)
+when /\A\.targets\[(\d+)\]\.(templates|optional_features|opt_outs|labels)\[\]\?\z/
+  idx = Regexp.last_match(1).to_i
+  key = Regexp.last_match(2)
+  values = Array(data['targets'])[idx]&.fetch(key, []) || []
+  Array(values).each { |v| puts v }
+when '.targets[]? | [.repo, (.templates | join(", "))] | @tsv'
+  Array(data['targets']).each do |target|
+    repo = target['repo']
+    templates = Array(target['templates']).join(', ')
+    puts "#{repo}\t#{templates}"
+  end
+else
+  warn "unsupported yq expression: #{expr}"
+  exit 2
+end
