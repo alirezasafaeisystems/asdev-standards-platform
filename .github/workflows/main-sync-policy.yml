@@ -1,0 +1,25 @@
+name: Main Sync Policy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 7 * * 1-5'
+
+concurrency:
+  group: main-sync-policy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  enforce-main-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      WORKSPACE_ROOT: ${{ github.workspace }}/..
+      DEFAULT_BRANCH: main
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Enforce main branch sync policy
+        run: make enforce-main-sync

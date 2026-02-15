@@ -8,6 +8,7 @@ Standards, automation orchestration, and governance tooling for ASDEV repositori
 - `make verify`
 - `make reports`
 - `make p0-stabilization`
+- `make enforce-main-sync`
 
 ## Management Dashboard
 - Launch with auto-report refresh:
