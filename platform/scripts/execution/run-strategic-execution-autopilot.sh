@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 WORKSPACE_ROOT="$(cd "${REPO_ROOT}/.." && pwd)"
-ZIP_PATH="/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip"
+ZIP_PATH="${BLUEPRINT_ZIP_PATH:-/home/dev/Downloads/ASDEV_Strategic_Execution_Blueprint_v1.0.zip}"
 APPLY_SCRIPT="${SCRIPT_DIR}/apply-strategic-execution-blueprint.sh"
 TODAY="$(date +%F)"
 NOW_UTC="$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
@@ -15,7 +15,11 @@ if [[ ! -x "$APPLY_SCRIPT" ]]; then
   exit 1
 fi
 
-"$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip "$ZIP_PATH" >/dev/null
+if [[ -f "$ZIP_PATH" ]]; then
+  "$APPLY_SCRIPT" --workspace-root "$WORKSPACE_ROOT" --zip "$ZIP_PATH" >/dev/null
+else
+  echo "[run-strategic-execution-autopilot] blueprint zip not found at $ZIP_PATH; skipping blueprint apply step" >&2
+fi
 
 append_csv_row_if_missing() {
   local file="$1"
