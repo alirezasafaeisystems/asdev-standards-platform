@@ -1,0 +1,9 @@
+schema_version=1
+checksum_algorithm=sha256
+validated_at=2026-02-14T21:45:17Z
+combined_file=sync/divergence-report.combined.csv
+errors_file=sync/divergence-report.combined.errors.csv
+trend_file=sync/divergence-report.combined.errors.trend.csv
+combined_sha256=3d058a3b9919dd9e1a4786c61666fec140f2df6d66c989d96bcd952f8ddb2478
+errors_sha256=afe4a2d4c90aaf0e3d656dff29fafacdc8d09091ef85502cc177b01ef97ae591
+trend_sha256=da0084312786399f84f4d9c2cc048a4f4c391cd5ba5133405d0ac7dd21912226
