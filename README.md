@@ -6,6 +6,7 @@ Standards, automation orchestration, and governance tooling for ASDEV repositori
 - `make lint`
 - `make test`
 - `make verify`
+- `make code-reviews` (runs review preflight + full verify gate)
 - `make reports`
 - `make p0-stabilization`
 
