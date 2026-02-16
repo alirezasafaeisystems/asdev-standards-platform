@@ -1,0 +1,77 @@
+$ eslint .
+$ bun test
+bun test v1.3.9 (cf6cdbbb)
+
+src/lib/__tests__/validations.test.ts:
+(pass) validation hardening > contribution payload ignores client-supplied userId [3.00ms]
+(pass) validation hardening > membership payload ignores role and userId escalation fields
+
+src/lib/__tests__/brand-seo-contract.test.ts:
+(pass) brand and seo contract > brand identity baseline is defined
+(pass) brand and seo contract > sitemap includes homepage and brand page
+(pass) brand and seo contract > robots points to canonical host and sitemap
+
+src/lib/__tests__/auth.test.ts:
+(pass) isSystemAdmin > accepts ACTIVE ADMIN [1.00ms]
+(pass) isSystemAdmin > accepts ACTIVE SUPER_ADMIN [1.00ms]
+(pass) isSystemAdmin > rejects inactive admin and regular users
+
+src/app/api/__tests__/contributions-authz.test.ts:
+(pass) contributions authz policy > always resolves actor to authenticated user id
+
+src/app/api/__tests__/audit-access.test.ts:
+(pass) audit access policy > entity-level filters require admin role
+
+src/app/api/__tests__/memberships-role.test.ts:
+(pass) membership role policy > join endpoint always creates MEMBER role
+
+ 11 pass
+ 0 fail
+ 22 expect() calls
+Ran 11 tests across 6 files. [122.00ms]
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.3 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.9s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/19) ...
+  Generating static pages using 11 workers (4/19) 
+  Generating static pages using 11 workers (9/19) 
+  Generating static pages using 11 workers (14/19) 
+✓ Generating static pages using 11 workers (19/19) in 175.7ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api
+├ ƒ /api/audit
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/otp/request
+├ ƒ /api/auth/otp/verify
+├ ƒ /api/contributions
+├ ƒ /api/contributions/[id]
+├ ƒ /api/contributions/[id]/confirm
+├ ƒ /api/cycles
+├ ƒ /api/cycles/[id]
+├ ƒ /api/groups
+├ ƒ /api/groups/[id]
+├ ƒ /api/groups/[id]/draw
+├ ƒ /api/groups/[id]/summary
+├ ƒ /api/memberships
+├ ƒ /api/memberships/[id]
+├ ƒ /api/payouts
+├ ƒ /api/users
+├ ○ /brand
+├ ○ /dashboard
+├ ƒ /groups/[id]
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,5 @@
+
+> persiantoolbox@2.0.2 release:state:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-release-state-consistency.mjs
+
+[release] state consistency valid (train=v3, stage=publish-readiness, status=in_progress)

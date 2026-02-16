@@ -1,0 +1,1 @@
+asdev-nexa-vpn	127	0	bun test && pnpm -s build	/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-14/asdev-nexa-vpn.log

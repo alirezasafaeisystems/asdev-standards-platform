@@ -1,0 +1,12 @@
+$ bun test
+bun test v1.3.9 (cf6cdbbb)
+
+src/lib/__tests__/brand-seo-contract.test.ts:
+(pass) brand and seo contract > brand identity baseline is defined [0.99ms]
+(pass) brand and seo contract > sitemap includes homepage and brand page
+(pass) brand and seo contract > robots points to canonical host and sitemap
+
+ 3 pass
+ 0 fail
+ 8 expect() calls
+Ran 3 tests across 1 file. [13.00ms]

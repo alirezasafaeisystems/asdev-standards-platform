@@ -1,0 +1,62 @@
+$ eslint .
+$ bun test
+bun test v1.3.9 (cf6cdbbb)
+
+src/lib/__tests__/brand-seo-contract.test.ts:
+(pass) brand and seo contract > brand identity baseline is defined
+(pass) brand and seo contract > sitemap includes homepage and brand page
+(pass) brand and seo contract > robots points to canonical host and sitemap
+
+ 3 pass
+ 0 fail
+ 8 expect() calls
+Ran 3 tests across 1 file. [19.00ms]
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.3 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.2s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/22) ...
+  Generating static pages using 11 workers (5/22) 
+  Generating static pages using 11 workers (10/22) 
+  Generating static pages using 11 workers (16/22) 
+✓ Generating static pages using 11 workers (22/22) in 256.5ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api
+├ ƒ /api/v1/admin/audit-logs
+├ ƒ /api/v1/admin/plans
+├ ƒ /api/v1/admin/plans/[id]
+├ ƒ /api/v1/admin/servers
+├ ƒ /api/v1/admin/servers/[id]
+├ ƒ /api/v1/admin/users
+├ ƒ /api/v1/admin/users/[id]
+├ ƒ /api/v1/auth/login
+├ ƒ /api/v1/auth/logout
+├ ƒ /api/v1/auth/me
+├ ƒ /api/v1/auth/register
+├ ƒ /api/v1/configs
+├ ƒ /api/v1/configs/[id]
+├ ƒ /api/v1/invoices
+├ ƒ /api/v1/invoices/[id]
+├ ƒ /api/v1/plans
+├ ƒ /api/v1/servers
+├ ƒ /api/v1/subscriptions
+├ ƒ /api/v1/subscriptions/[id]
+├ ƒ /api/v1/telegram/webhook
+├ ƒ /api/v1/tickets
+├ ƒ /api/v1/tickets/[id]
+├ ƒ /api/v1/tickets/[id]/messages
+├ ○ /brand
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

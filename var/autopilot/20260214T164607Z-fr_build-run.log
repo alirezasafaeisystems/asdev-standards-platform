@@ -1,0 +1,46 @@
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.3 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.0s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/19) ...
+  Generating static pages using 11 workers (4/19) 
+  Generating static pages using 11 workers (9/19) 
+  Generating static pages using 11 workers (14/19) 
+✓ Generating static pages using 11 workers (19/19) in 175.9ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api
+├ ƒ /api/audit
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/otp/request
+├ ƒ /api/auth/otp/verify
+├ ƒ /api/contributions
+├ ƒ /api/contributions/[id]
+├ ƒ /api/contributions/[id]/confirm
+├ ƒ /api/cycles
+├ ƒ /api/cycles/[id]
+├ ƒ /api/groups
+├ ƒ /api/groups/[id]
+├ ƒ /api/groups/[id]/draw
+├ ƒ /api/groups/[id]/summary
+├ ƒ /api/memberships
+├ ƒ /api/memberships/[id]
+├ ƒ /api/payouts
+├ ƒ /api/users
+├ ○ /brand
+├ ○ /dashboard
+├ ƒ /groups/[id]
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

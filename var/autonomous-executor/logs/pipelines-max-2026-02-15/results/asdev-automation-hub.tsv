@@ -1,0 +1,1 @@
+asdev-automation-hub	127	0	pnpm -s test && pnpm -s build	/home/dev/Project_Me/asdev-standards-platform/var/autonomous-executor/logs/pipelines-max-2026-02-15/asdev-automation-hub.log

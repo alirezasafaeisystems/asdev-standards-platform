@@ -1,0 +1,3 @@
+$ eslint .
+/usr/bin/bash: line 1: eslint: command not found
+error: script "lint" exited with code 127

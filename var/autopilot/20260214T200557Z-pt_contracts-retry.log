@@ -1,0 +1,71 @@
+
+> persiantoolbox@2.0.2 ci:contracts /home/dev/Project_Me/asdev-persiantoolbox
+> pnpm monetization:review:validate && pnpm monetization:ops:validate && pnpm monetization:alerting:validate && pnpm monetization:site-settings:validate && pnpm deploy:readiness:validate && pnpm release:rc:validate && pnpm release:rollback:validate && pnpm release:launch:validate && pnpm release:state:validate && pnpm pwa:sw:validate && pnpm licensing:validate
+
+
+> persiantoolbox@2.0.2 monetization:review:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/monetization/validate-review-backlog.mjs
+
+[monetization] review backlog contract valid (3 items)
+
+> persiantoolbox@2.0.2 monetization:ops:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/monetization/validate-operations-checklist.mjs
+
+[monetization] operations checklist contract valid (2 monthly, 2 quarterly)
+
+> persiantoolbox@2.0.2 monetization:alerting:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/monetization/validate-alerting-decision-rules.mjs
+
+[monetization] alerting decision rules contract valid (5 KPI mappings)
+
+> persiantoolbox@2.0.2 monetization:site-settings:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/monetization/validate-site-settings-contract.mjs
+
+[monetization] site settings contract valid (4 keys)
+
+> persiantoolbox@2.0.2 deploy:readiness:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/deploy/validate-readiness-gates.mjs
+
+[deploy] readiness gates contract valid (3 quality gates, 2 security gates)
+
+> persiantoolbox@2.0.2 release:rc:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-rc-checklist.mjs
+
+[release] rc checklist contract valid (4 quality gates)
+
+> persiantoolbox@2.0.2 release:rollback:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-rollback-drill.mjs
+
+[release] rollback drill contract valid (3 drills)
+
+> persiantoolbox@2.0.2 release:launch:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-launch-day-checklist.mjs
+
+[release] launch day checklist contract valid (3 smoke suites)
+
+> persiantoolbox@2.0.2 release:state:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-release-state-consistency.mjs
+
+[release] state consistency valid (train=v3, stage=publish-readiness, status=in_progress)
+
+> persiantoolbox@2.0.2 pwa:sw:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/pwa/validate-sw-version.mjs
+
+[pwa] CACHE_VERSION is valid: v8-2026-02-12
+
+> persiantoolbox@2.0.2 licensing:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/licensing/validate-license-assets.mjs && node scripts/licensing/validate-license-consistency.mjs
+
+file:///home/dev/Project_Me/asdev-persiantoolbox/scripts/licensing/validate-license-assets.mjs:28
+  throw new Error(`[licensing] missing required files: ${missingFiles.join(', ')}`);
+        ^
+
+Error: [licensing] missing required files: LICENSE-NONCOMMERCIAL.md, LICENSE-COMMERCIAL.md, COMMERCIAL.md, TRADEMARKS.md, DCO.md, .github/PULL_REQUEST_TEMPLATE.md, docs/licensing/license-migration-taskboard.md, docs/licensing/dual-license-policy.md, docs/licensing/cla-individual.md, docs/licensing/cla-corporate.md, docs/licensing/cla-operations.md, docs/licensing/package-license-transition.md, docs/licensing/v2-license-release-checklist.md, docs/licensing/v2-release-notes-template.md
+    at file:///home/dev/Project_Me/asdev-persiantoolbox/scripts/licensing/validate-license-assets.mjs:28:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.13.0
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

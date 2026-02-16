@@ -1,0 +1,305 @@
+[2026-02-14T16:46:07Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-sp_lint-run.log
+[2026-02-14T16:46:07Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-sp_lint-retry.log
+[2026-02-14T16:46:16Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-sp_tests-run.log
+[2026-02-14T16:46:17Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-sp_tests-fix.log
+[2026-02-14T16:46:28Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-pt_release_state-run.log
+[2026-02-14T16:46:28Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-pt_contracts-run.log
+[2026-02-14T16:46:38Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-pt_contracts-retry.log
+[2026-02-14T16:46:38Z] task=pf_lint status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-pf_lint-run.log
+[2026-02-14T16:48:08Z] task=ah_ci status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-ah_ci-run.log
+[2026-02-14T16:48:24Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-cm_typecheck-run.log
+[2026-02-14T16:48:25Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-cm_typecheck-retry.log
+[2026-02-14T16:48:25Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-cm_test_unit-run.log
+[2026-02-14T16:48:26Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-cm_test_unit-retry.log
+[2026-02-14T16:48:26Z] task=fr_lint status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-fr_lint-run.log
+[2026-02-14T16:48:47Z] task=nv_lint status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T164607Z-nv_lint-run.log
+[2026-02-14T16:52:09Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-sp_lint-run.log
+[2026-02-14T16:52:09Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-sp_lint-retry.log
+[2026-02-14T16:52:09Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-sp_tests-run.log
+[2026-02-14T16:52:09Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-sp_tests-fix.log
+[2026-02-14T16:52:10Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-pt_release_state-run.log
+[2026-02-14T16:52:10Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-pt_contracts-run.log
+[2026-02-14T16:52:13Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-pt_contracts-retry.log
+[2026-02-14T16:52:13Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-cm_typecheck-run.log
+[2026-02-14T16:52:14Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-cm_typecheck-retry.log
+[2026-02-14T16:52:14Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-cm_test_unit-run.log
+[2026-02-14T16:52:15Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165209Z-cm_test_unit-retry.log
+[2026-02-14T16:55:15Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-sp_lint-run.log
+[2026-02-14T16:55:15Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-sp_lint-retry.log
+[2026-02-14T16:55:15Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-sp_tests-run.log
+[2026-02-14T16:55:15Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-sp_tests-fix.log
+[2026-02-14T16:55:16Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-pt_release_state-run.log
+[2026-02-14T16:55:16Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-pt_contracts-run.log
+[2026-02-14T16:55:18Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-pt_contracts-retry.log
+[2026-02-14T16:55:19Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-cm_typecheck-run.log
+[2026-02-14T16:55:19Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-cm_typecheck-retry.log
+[2026-02-14T16:55:20Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-cm_test_unit-run.log
+[2026-02-14T16:55:21Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165515Z-cm_test_unit-retry.log
+[2026-02-14T16:58:21Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-sp_lint-run.log
+[2026-02-14T16:58:21Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-sp_lint-retry.log
+[2026-02-14T16:58:21Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-sp_tests-run.log
+[2026-02-14T16:58:21Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-sp_tests-fix.log
+[2026-02-14T16:58:21Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-pt_release_state-run.log
+[2026-02-14T16:58:22Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-pt_contracts-run.log
+[2026-02-14T16:58:24Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-pt_contracts-retry.log
+[2026-02-14T16:58:25Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-cm_typecheck-run.log
+[2026-02-14T16:58:25Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-cm_typecheck-retry.log
+[2026-02-14T16:58:26Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-cm_test_unit-run.log
+[2026-02-14T16:58:26Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T165821Z-cm_test_unit-retry.log
+[2026-02-14T17:01:26Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-sp_lint-run.log
+[2026-02-14T17:01:26Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-sp_lint-retry.log
+[2026-02-14T17:01:27Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-sp_tests-run.log
+[2026-02-14T17:01:27Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-sp_tests-fix.log
+[2026-02-14T17:01:27Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-pt_release_state-run.log
+[2026-02-14T17:01:28Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-pt_contracts-run.log
+[2026-02-14T17:01:30Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-pt_contracts-retry.log
+[2026-02-14T17:01:30Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-cm_typecheck-run.log
+[2026-02-14T17:01:31Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-cm_typecheck-retry.log
+[2026-02-14T17:01:31Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-cm_test_unit-run.log
+[2026-02-14T17:01:32Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170126Z-cm_test_unit-retry.log
+[2026-02-14T17:04:32Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-sp_lint-run.log
+[2026-02-14T17:04:32Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-sp_lint-retry.log
+[2026-02-14T17:04:32Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-sp_tests-run.log
+[2026-02-14T17:04:33Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-sp_tests-fix.log
+[2026-02-14T17:04:33Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-pt_release_state-run.log
+[2026-02-14T17:04:34Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-pt_contracts-run.log
+[2026-02-14T17:04:36Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-pt_contracts-retry.log
+[2026-02-14T17:04:36Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-cm_typecheck-run.log
+[2026-02-14T17:04:37Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-cm_typecheck-retry.log
+[2026-02-14T17:04:37Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-cm_test_unit-run.log
+[2026-02-14T17:04:38Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170432Z-cm_test_unit-retry.log
+[2026-02-14T17:07:38Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-sp_lint-run.log
+[2026-02-14T17:07:38Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-sp_lint-retry.log
+[2026-02-14T17:07:38Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-sp_tests-run.log
+[2026-02-14T17:07:38Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-sp_tests-fix.log
+[2026-02-14T17:07:39Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-pt_release_state-run.log
+[2026-02-14T17:07:39Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-pt_contracts-run.log
+[2026-02-14T17:07:41Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-pt_contracts-retry.log
+[2026-02-14T17:07:42Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-cm_typecheck-run.log
+[2026-02-14T17:07:42Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-cm_typecheck-retry.log
+[2026-02-14T17:07:43Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-cm_test_unit-run.log
+[2026-02-14T17:07:44Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T170738Z-cm_test_unit-retry.log
+[2026-02-14T17:10:44Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-sp_lint-run.log
+[2026-02-14T17:10:44Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-sp_lint-retry.log
+[2026-02-14T17:10:44Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-sp_tests-run.log
+[2026-02-14T17:10:44Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-sp_tests-fix.log
+[2026-02-14T17:10:44Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-pt_release_state-run.log
+[2026-02-14T17:10:45Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-pt_contracts-run.log
+[2026-02-14T17:10:47Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-pt_contracts-retry.log
+[2026-02-14T17:10:47Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-cm_typecheck-run.log
+[2026-02-14T17:10:48Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-cm_typecheck-retry.log
+[2026-02-14T17:10:49Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-cm_test_unit-run.log
+[2026-02-14T17:10:49Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171044Z-cm_test_unit-retry.log
+[2026-02-14T17:13:49Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-sp_lint-run.log
+[2026-02-14T17:13:49Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-sp_lint-retry.log
+[2026-02-14T17:13:50Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-sp_tests-run.log
+[2026-02-14T17:13:50Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-sp_tests-fix.log
+[2026-02-14T17:13:50Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-pt_release_state-run.log
+[2026-02-14T17:13:51Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-pt_contracts-run.log
+[2026-02-14T17:13:53Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-pt_contracts-retry.log
+[2026-02-14T17:13:53Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-cm_typecheck-run.log
+[2026-02-14T17:13:54Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-cm_typecheck-retry.log
+[2026-02-14T17:13:54Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-cm_test_unit-run.log
+[2026-02-14T17:13:55Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171349Z-cm_test_unit-retry.log
+[2026-02-14T17:16:55Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-sp_lint-run.log
+[2026-02-14T17:16:55Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-sp_lint-retry.log
+[2026-02-14T17:16:55Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-sp_tests-run.log
+[2026-02-14T17:16:56Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-sp_tests-fix.log
+[2026-02-14T17:16:56Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-pt_release_state-run.log
+[2026-02-14T17:16:57Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-pt_contracts-run.log
+[2026-02-14T17:16:59Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-pt_contracts-retry.log
+[2026-02-14T17:16:59Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-cm_typecheck-run.log
+[2026-02-14T17:17:00Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-cm_typecheck-retry.log
+[2026-02-14T17:17:00Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-cm_test_unit-run.log
+[2026-02-14T17:17:01Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T171655Z-cm_test_unit-retry.log
+[2026-02-14T17:20:01Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-sp_lint-run.log
+[2026-02-14T17:20:01Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-sp_lint-retry.log
+[2026-02-14T17:20:01Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-sp_tests-run.log
+[2026-02-14T17:20:01Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-sp_tests-fix.log
+[2026-02-14T17:20:02Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-pt_release_state-run.log
+[2026-02-14T17:20:02Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-pt_contracts-run.log
+[2026-02-14T17:20:04Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-pt_contracts-retry.log
+[2026-02-14T17:20:05Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-cm_typecheck-run.log
+[2026-02-14T17:20:05Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-cm_typecheck-retry.log
+[2026-02-14T17:20:06Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-cm_test_unit-run.log
+[2026-02-14T17:20:07Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172001Z-cm_test_unit-retry.log
+[2026-02-14T17:23:07Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-sp_lint-run.log
+[2026-02-14T17:23:07Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-sp_lint-retry.log
+[2026-02-14T17:23:07Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-sp_tests-run.log
+[2026-02-14T17:23:07Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-sp_tests-fix.log
+[2026-02-14T17:23:07Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-pt_release_state-run.log
+[2026-02-14T17:23:08Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-pt_contracts-run.log
+[2026-02-14T17:23:10Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-pt_contracts-retry.log
+[2026-02-14T17:23:11Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-cm_typecheck-run.log
+[2026-02-14T17:23:11Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-cm_typecheck-retry.log
+[2026-02-14T17:23:12Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-cm_test_unit-run.log
+[2026-02-14T17:23:12Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172307Z-cm_test_unit-retry.log
+[2026-02-14T17:25:57Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-sp_lint-run.log
+[2026-02-14T17:25:57Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-sp_lint-retry.log
+[2026-02-14T17:25:57Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-sp_tests-run.log
+[2026-02-14T17:25:57Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-sp_tests-fix.log
+[2026-02-14T17:25:58Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-pt_release_state-run.log
+[2026-02-14T17:25:58Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-pt_contracts-run.log
+[2026-02-14T17:26:01Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-pt_contracts-retry.log
+[2026-02-14T17:26:01Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-cm_typecheck-run.log
+[2026-02-14T17:26:02Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-cm_typecheck-retry.log
+[2026-02-14T17:26:02Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-cm_test_unit-run.log
+[2026-02-14T17:26:03Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172557Z-cm_test_unit-retry.log
+[2026-02-14T17:29:03Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-sp_lint-run.log
+[2026-02-14T17:29:03Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-sp_lint-retry.log
+[2026-02-14T17:29:03Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-sp_tests-run.log
+[2026-02-14T17:29:03Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-sp_tests-fix.log
+[2026-02-14T17:29:04Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-pt_release_state-run.log
+[2026-02-14T17:29:04Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-pt_contracts-run.log
+[2026-02-14T17:29:06Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-pt_contracts-retry.log
+[2026-02-14T17:29:07Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-cm_typecheck-run.log
+[2026-02-14T17:29:08Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-cm_typecheck-retry.log
+[2026-02-14T17:29:08Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-cm_test_unit-run.log
+[2026-02-14T17:29:09Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T172903Z-cm_test_unit-retry.log
+[2026-02-14T17:32:09Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-sp_lint-run.log
+[2026-02-14T17:32:09Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-sp_lint-retry.log
+[2026-02-14T17:32:09Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-sp_tests-run.log
+[2026-02-14T17:32:09Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-sp_tests-fix.log
+[2026-02-14T17:32:09Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-pt_release_state-run.log
+[2026-02-14T17:32:10Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-pt_contracts-run.log
+[2026-02-14T17:32:12Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-pt_contracts-retry.log
+[2026-02-14T17:32:13Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-cm_typecheck-run.log
+[2026-02-14T17:32:13Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-cm_typecheck-retry.log
+[2026-02-14T17:32:14Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-cm_test_unit-run.log
+[2026-02-14T17:32:14Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173209Z-cm_test_unit-retry.log
+[2026-02-14T17:35:14Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-sp_lint-run.log
+[2026-02-14T17:35:15Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-sp_lint-retry.log
+[2026-02-14T17:35:15Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-sp_tests-run.log
+[2026-02-14T17:35:15Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-sp_tests-fix.log
+[2026-02-14T17:35:15Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-pt_release_state-run.log
+[2026-02-14T17:35:16Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-pt_contracts-run.log
+[2026-02-14T17:35:18Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-pt_contracts-retry.log
+[2026-02-14T17:35:18Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-cm_typecheck-run.log
+[2026-02-14T17:35:19Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-cm_typecheck-retry.log
+[2026-02-14T17:35:19Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-cm_test_unit-run.log
+[2026-02-14T17:35:20Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173514Z-cm_test_unit-retry.log
+[2026-02-14T17:38:20Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-sp_lint-run.log
+[2026-02-14T17:38:20Z] task=sp_lint status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-sp_lint-retry.log
+[2026-02-14T17:38:21Z] task=sp_tests status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-sp_tests-run.log
+[2026-02-14T17:38:21Z] task=sp_tests fix failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-sp_tests-fix.log
+[2026-02-14T17:38:21Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-pt_release_state-run.log
+[2026-02-14T17:38:22Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-pt_contracts-run.log
+[2026-02-14T17:38:24Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-pt_contracts-retry.log
+[2026-02-14T17:38:24Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-cm_typecheck-run.log
+[2026-02-14T17:38:25Z] task=cm_typecheck status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-cm_typecheck-retry.log
+[2026-02-14T17:38:25Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-cm_test_unit-run.log
+[2026-02-14T17:38:26Z] task=cm_test_unit status=failed code=2 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T173820Z-cm_test_unit-retry.log
+[2026-02-14T20:02:53Z] task=pt_release_state status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T200244Z-pt_release_state-run.log
+[2026-02-14T20:02:54Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T200244Z-pt_contracts-run.log
+[2026-02-14T20:02:56Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T200244Z-pt_contracts-retry.log
+[2026-02-14T20:06:03Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T200557Z-pt_contracts-run.log
+[2026-02-14T20:06:09Z] task=pt_contracts status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T200557Z-pt_contracts-retry.log
+[2026-02-14T20:44:17Z] task=pf_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T204334Z-pf_health-run.log
+[2026-02-14T20:53:56Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T205336Z-pt_health-run.log
+[2026-02-14T20:54:18Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T205336Z-pt_health-retry.log
+[2026-02-14T21:03:41Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T210320Z-pt_health-run.log
+[2026-02-14T21:04:04Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T210320Z-pt_health-retry.log
+[2026-02-14T21:13:26Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T211302Z-pt_health-run.log
+[2026-02-14T21:13:51Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T211302Z-pt_health-retry.log
+[2026-02-14T21:15:02Z] task=nv_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T211302Z-nv_health-run.log
+[2026-02-14T21:15:10Z] task=nv_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T211302Z-nv_health-retry.log
+[2026-02-14T21:23:51Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T212310Z-pt_health-run.log
+[2026-02-14T21:24:13Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T212310Z-pt_health-retry.log
+[2026-02-14T21:33:32Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T213312Z-pt_health-run.log
+[2026-02-14T21:33:54Z] task=pt_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T213312Z-pt_health-retry.log
+[2026-02-14T21:34:59Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T213312Z-fr_health-run.log
+[2026-02-14T21:54:22Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T215255Z-fr_health-run.log
+[2026-02-14T22:32:16Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260214T223050Z-fr_health-run.log
+[2026-02-15T00:15:24Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T001401Z-fr_health-run.log
+[2026-02-15T00:35:01Z] task=nv_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T003320Z-nv_health-run.log
+[2026-02-15T00:44:40Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T004317Z-fr_health-run.log
+[2026-02-15T00:54:37Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T005312Z-fr_health-run.log
+[2026-02-15T01:04:37Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T010310Z-fr_health-run.log
+[2026-02-15T01:14:33Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T011309Z-fr_health-run.log
+[2026-02-15T02:29:50Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T022824Z-fr_health-run.log
+[2026-02-15T02:39:49Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T023823Z-fr_health-run.log
+[2026-02-15T03:36:26Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T033501Z-fr_health-run.log
+[2026-02-15T03:37:05Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T033501Z-fr_health-retry.log
+[2026-02-15T03:46:47Z] task=fr_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T034521Z-fr_health-run.log
+[2026-02-15T13:22:33Z] task=pf_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T132149Z-pf_health-run.log
+[2026-02-15T13:22:51Z] task=pf_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T132149Z-pf_health-retry.log
+[2026-02-15T17:20:56Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T171950Z-fr_health-run.log
+[2026-02-15T17:20:56Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T171950Z-fr_health-fix.log
+[2026-02-15T17:20:56Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T171950Z-nv_health-run.log
+[2026-02-15T17:20:56Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T171950Z-nv_health-fix.log
+[2026-02-15T17:29:44Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T172856Z-fr_health-run.log
+[2026-02-15T17:29:44Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T172856Z-fr_health-fix.log
+[2026-02-15T17:29:44Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T172856Z-nv_health-run.log
+[2026-02-15T17:29:44Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T172856Z-nv_health-fix.log
+[2026-02-15T17:38:30Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T173744Z-fr_health-run.log
+[2026-02-15T17:38:30Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T173744Z-fr_health-fix.log
+[2026-02-15T17:38:30Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T173744Z-nv_health-run.log
+[2026-02-15T17:38:30Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T173744Z-nv_health-fix.log
+[2026-02-15T18:27:43Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T182650Z-fr_health-run.log
+[2026-02-15T18:27:43Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T182650Z-fr_health-fix.log
+[2026-02-15T18:27:43Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T182650Z-nv_health-run.log
+[2026-02-15T18:27:43Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T182650Z-nv_health-fix.log
+[2026-02-15T18:38:23Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T183730Z-fr_health-run.log
+[2026-02-15T18:38:23Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T183730Z-fr_health-fix.log
+[2026-02-15T18:38:23Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T183730Z-nv_health-run.log
+[2026-02-15T18:38:23Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T183730Z-nv_health-fix.log
+[2026-02-15T18:47:10Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T184623Z-fr_health-run.log
+[2026-02-15T18:47:10Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T184623Z-fr_health-fix.log
+[2026-02-15T18:47:10Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T184623Z-nv_health-run.log
+[2026-02-15T18:47:10Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T184623Z-nv_health-fix.log
+[2026-02-15T18:54:51Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T185358Z-fr_health-run.log
+[2026-02-15T18:54:51Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T185358Z-fr_health-fix.log
+[2026-02-15T18:54:51Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T185358Z-nv_health-run.log
+[2026-02-15T18:54:51Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T185358Z-nv_health-fix.log
+[2026-02-15T19:03:40Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T190251Z-fr_health-run.log
+[2026-02-15T19:03:40Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T190251Z-fr_health-fix.log
+[2026-02-15T19:03:40Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T190251Z-nv_health-run.log
+[2026-02-15T19:03:40Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T190251Z-nv_health-fix.log
+[2026-02-15T19:12:29Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T191140Z-fr_health-run.log
+[2026-02-15T19:12:29Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T191140Z-fr_health-fix.log
+[2026-02-15T19:12:29Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T191140Z-nv_health-run.log
+[2026-02-15T19:12:29Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T191140Z-nv_health-fix.log
+[2026-02-15T19:21:17Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192029Z-fr_health-run.log
+[2026-02-15T19:21:17Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192029Z-fr_health-fix.log
+[2026-02-15T19:21:17Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192029Z-nv_health-run.log
+[2026-02-15T19:21:17Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192029Z-nv_health-fix.log
+[2026-02-15T19:30:04Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192917Z-fr_health-run.log
+[2026-02-15T19:30:04Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192917Z-fr_health-fix.log
+[2026-02-15T19:30:04Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192917Z-nv_health-run.log
+[2026-02-15T19:30:04Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T192917Z-nv_health-fix.log
+[2026-02-15T19:38:51Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T193804Z-fr_health-run.log
+[2026-02-15T19:38:51Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T193804Z-fr_health-fix.log
+[2026-02-15T19:38:51Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T193804Z-nv_health-run.log
+[2026-02-15T19:38:51Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T193804Z-nv_health-fix.log
+[2026-02-15T19:47:38Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T194651Z-fr_health-run.log
+[2026-02-15T19:47:38Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T194651Z-fr_health-fix.log
+[2026-02-15T19:47:38Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T194651Z-nv_health-run.log
+[2026-02-15T19:47:38Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T194651Z-nv_health-fix.log
+[2026-02-15T19:56:27Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T195538Z-fr_health-run.log
+[2026-02-15T19:56:27Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T195538Z-fr_health-fix.log
+[2026-02-15T19:56:27Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T195538Z-nv_health-run.log
+[2026-02-15T19:56:27Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T195538Z-nv_health-fix.log
+[2026-02-15T20:05:24Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T200427Z-fr_health-run.log
+[2026-02-15T20:05:24Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T200427Z-fr_health-fix.log
+[2026-02-15T20:05:24Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T200427Z-nv_health-run.log
+[2026-02-15T20:05:24Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T200427Z-nv_health-fix.log
+[2026-02-15T20:14:15Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T201324Z-fr_health-run.log
+[2026-02-15T20:14:15Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T201324Z-fr_health-fix.log
+[2026-02-15T20:14:15Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T201324Z-nv_health-run.log
+[2026-02-15T20:14:15Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T201324Z-nv_health-fix.log
+[2026-02-15T20:23:03Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T202215Z-fr_health-run.log
+[2026-02-15T20:23:03Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T202215Z-fr_health-fix.log
+[2026-02-15T20:23:03Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T202215Z-nv_health-run.log
+[2026-02-15T20:23:03Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T202215Z-nv_health-fix.log
+[2026-02-15T20:31:04Z] task=pt_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-pt_health-run.log
+[2026-02-15T20:31:04Z] task=pt_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-pt_health-fix.log
+[2026-02-15T20:31:04Z] task=pf_health status=failed code=1 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-pf_health-run.log
+[2026-02-15T20:31:04Z] task=pf_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-pf_health-fix.log
+[2026-02-15T20:31:04Z] task=ah_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-ah_health-run.log
+[2026-02-15T20:31:04Z] task=ah_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-ah_health-fix.log
+[2026-02-15T20:31:04Z] task=cm_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-cm_health-run.log
+[2026-02-15T20:31:04Z] task=cm_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-cm_health-fix.log
+[2026-02-15T20:31:04Z] task=fr_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-fr_health-run.log
+[2026-02-15T20:31:04Z] task=fr_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-fr_health-fix.log
+[2026-02-15T20:31:04Z] task=nv_health status=failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-nv_health-run.log
+[2026-02-15T20:31:04Z] task=nv_health fix failed code=127 log=/home/dev/Project_Me/asdev-standards-platform/var/autopilot/20260215T203103Z-nv_health-fix.log

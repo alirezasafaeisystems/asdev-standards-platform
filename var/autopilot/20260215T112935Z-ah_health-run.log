@@ -1,0 +1,106 @@
+
+> asdev_lap@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub
+> turbo run lint
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running lint in 8 packages
+• Remote caching disabled
+@asdev/connector-ir-payment:lint: cache hit, replaying logs 72fd7c8427d9a19b
+@asdev/connector-ir-payment:lint: 
+@asdev/connector-ir-payment:lint: > @asdev/connector-ir-payment@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:lint: > eslint src tests --ext .ts
+@asdev/connector-ir-payment:lint: 
+@asdev/ui:lint: cache hit, replaying logs 27d6daee3e0df759
+@asdev/ui:lint: 
+@asdev/ui:lint: > @asdev/ui@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/ui:lint: > eslint src --ext .ts
+@asdev/ui:lint: 
+@asdev/config:lint: cache hit, replaying logs c28fa181636ff456
+@asdev/config:lint: 
+@asdev/config:lint: > @asdev/config@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:lint: > eslint src --ext .ts
+@asdev/config:lint: 
+@asdev/connector-ir-sms:lint: cache hit, replaying logs 161e8d5357de53e9
+@asdev/connector-ir-sms:lint: 
+@asdev/connector-ir-sms:lint: > @asdev/connector-ir-sms@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:lint: > eslint src tests --ext .ts
+@asdev/connector-ir-sms:lint: 
+@asdev/web:lint: cache hit, replaying logs 49fbbddf1479ebd5
+@asdev/web:lint: 
+@asdev/web:lint: > @asdev/web@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:lint: > eslint src tests --ext .ts
+@asdev/web:lint: 
+@asdev/runner:lint: cache hit, replaying logs 7a1329e931ecfeac
+@asdev/runner:lint: 
+@asdev/runner:lint: > @asdev/runner@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:lint: > eslint src tests --ext .ts
+@asdev/runner:lint: 
+@asdev/sdk:lint: cache hit, replaying logs 645165b0684ec884
+@asdev/sdk:lint: 
+@asdev/sdk:lint: > @asdev/sdk@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/sdk:lint: > eslint src tests --ext .ts
+@asdev/sdk:lint: 
+@asdev/connector-core:lint: cache hit, replaying logs 20a6616cddef3213
+@asdev/connector-core:lint: 
+@asdev/connector-core:lint: > @asdev/connector-core@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:lint: > eslint src tests --ext .ts
+@asdev/connector-core:lint: 
+
+ Tasks:    8 successful, 8 total
+Cached:    8 cached, 8 total
+  Time:    32ms >>> FULL TURBO
+
+
+> asdev_lap@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub
+> turbo run typecheck
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running typecheck in 8 packages
+• Remote caching disabled
+@asdev/connector-ir-sms:typecheck: cache hit, replaying logs 365390a02b799ee1
+@asdev/connector-ir-sms:typecheck: 
+@asdev/connector-ir-sms:typecheck: > @asdev/connector-ir-sms@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-ir-sms:typecheck: 
+@asdev/config:typecheck: cache hit, replaying logs 7982cb561649c5d8
+@asdev/config:typecheck: 
+@asdev/config:typecheck: > @asdev/config@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/config:typecheck: 
+@asdev/ui:typecheck: cache hit, replaying logs 3676d91210440750
+@asdev/ui:typecheck: 
+@asdev/ui:typecheck: > @asdev/ui@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/ui:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/ui:typecheck: 
+@asdev/connector-ir-payment:typecheck: cache hit, replaying logs 3b5b12aabf5ee661
+@asdev/connector-ir-payment:typecheck: 
+@asdev/connector-ir-payment:typecheck: > @asdev/connector-ir-payment@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-ir-payment:typecheck: 
+@asdev/sdk:typecheck: cache hit, replaying logs 6932bf1e621403b5
+@asdev/sdk:typecheck: 
+@asdev/sdk:typecheck: > @asdev/sdk@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/sdk:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/sdk:typecheck: 
+@asdev/runner:typecheck: cache hit, replaying logs f7c609ce560fcb92
+@asdev/runner:typecheck: 
+@asdev/runner:typecheck: > @asdev/runner@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/runner:typecheck: 
+@asdev/connector-core:typecheck: cache hit, replaying logs 4373e655a4188213
+@asdev/connector-core:typecheck: 
+@asdev/connector-core:typecheck: > @asdev/connector-core@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-core:typecheck: 
+@asdev/web:typecheck: cache hit, replaying logs 5a7c5cd66b725a3d
+@asdev/web:typecheck: 
+@asdev/web:typecheck: > @asdev/web@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/web:typecheck: 
+
+ Tasks:    8 successful, 8 total
+Cached:    8 cached, 8 total
+  Time:    30ms >>> FULL TURBO
+

@@ -1,0 +1,183 @@
+==========================================
+🔍 Verification Script
+==========================================
+
+🔧 STEP 1: Running linter...
+
+------------------------------------------
+Running: ESLint
+------------------------------------------
+$ eslint .
+[0;32m✓ ESLint passed[0m
+
+📘 STEP 2: Running type check...
+
+------------------------------------------
+Running: TypeScript
+------------------------------------------
+[0;32m✓ TypeScript passed[0m
+
+🧪 STEP 3: Running tests...
+
+------------------------------------------
+Running: Tests
+------------------------------------------
+$ vitest run
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/home/dev/Project_Me/asdev-portfolio[39m
+
+ [32m✓[39m src/__tests__/lib/security.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/__tests__/seo/sitemap.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 118[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/rate-limit.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 112[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/metrics.integration.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/site-config.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 80[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/admin-auth.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 158[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/ready.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 129[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/messages.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 157[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/admin-auth.integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 186[2mms[22m[39m
+{"ts":"2026-02-15T13:41:22.555Z","level":"info","message":"Infrastructure lead captured","context":{"requestId":"89dbc5db-098d-4a5d-a88b-2a7b51537679","organizationName":"Industrial Co","organizationType":"government_contractor","budgetRange":"60-120m-irr"}}
+ [32m✓[39m src/__tests__/api/leads.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 155[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/admin-routes.integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/validators.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/persian-utils.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/i18n-translations.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/api-security.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/env.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/web-vitals.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/proxy-cache.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m18 passed[39m[22m[90m (18)[39m
+[2m      Tests [22m [1m[32m136 passed[39m[22m[90m (136)[39m
+[2m   Start at [22m 14:41:21
+[2m   Duration [22m 1.89s[2m (transform 935ms, setup 4.52s, import 1.07s, tests 1.41s, environment 7.20s)[22m
+
+[0;32m✓ Tests passed[0m
+
+🏗️  STEP 4: Running build...
+
+------------------------------------------
+Running: Build
+------------------------------------------
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.6 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.4s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 11 workers (0/24) ...
+  Generating static pages using 11 workers (6/24) 
+  Generating static pages using 11 workers (12/24) 
+  Generating static pages using 11 workers (18/24) 
+✓ Generating static pages using 11 workers (24/24) in 196.8ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /about-brand
+├ ƒ /admin
+├ ƒ /admin/login
+├ ƒ /api
+├ ƒ /api/admin/auth/login
+├ ƒ /api/admin/auth/logout
+├ ƒ /api/admin/auth/session
+├ ƒ /api/admin/messages
+├ ƒ /api/admin/projects
+├ ƒ /api/contact
+├ ƒ /api/leads
+├ ƒ /api/messages
+├ ƒ /api/metrics
+├ ƒ /api/og-image
+├ ƒ /api/ready
+├ ƒ /api/rss
+├ ƒ /case-studies
+├ ƒ /case-studies/infrastructure-localization-rescue
+├ ○ /robots.txt
+├ ƒ /services
+├ ƒ /services/infrastructure-localization
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+[0;32m✓ Build passed[0m
+
+🔒 STEP 5: Running external request scan...
+
+------------------------------------------
+Running: External Scan
+------------------------------------------
+==========================================
+🔒 External Dependencies Scan
+==========================================
+
+📁 Scanning source files for external URLs...
+------------------------------------------
+Checking runtime request patterns in src/...
+./scripts/offline-external-scan.sh: line 91: rg: command not found
+./scripts/offline-external-scan.sh: line 92: rg: command not found
+./scripts/offline-external-scan.sh: line 93: rg: command not found
+[0;32m✓ No runtime external requests found in src/[0m
+
+🏗️ Scanning build output (.next) for runtime externals...
+------------------------------------------
+./scripts/offline-external-scan.sh: line 116: rg: command not found
+./scripts/offline-external-scan.sh: line 117: rg: command not found
+./scripts/offline-external-scan.sh: line 118: rg: command not found
+[0;32m✓ No runtime external requests found in .next[0m
+Checking public/ text assets for external URLs...
+
+🔧 Scanning configuration files...
+------------------------------------------
+
+🏷️ Checking for placeholder domain...
+------------------------------------------
+./scripts/offline-external-scan.sh: line 170: rg: command not found
+
+🌐 Checking for CDN references...
+------------------------------------------
+./scripts/offline-external-scan.sh: line 191: rg: command not found
+./scripts/offline-external-scan.sh: line 191: rg: command not found
+./scripts/offline-external-scan.sh: line 191: rg: command not found
+./scripts/offline-external-scan.sh: line 191: rg: command not found
+./scripts/offline-external-scan.sh: line 191: rg: command not found
+./scripts/offline-external-scan.sh: line 207: rg: command not found
+./scripts/offline-external-scan.sh: line 207: rg: command not found
+./scripts/offline-external-scan.sh: line 207: rg: command not found
+./scripts/offline-external-scan.sh: line 207: rg: command not found
+./scripts/offline-external-scan.sh: line 207: rg: command not found
+
+📊 Checking for analytics/tracking...
+------------------------------------------
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+./scripts/offline-external-scan.sh: line 238: rg: command not found
+
+🔤 Checking for Google Fonts...
+------------------------------------------
+./scripts/offline-external-scan.sh: line 258: rg: command not found
+
+==========================================
+📊 Scan Summary
+==========================================
+[0;32m✅ No external runtime dependencies found![0m
+[0;32m✓ External Scan passed[0m
+
+==========================================
+📊 Verification Summary
+==========================================
+Passed: [0;32m5[0m
+Failed: [0;31m0[0m
+[0;32m✅ All checks passed![0m

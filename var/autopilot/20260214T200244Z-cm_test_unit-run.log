@@ -1,0 +1,5 @@
+
+> asdev-creator-membership-ir@0.1.0 test:unit /home/dev/Project_Me/asdev-creator-membership-ir
+> node tools/quality-unit.js
+
+QUALITY_UNIT_OK

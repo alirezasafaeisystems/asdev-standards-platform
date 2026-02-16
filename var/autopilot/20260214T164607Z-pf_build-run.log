@@ -1,0 +1,46 @@
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.6 (Turbopack)
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.8s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 11 workers (0/21) ...
+  Generating static pages using 11 workers (5/21) 
+  Generating static pages using 11 workers (10/21) 
+  Generating static pages using 11 workers (15/21) 
+✓ Generating static pages using 11 workers (21/21) in 185.0ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /about-brand
+├ ƒ /admin
+├ ƒ /admin/login
+├ ƒ /api
+├ ƒ /api/admin/auth/login
+├ ƒ /api/admin/auth/logout
+├ ƒ /api/admin/auth/session
+├ ƒ /api/admin/messages
+├ ƒ /api/admin/projects
+├ ƒ /api/contact
+├ ƒ /api/leads
+├ ƒ /api/messages
+├ ƒ /api/metrics
+├ ƒ /api/og-image
+├ ƒ /api/rss
+├ ○ /robots.txt
+├ ƒ /services
+├ ƒ /services/infrastructure-localization
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

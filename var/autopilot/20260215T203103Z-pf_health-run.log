@@ -1,0 +1,12 @@
+==========================================
+🔍 Verification Script
+==========================================
+
+🔧 STEP 1: Running linter...
+
+------------------------------------------
+Running: ESLint
+------------------------------------------
+scripts/verify.sh: line 30: pnpm: command not found
+[0;31m✗ ESLint failed[0m
+[0;31mLinting failed![0m

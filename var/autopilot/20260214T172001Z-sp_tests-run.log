@@ -1,0 +1,11 @@
+target template ID validation passed.
+Switched to a new branch 'main'
+Resource policy (sync): clone_parallelism=3 heavy_job_parallelism=2 worker_cap=6 e2e_workers=1 clone_timeout_seconds=90
+Processing: local/repo-one
+Template file missing: /home/dev/Project_Me/asdev-standards-platform/platform/repo-templates/.github/pull_request_template.md
+Preserving existing documentation file: CONTRIBUTING.md
+Preserving existing documentation file: README.md
+No changes for local/repo-one
+Sync summary -> success: 0, failed: 0, skipped: 1
+Unexpected sync summary
+make: *** [Makefile:59: test] Error 1

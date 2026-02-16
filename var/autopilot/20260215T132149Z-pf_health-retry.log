@@ -1,0 +1,362 @@
+==========================================
+🔍 Verification Script
+==========================================
+
+🔧 STEP 1: Running linter...
+
+------------------------------------------
+Running: ESLint
+------------------------------------------
+$ eslint .
+(node:247355) ESLintEnvWarning: /* eslint-env */ comments are no longer recognized when linting with flat config and will be reported as errors as of v10.0.0. Replace them with /* global */ comments or define globals in your config file. See https://eslint.org/docs/latest/use/configure/migration-guide#eslint-env-configuration-comments for details. Found in /home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/image-tools/workers/image-tools.worker.ts at line 3.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:247355) ESLintEnvWarning: /* eslint-env */ comments are no longer recognized when linting with flat config and will be reported as errors as of v10.0.0. Replace them with /* global */ comments or define globals in your config file. See https://eslint.org/docs/latest/use/configure/migration-guide#eslint-env-configuration-comments for details. Found in /home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/pdf-tools/workers/pdf-worker.ts at line 3.
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/ads/AdsConsentBanner.tsx
+  12:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/ads/AdsConsentBanner.tsx:12:5
+  10 |
+  11 |   useEffect(() => {
+> 12 |     setConsent(getAdsConsent());
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  13 |   }, []);
+  14 |
+  15 |   const hasAnswered = consent?.updatedAt !== null;  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/loan/LoanPage.tsx
+  67:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/loan/LoanPage.tsx:67:7
+  65 |     }
+  66 |     if (JSON.stringify(form) !== initialRef) {
+> 67 |       setHasInteracted(true);
+     |       ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  68 |     }
+  69 |   }, [form, hasInteracted, initialRef]);
+  70 |  react-hooks/set-state-in-effect
+  73:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/loan/LoanPage.tsx:73:7
+  71 |   useEffect(() => {
+  72 |     if (form.loanType === 'stepped') {
+> 73 |       setShowAdvanced(true);
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  74 |     }
+  75 |   }, [form.loanType]);
+  76 |                react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/monetization/AdsTransparencyPage.tsx
+  51:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/monetization/AdsTransparencyPage.tsx:51:5
+  49 |
+  50 |   useEffect(() => {
+> 51 |     setConsent(getAdsConsent());
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |     const stats = getAdStats('ads-transparency-demo-slot', 30)['ads-transparency-demo-slot'];
+  53 |     const report = getAdPerformanceReport(30);
+  54 |     setSlotStats({  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/monetization/MonetizationAdminPage.tsx
+  57:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/monetization/MonetizationAdminPage.tsx:57:5
+  55 |
+  56 |   useEffect(() => {
+> 57 |     setStore(getMonetizationStore());
+     |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  58 |     setAdReport(getAdPerformanceReport(30));
+  59 |   }, []);
+  60 |  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/salary/SalaryPage.tsx
+  143:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/salary/SalaryPage.tsx:143:7
+  141 |     }
+  142 |     if (JSON.stringify(form) !== initialRef) {
+> 143 |       setHasInteracted(true);
+      |       ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  144 |     }
+  145 |   }, [form, hasInteracted, initialRef]);
+  146 |  react-hooks/set-state-in-effect
+  226:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/salary/SalaryPage.tsx:226:5
+  224 |
+  225 |   useEffect(() => {
+> 226 |     onCalculate();
+      |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  227 |   }, [onCalculate]);
+  228 |
+  229 |   return (                                                                    react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/usage-dashboard/UsageDashboardPage.tsx
+  19:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/features/usage-dashboard/UsageDashboardPage.tsx:19:5
+  17 |
+  18 |   useEffect(() => {
+> 19 |     setSnapshot(getUsageSnapshot());
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  20 |   }, []);
+  21 |
+  22 |   const refresh = () => {  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/home/PopularTools.tsx
+  99:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/home/PopularTools.tsx:99:5
+   97 |     }));
+   98 |
+>  99 |     setItems(selected);
+      |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  100 |     setHasUsage(hasAnyUsage);
+  101 |   }, []);
+  102 |  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/home/RecentTools.tsx
+  88:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/components/home/RecentTools.tsx:88:7
+  86 |     const hasAnyUsage = withCounts.some((tool) => tool.count > 0);
+  87 |     if (!hasAnyUsage) {
+> 88 |       setItems([]);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  89 |       return;
+  90 |     }
+  91 |     const sorted = [...withCounts].sort((a, b) => b.count - a.count);  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/examples/finance.ts
+  17:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  18:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  19:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  20:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/examples/text.ts
+  7:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  8:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  9:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/image-tools/hooks/useImageToolsWorker.ts
+  151:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/image-tools/hooks/useImageToolsWorker.ts:151:5
+  149 |
+  150 |   useEffect(() => {
+> 151 |     setUseWorker(canUseWorker());
+      |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  152 |   }, []);
+  153 |
+  154 |   useEffect(() => {  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/image-tools/workers/image-tools.worker.ts
+  1:1  warning  Unused eslint-disable directive (no problems were reported from 'spaced-comment')
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/features/pdf-tools/workers/pdf-worker.ts
+  1:1  warning  Unused eslint-disable directive (no problems were reported from 'spaced-comment')
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/lib/server/rateLimit.ts
+  95:9  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/db/migrate.mjs
+  29:3  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/deploy/generate-post-deploy-report.mjs
+  347:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  348:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+  349:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/deploy/generate-readiness-summary.mjs
+  46:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/deploy/run-readiness-gates.mjs
+  78:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/deploy/validate-readiness-gates.mjs
+  97:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/generate-og-images.mjs
+  102:3  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/licensing/run-v2-release-prep-dry-run.mjs
+  67:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/licensing/validate-license-assets.mjs
+  69:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/licensing/validate-license-consistency.mjs
+  49:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/run-close-all.mjs
+  13:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/run-monthly-close.mjs
+  68:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/run-quarterly-close.mjs
+  72:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/validate-alerting-decision-rules.mjs
+  82:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/validate-operations-checklist.mjs
+  84:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/validate-review-backlog.mjs
+  59:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/monetization/validate-site-settings-contract.mjs
+  67:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/pwa/validate-sw-version.mjs
+  32:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/quality/run-local-smoke.mjs
+  113:5  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/run-launch-smoke.mjs
+  81:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/run-rc-gates.mjs
+  81:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/validate-launch-day-checklist.mjs
+  63:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/validate-rc-checklist.mjs
+  59:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/validate-release-state-consistency.mjs
+  102:3  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/scripts/release/validate-rollback-drill.mjs
+  63:1  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/errors/base.ts
+  21:62  error  The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type  @typescript-eslint/no-unsafe-function-type
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/ui/AdSlot.tsx
+   72:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/ui/AdSlot.tsx:72:5
+  70 |     }
+  71 |     const selected = getOrAssignExperimentVariant(experiment.key, ['control', 'challenger']);
+> 72 |     setVariantId(selected === 'challenger' ? 'challenger' : 'control');
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  73 |   }, [experiment]);
+  74 |
+  75 |   useEffect(() => {                         react-hooks/set-state-in-effect
+  100:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/ui/AdSlot.tsx:100:7
+   98 |           : (experiment?.control.campaignId ?? campaignId);
+   99 |       recordAdView(slotId, activeCampaignId, variantId);
+> 100 |       setHasTracked(true);
+      |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  101 |     }
+  102 |   }, [isVisible, hasTracked, slotId, campaignId, variantId, experiment]);
+  103 |  react-hooks/set-state-in-effect
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/utils/localization/persian.ts
+  7:7  warning  'persianDigits' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+  8:7  warning  'englishDigits' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/shared/utils/numbers/number.ts
+  1:7  warning  'faDigits' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+  2:7  warning  'arDigits' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+  3:7  warning  'enDigits' is assigned a value but only used as a type  @typescript-eslint/no-unused-vars
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-persiantoolbox/tests/setup.ts
+   9:1  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  13:3  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/home/dev/Project_Me/asdev-portfolio/_ops/external/asdev-standards-platform/platform/repo-templates/scripts/release/validate-release-state-consistency.mjs
+  92:3  warning  Unexpected console statement. Only these console methods are allowed: error, warn  no-console
+
+✖ 58 problems (14 errors, 44 warnings)
+  0 errors and 6 warnings potentially fixable with the `--fix` option.
+
+error: script "lint" exited with code 1
+[0;31m✗ ESLint failed[0m
+[0;31mLinting failed![0m

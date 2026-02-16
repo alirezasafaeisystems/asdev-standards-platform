@@ -1,0 +1,308 @@
+
+> asdev_lap@0.1.0 ci /home/dev/Project_Me/asdev-automation-hub
+> pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm prisma:validate && pnpm migrate:check
+
+
+> asdev_lap@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub
+> turbo run lint
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running lint in 8 packages
+• Remote caching disabled
+@asdev/connector-ir-payment:lint: cache miss, executing 72fd7c8427d9a19b
+@asdev/connector-core:lint: cache miss, executing 20a6616cddef3213
+@asdev/connector-ir-sms:lint: cache miss, executing 161e8d5357de53e9
+@asdev/runner:lint: cache hit, replaying logs 7a1329e931ecfeac
+@asdev/sdk:lint: cache hit, replaying logs 645165b0684ec884
+@asdev/ui:lint: cache hit, replaying logs 27d6daee3e0df759
+@asdev/web:lint: cache hit, replaying logs 49fbbddf1479ebd5
+@asdev/web:lint: 
+@asdev/sdk:lint: 
+@asdev/runner:lint: 
+@asdev/ui:lint: 
+@asdev/ui:lint: > @asdev/ui@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/sdk:lint: > @asdev/sdk@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/sdk:lint: > eslint src tests --ext .ts
+@asdev/sdk:lint: 
+@asdev/runner:lint: > @asdev/runner@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:lint: > eslint src tests --ext .ts
+@asdev/runner:lint: 
+@asdev/web:lint: > @asdev/web@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:lint: > eslint src tests --ext .ts
+@asdev/web:lint: 
+@asdev/ui:lint: > eslint src --ext .ts
+@asdev/ui:lint: 
+@asdev/config:lint: cache hit, replaying logs c28fa181636ff456
+@asdev/config:lint: 
+@asdev/config:lint: > @asdev/config@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:lint: > eslint src --ext .ts
+@asdev/config:lint: 
+@asdev/connector-core:lint: 
+@asdev/connector-core:lint: > @asdev/connector-core@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:lint: > eslint src tests --ext .ts
+@asdev/connector-core:lint: 
+@asdev/connector-ir-payment:lint: 
+@asdev/connector-ir-payment:lint: > @asdev/connector-ir-payment@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:lint: > eslint src tests --ext .ts
+@asdev/connector-ir-payment:lint: 
+@asdev/connector-ir-sms:lint: 
+@asdev/connector-ir-sms:lint: > @asdev/connector-ir-sms@0.1.0 lint /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:lint: > eslint src tests --ext .ts
+@asdev/connector-ir-sms:lint: 
+
+ Tasks:    8 successful, 8 total
+Cached:    5 cached, 8 total
+  Time:    1.617s 
+
+
+> asdev_lap@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub
+> turbo run typecheck
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running typecheck in 8 packages
+• Remote caching disabled
+@asdev/connector-core:typecheck: cache miss, executing 4373e655a4188213
+@asdev/connector-ir-sms:typecheck: cache miss, executing 365390a02b799ee1
+@asdev/connector-ir-payment:typecheck: cache miss, executing 3b5b12aabf5ee661
+@asdev/web:typecheck: cache hit, replaying logs 5a7c5cd66b725a3d
+@asdev/web:typecheck: 
+@asdev/web:typecheck: > @asdev/web@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/web:typecheck: 
+@asdev/runner:typecheck: cache hit, replaying logs f7c609ce560fcb92
+@asdev/runner:typecheck: 
+@asdev/runner:typecheck: > @asdev/runner@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/runner:typecheck: 
+@asdev/sdk:typecheck: cache hit, replaying logs 6932bf1e621403b5
+@asdev/sdk:typecheck: 
+@asdev/sdk:typecheck: > @asdev/sdk@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/sdk:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/sdk:typecheck: 
+@asdev/ui:typecheck: cache hit, replaying logs 3676d91210440750
+@asdev/ui:typecheck: 
+@asdev/ui:typecheck: > @asdev/ui@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/ui:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/ui:typecheck: 
+@asdev/config:typecheck: cache hit, replaying logs 7982cb561649c5d8
+@asdev/config:typecheck: 
+@asdev/config:typecheck: > @asdev/config@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/config:typecheck: 
+@asdev/connector-ir-payment:typecheck: 
+@asdev/connector-ir-payment:typecheck: > @asdev/connector-ir-payment@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-ir-payment:typecheck: 
+@asdev/connector-core:typecheck: 
+@asdev/connector-core:typecheck: > @asdev/connector-core@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-core:typecheck: 
+@asdev/connector-ir-sms:typecheck: 
+@asdev/connector-ir-sms:typecheck: > @asdev/connector-ir-sms@0.1.0 typecheck /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:typecheck: > tsc --noEmit -p tsconfig.json
+@asdev/connector-ir-sms:typecheck: 
+
+ Tasks:    8 successful, 8 total
+Cached:    5 cached, 8 total
+  Time:    1.543s 
+
+
+> asdev_lap@0.1.0 test /home/dev/Project_Me/asdev-automation-hub
+> turbo run test
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running test in 8 packages
+• Remote caching disabled
+@asdev/connector-ir-sms:test: cache miss, executing 2c9f4d2c8d82d073
+@asdev/connector-core:test: cache miss, executing b028184cd7a346c5
+@asdev/connector-ir-payment:test: cache miss, executing ce8859c79a6c8113
+@asdev/config:test: cache hit, replaying logs 0811c0ae3f150334
+@asdev/config:test: 
+@asdev/config:test: > @asdev/config@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:test: > vitest run --passWithNoTests
+@asdev/config:test: 
+@asdev/config:test: 
+@asdev/config:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:test: 
+@asdev/config:test: No test files found, exiting with code 0
+@asdev/config:test: 
+@asdev/config:test: include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+@asdev/config:test: exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**, **/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*
+@asdev/config:test: 
+@asdev/web:test: cache hit, replaying logs ed76123a2809f9ea
+@asdev/web:test: 
+@asdev/sdk:test: cache hit, replaying logs d41e64ccccdec01f
+@asdev/web:test: > @asdev/web@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:test: > vitest run
+@asdev/web:test: 
+@asdev/web:test: 
+@asdev/web:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:test: 
+@asdev/web:test:  ✓ tests/service.test.ts (5 tests) 9ms
+@asdev/web:test:  ✓ tests/server-auth.test.ts (5 tests) 45ms
+@asdev/web:test:  ✓ tests/server-runs.test.ts (2 tests) 50ms
+@asdev/web:test:  ✓ tests/server-templates.test.ts (5 tests) 70ms
+@asdev/ui:test: cache hit, replaying logs f3b4cbb89eb5307c
+@asdev/web:test: 
+@asdev/web:test:  Test Files  4 passed (4)
+@asdev/web:test:       Tests  17 passed (17)
+@asdev/web:test:    Start at  04:56:37
+@asdev/web:test:    Duration  482ms (transform 146ms, setup 0ms, collect 407ms, tests 174ms, environment 1ms, prepare 337ms)
+@asdev/web:test: 
+@asdev/sdk:test: 
+@asdev/ui:test: 
+@asdev/sdk:test: > @asdev/sdk@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/ui:test: > @asdev/ui@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/sdk:test: > vitest run
+@asdev/ui:test: > vitest run --passWithNoTests
+@asdev/sdk:test: 
+@asdev/ui:test: 
+@asdev/sdk:test: 
+@asdev/ui:test: 
+@asdev/sdk:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/ui:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/sdk:test: 
+@asdev/ui:test: 
+@asdev/sdk:test:  ✓ tests/dsl.test.ts (3 tests) 7ms
+@asdev/ui:test: No test files found, exiting with code 0
+@asdev/sdk:test: 
+@asdev/ui:test: 
+@asdev/sdk:test:  Test Files  1 passed (1)
+@asdev/ui:test: include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+@asdev/sdk:test:       Tests  3 passed (3)
+@asdev/sdk:test:    Start at  22:53:16
+@asdev/ui:test: exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**, **/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*
+@asdev/ui:test: 
+@asdev/sdk:test:    Duration  852ms (transform 84ms, setup 0ms, collect 85ms, tests 7ms, environment 0ms, prepare 268ms)
+@asdev/sdk:test: 
+@asdev/runner:test: cache hit, replaying logs 2e472172bf921531
+@asdev/runner:test: 
+@asdev/runner:test: > @asdev/runner@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:test: > vitest run
+@asdev/runner:test: 
+@asdev/runner:test: 
+@asdev/runner:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:test: 
+@asdev/runner:test:  ✓ tests/queue.test.ts (2 tests) 4ms
+@asdev/runner:test:  ✓ tests/engine.test.ts (2 tests) 11ms
+@asdev/runner:test:  ✓ tests/e2e.smoke.test.ts (1 test) 17ms
+@asdev/runner:test: 
+@asdev/runner:test:  Test Files  3 passed (3)
+@asdev/runner:test:       Tests  5 passed (5)
+@asdev/runner:test:    Start at  22:53:16
+@asdev/runner:test:    Duration  883ms (transform 251ms, setup 0ms, collect 340ms, tests 32ms, environment 4ms, prepare 814ms)
+@asdev/runner:test: 
+@asdev/connector-ir-sms:test: 
+@asdev/connector-ir-sms:test: > @asdev/connector-ir-sms@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:test: > vitest run
+@asdev/connector-ir-sms:test: 
+@asdev/connector-core:test: 
+@asdev/connector-core:test: > @asdev/connector-core@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:test: > vitest run
+@asdev/connector-core:test: 
+@asdev/connector-ir-payment:test: 
+@asdev/connector-ir-payment:test: > @asdev/connector-ir-payment@0.1.0 test /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:test: > vitest run
+@asdev/connector-ir-payment:test: 
+@asdev/connector-ir-sms:test: 
+@asdev/connector-ir-sms:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:test: 
+@asdev/connector-ir-payment:test: 
+@asdev/connector-ir-payment:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:test: 
+@asdev/connector-core:test: 
+@asdev/connector-core:test:  RUN  v3.2.4 /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:test: 
+@asdev/connector-core:test:  ✓ tests/connector.test.ts (1 test) 2ms
+@asdev/connector-ir-sms:test:  ✓ tests/connector.test.ts (3 tests) 4ms
+@asdev/connector-ir-payment:test:  ✓ tests/connector.test.ts (3 tests) 4ms
+@asdev/connector-core:test: 
+@asdev/connector-core:test:  Test Files  1 passed (1)
+@asdev/connector-core:test:       Tests  1 passed (1)
+@asdev/connector-core:test:    Start at  17:48:16
+@asdev/connector-core:test:    Duration  637ms (transform 37ms, setup 0ms, collect 27ms, tests 2ms, environment 0ms, prepare 158ms)
+@asdev/connector-core:test: 
+@asdev/connector-ir-sms:test: 
+@asdev/connector-ir-payment:test: 
+@asdev/connector-ir-sms:test:  Test Files  1 passed (1)
+@asdev/connector-ir-sms:test:       Tests  3 passed (3)
+@asdev/connector-ir-sms:test:    Start at  17:48:16
+@asdev/connector-ir-payment:test:  Test Files  1 passed (1)
+@asdev/connector-ir-payment:test:       Tests  3 passed (3)
+@asdev/connector-ir-sms:test:    Duration  648ms (transform 41ms, setup 0ms, collect 31ms, tests 4ms, environment 0ms, prepare 118ms)
+@asdev/connector-ir-payment:test:    Start at  17:48:16
+@asdev/connector-ir-sms:test: 
+@asdev/connector-ir-payment:test:    Duration  648ms (transform 40ms, setup 0ms, collect 32ms, tests 4ms, environment 0ms, prepare 158ms)
+@asdev/connector-ir-payment:test: 
+
+ Tasks:    8 successful, 8 total
+Cached:    5 cached, 8 total
+  Time:    1.372s 
+
+
+> asdev_lap@0.1.0 build /home/dev/Project_Me/asdev-automation-hub
+> turbo run build
+
+• turbo 2.8.4
+• Packages in scope: @asdev/config, @asdev/connector-core, @asdev/connector-ir-payment, @asdev/connector-ir-sms, @asdev/runner, @asdev/sdk, @asdev/ui, @asdev/web
+• Running build in 8 packages
+• Remote caching disabled
+@asdev/connector-ir-sms:build: cache miss, executing 1b484fd845cf133d
+@asdev/ui:build: cache hit, replaying logs b156b5dab5080540
+@asdev/ui:build: 
+@asdev/ui:build: > @asdev/ui@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/ui
+@asdev/ui:build: > tsc -p tsconfig.json
+@asdev/ui:build: 
+@asdev/connector-core:build: cache miss, executing 4f66abc81970984c
+@asdev/config:build: cache hit, replaying logs cbc5c934aa6b424d
+@asdev/config:build: 
+@asdev/config:build: > @asdev/config@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/config
+@asdev/config:build: > tsc -p tsconfig.json
+@asdev/config:build: 
+@asdev/connector-ir-payment:build: cache miss, executing 7fe9a0bc5ebfa58f
+@asdev/sdk:build: cache hit, replaying logs f64d16743a7c7421
+@asdev/sdk:build: 
+@asdev/sdk:build: > @asdev/sdk@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/sdk
+@asdev/sdk:build: > tsc -p tsconfig.json
+@asdev/sdk:build: 
+@asdev/web:build: cache hit, replaying logs 8826aaad891f8083
+@asdev/web:build: 
+@asdev/web:build: > @asdev/web@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/apps/web
+@asdev/web:build: > tsc -p tsconfig.json
+@asdev/web:build: 
+@asdev/connector-core:build: 
+@asdev/connector-core:build: > @asdev/connector-core@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/connectors/core
+@asdev/connector-core:build: > tsc -p tsconfig.json
+@asdev/connector-core:build: 
+@asdev/connector-ir-sms:build: 
+@asdev/connector-ir-sms:build: > @asdev/connector-ir-sms@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-sms
+@asdev/connector-ir-sms:build: > tsc -p tsconfig.json
+@asdev/connector-ir-sms:build: 
+@asdev/connector-ir-payment:build: 
+@asdev/connector-ir-payment:build: > @asdev/connector-ir-payment@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/packages/connectors/ir-payment
+@asdev/connector-ir-payment:build: > tsc -p tsconfig.json
+@asdev/connector-ir-payment:build: 
+@asdev/runner:build: cache miss, executing 114f0142df246568
+@asdev/runner:build: 
+@asdev/runner:build: > @asdev/runner@0.1.0 build /home/dev/Project_Me/asdev-automation-hub/apps/runner
+@asdev/runner:build: > tsc -p tsconfig.json
+@asdev/runner:build: 
+
+ Tasks:    8 successful, 8 total
+Cached:    4 cached, 8 total
+  Time:    2.489s 
+
+
+> asdev_lap@0.1.0 prisma:validate /home/dev/Project_Me/asdev-automation-hub
+> DATABASE_URL=postgresql://asdev:asdev@localhost:5432/asdev_lap prisma validate --schema prisma/schema.prisma
+
+Prisma schema loaded from prisma/schema.prisma
+The schema at prisma/schema.prisma is valid 🚀
+
+> asdev_lap@0.1.0 migrate:check /home/dev/Project_Me/asdev-automation-hub
+> node scripts/check-migrations.mjs
+
+Migration check passed.

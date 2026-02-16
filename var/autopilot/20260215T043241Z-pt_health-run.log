@@ -1,0 +1,103 @@
+
+> persiantoolbox@2.0.2 ci:quick /home/dev/Project_Me/asdev-persiantoolbox
+> pnpm lint && pnpm typecheck && pnpm gate:local-first && pnpm vitest --run
+
+
+> persiantoolbox@2.0.2 lint /home/dev/Project_Me/asdev-persiantoolbox
+> eslint . --ext .ts,.tsx
+
+
+> persiantoolbox@2.0.2 typecheck /home/dev/Project_Me/asdev-persiantoolbox
+> tsc --noEmit
+
+
+> persiantoolbox@2.0.2 gate:local-first /home/dev/Project_Me/asdev-persiantoolbox
+> tsx scripts/quality/verify-local-first.ts
+
+[local-first] OK: no off-origin runtime dependency found
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v1.6.1 /home/dev/Project_Me/asdev-persiantoolbox
+
+ ✓ tests/unit/date-tools.test.ts  (12 tests) 11ms
+ ✓ features/loan/loan.logic.test.ts  (12 tests) 11ms
+ ✓ features/date-tools/date-tools.logic.test.ts  (14 tests) 11ms
+ ✓ features/salary/salary.logic.test.ts  (6 tests) 7ms
+ ✓ tests/unit/utils.test.ts  (21 tests) 74ms
+ ✓ features/pdf-tools/workerClient.test.ts  (4 tests) 42ms
+ ✓ tests/unit/seo-jsonld-contract.test.ts  (4 tests) 31ms
+ ✓ tests/unit/analytics-route.test.ts  (5 tests) 253ms
+ ✓ tests/unit/recent-history-card.test.tsx  (6 tests) 258ms
+ ✓ tests/unit/account-page-retry-contract.test.tsx  (5 tests) 276ms
+ ✓ tests/unit/site-settings-admin-page-race.test.tsx  (1 test) 639ms
+ ✓ tests/unit/admin-auth.test.ts  (6 tests) 10ms
+ ✓ tests/unit/ad-analytics-privacy.test.ts  (2 tests) 37ms
+ ✓ tests/seo-tools.test.ts  (4 tests) 22ms
+ ✓ tests/unit/auth.test.ts  (5 tests) 29ms
+ ✓ tests/unit/monitoring-consent.test.ts  (2 tests) 37ms
+ ✓ tests/unit/image-tools-async-state.test.tsx  (1 test) 301ms
+ ✓ tests/unit/sessions.test.ts  (5 tests) 17ms
+ ✓ tests/unit/rate-limit.test.ts  (4 tests) 11ms
+stderr | tests/unit/rate-limit.test.ts > rateLimit > blocks when count is over limit and logs metric when enabled
+[rate-limit] { key: 'k2', limit: 3, windowMs: 60000, blockedAt: 1771129975638 }
+
+ ✓ tests/unit/validation-tools-page.test.tsx  (3 tests) 503ms
+ ✓ shared/utils/numbers/number.test.ts  (10 tests) 14ms
+ ✓ tests/unit/monetization-operations-contract.test.ts  (1 test) 6ms
+ ✓ tests/unit/navigation-feature-flag.test.tsx  (2 tests) 86ms
+ ✓ tests/unit/validation.test.ts  (6 tests) 7ms
+ ✓ features/text-tools/address-fa-to-en.test.ts  (3 tests) 11ms
+ ✓ tests/unit/high-traffic-tools-async-state.test.tsx  (3 tests) 1097ms
+ ✓ tests/unit/next-config-redirects.test.ts  (2 tests) 19ms
+ ✓ tests/unit/release-state-consistency-contract.test.ts  (1 test) 4ms
+ ✓ tests/unit/pdf-utils.test.ts  (8 tests) 17ms
+ ✓ tests/unit/monetization-alerting-decision-contract.test.ts  (1 test) 9ms
+ ✓ tests/unit/text-tools-page.test.tsx  (2 tests) 575ms
+ ✓ tests/unit/deployment-readiness-contract.test.ts  (1 test) 5ms
+ ✓ tests/unit/finance.test.ts  (5 tests) 7ms
+ ✓ features/interest/interest.logic.test.ts  (4 tests) 14ms
+ ✓ tests/unit/launch-smoke-report-contract.test.ts  (1 test) 13ms
+ ✓ tests/unit/release-rc-report-contract.test.ts  (1 test) 10ms
+ ✓ tests/unit/ads-consent.test.ts  (5 tests) 7ms
+ ✓ tests/unit/site-settings-validation.test.ts  (4 tests) 8ms
+ ✓ tests/unit/deployment-readiness-report-contract.test.ts  (1 test) 10ms
+ ✓ tests/unit/history.test.ts  (7 tests) 19ms
+ ✓ tests/unit/rollback-drill-contract.test.ts  (1 test) 17ms
+ ✓ tests/unit/analytics-store-security.test.ts  (1 test) 32ms
+ ✓ tests/unit/exports.test.ts  (2 tests) 5ms
+ ✓ tests/unit/site-settings-contract.test.ts  (1 test) 7ms
+ ✓ tests/unit/csrf.test.ts  (6 tests) 31ms
+ ✓ tests/unit/release-candidate-contract.test.ts  (1 test) 7ms
+ ✓ tests/unit/review-backlog-contract.test.ts  (1 test) 4ms
+ ✓ tests/unit/launch-day-checklist-contract.test.ts  (1 test) 4ms
+ ✓ tests/unit/result.test.ts  (3 tests) 6ms
+stdout | features/pdf-tools/lazy-deps.test.ts > pdf lazy deps > memoizes pdfjs import promise
+Warning: Please use the `legacy` build in Node.js environments.
+
+ ✓ tests/unit/async-state.test.tsx  (3 tests) 205ms
+ ✓ tests/unit/favorites.test.ts  (4 tests) 9ms
+ ✓ features/pdf-tools/lazy-deps.test.ts  (3 tests) 233ms
+ ✓ tests/unit/ad-experiment.test.ts  (2 tests) 20ms
+ ✓ features/date-tools/holidays.test.ts  (4 tests) 5ms
+ ✓ tests/unit/seo.test.ts  (1 test) 10ms
+ ✓ tests/unit/subscription-webhook.test.ts  (2 tests) 24ms
+ ✓ tests/unit/sw-cache-version.test.ts  (1 test) 4ms
+ ✓ tests/unit/proxy-csp.test.ts  (2 tests) 3ms
+ ✓ tests/unit/finance-saved.test.ts  (1 test) 5ms
+ ✓ tests/unit/subscriptionPlans.test.ts  (3 tests) 3ms
+ ✓ tests/unit/history-share.test.ts  (3 tests) 3ms
+ ✓ tests/unit/admin-site-settings-route.test.ts  (2 tests) 7ms
+ ✓ features/image-tools/utils/format.test.ts  (2 tests) 5ms
+ ✓ tests/unit/brand.test.ts  (1 test) 5ms
+ ✓ tests/unit/local-first-gate.test.ts  (1 test) 32ms
+
+ Test Files  65 passed (65)
+      Tests  242 passed (242)
+   Start at  05:32:51
+   Duration  9.18s (transform 2.17s, setup 18.48s, collect 6.67s, tests 5.20s, environment 38.17s, prepare 9.00s)
+
+
+> persiantoolbox@2.0.2 release:state:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/release/validate-release-state-consistency.mjs
+
+[release] state consistency valid (train=v3, stage=publish-readiness, status=in_progress)

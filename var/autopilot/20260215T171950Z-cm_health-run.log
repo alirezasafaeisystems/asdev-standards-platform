@@ -1,0 +1,16 @@
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-9.12.0.tgz
+
+> asdev-creator-membership-ir@0.1.0 lint /home/dev/Project_Me/asdev-creator-membership-ir
+> node tools/quality-lint.js
+
+QUALITY_LINT_OK sh=3 js=7
+
+> asdev-creator-membership-ir@0.1.0 typecheck /home/dev/Project_Me/asdev-creator-membership-ir
+> node tools/quality-typecheck.js
+
+QUALITY_TYPECHECK_OK phases=5
+
+> asdev-creator-membership-ir@0.1.0 docs:validate /home/dev/Project_Me/asdev-creator-membership-ir
+> node tools/docs-validator/validate.js
+
+DOCS_VALIDATE_OK

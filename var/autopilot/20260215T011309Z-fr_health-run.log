@@ -1,0 +1,63 @@
+$ eslint .
+$ bun test
+bun test v1.3.9 (cf6cdbbb)
+
+src/lib/__tests__/validations.test.ts:
+(pass) validation hardening > contribution payload ignores client-supplied userId [3.00ms]
+(pass) validation hardening > membership payload ignores role and userId escalation fields
+
+src/lib/__tests__/brand-seo-contract.test.ts:
+(pass) brand and seo contract > brand identity baseline is defined
+(pass) brand and seo contract > sitemap includes homepage and brand page
+(pass) brand and seo contract > robots points to canonical host and sitemap
+
+src/lib/__tests__/auth.test.ts:
+(pass) isSystemAdmin > accepts ACTIVE ADMIN [1.00ms]
+(pass) isSystemAdmin > accepts ACTIVE SUPER_ADMIN
+(pass) isSystemAdmin > rejects inactive admin and regular users
+
+src/app/api/__tests__/contributions-authz.test.ts:
+(pass) contributions authz policy > always resolves actor to authenticated user id
+
+src/app/api/__tests__/audit-access.test.ts:
+(pass) audit access policy > entity-level filters require admin role
+
+src/app/api/__tests__/memberships-role.test.ts:
+(pass) membership role policy > join endpoint always creates MEMBER role
+
+ 11 pass
+ 0 fail
+ 22 expect() calls
+Ran 11 tests across 6 files. [120.00ms]
+$ next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/
+▲ Next.js 16.1.3 (Turbopack)
+
+  Creating an optimized production build ...
+Turbopack build encountered 1 warnings:
+[next]/internal/font/google/vazirmatn_c6276b73.module.css
+Error while requesting resource
+There was an issue establishing a connection while requesting https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/vazirmatn_c6276b73.module.css
+    [next]/internal/font/google/vazirmatn_c6276b73.js
+    ./src/app/layout.tsx
+
+
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+[next]/internal/font/google/vazirmatn_c6276b73.module.css
+next/font: error:
+Failed to fetch `Vazirmatn` from Google Fonts.
+
+Import trace:
+  Server Component:
+    [next]/internal/font/google/vazirmatn_c6276b73.module.css
+    [next]/internal/font/google/vazirmatn_c6276b73.js
+    ./src/app/layout.tsx
+
+
+    at ignore-listed frames
+error: script "build" exited with code 1

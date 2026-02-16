@@ -1,0 +1,7 @@
+
+> asdev-creator-membership-ir@0.1.0 typecheck /home/dev/Project_Me/asdev-creator-membership-ir
+> node tools/quality-typecheck.js
+
+TYPECHECK_FAIL: missing docsToUpdate file docs/GOVERNANCE.md
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

@@ -1,0 +1,27 @@
+
+> persiantoolbox@2.0.2 ci:contracts /home/dev/Project_Me/asdev-persiantoolbox
+> pnpm monetization:review:validate && pnpm monetization:ops:validate && pnpm monetization:alerting:validate && pnpm monetization:site-settings:validate && pnpm deploy:readiness:validate && pnpm release:rc:validate && pnpm release:rollback:validate && pnpm release:launch:validate && pnpm release:state:validate && pnpm pwa:sw:validate && pnpm licensing:validate
+
+
+> persiantoolbox@2.0.2 monetization:review:validate /home/dev/Project_Me/asdev-persiantoolbox
+> node scripts/monetization/validate-review-backlog.mjs
+
+node:fs:439
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/home/dev/Project_Me/asdev-persiantoolbox/docs/monetization/review-backlog.json'
+    at readFileSync (node:fs:439:20)
+    at file:///home/dev/Project_Me/asdev-persiantoolbox/scripts/monetization/validate-review-backlog.mjs:5:13
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/dev/Project_Me/asdev-persiantoolbox/docs/monetization/review-backlog.json'
+}
+
+Node.js v24.13.0
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.
