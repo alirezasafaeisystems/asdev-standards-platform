@@ -1,10 +1,9 @@
 # Local env
 .env.local
+.venv/
 
 # Generated reports
 sync/divergence-report.csv
-docs/reports/*.md
-!docs/reports/.gitkeep
 
 # Temporary files
 *.tmp

@@ -6,5 +6,5 @@ Files:
 - `report.json`: structured compliance payload
 - `report.csv`: flat compliance check table
 - `history.json`: historical compliance score points for trend rendering
-- `attestation.json`: sha256 attestation for generated dashboard artifacts
+- `attestation.json`: sha256 attestation for generated dashboard artifacts with provenance metadata (`git_sha`, `github_run_id`, `generator`)
 - `index.html` + `app.js` + `styles.css`: lightweight dashboard UI

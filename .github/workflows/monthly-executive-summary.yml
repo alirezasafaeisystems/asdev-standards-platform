@@ -53,3 +53,4 @@ jobs:
             docs/compliance-dashboard/attestation.json
             docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
             docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md
+            docs/reports/AUTOMATION_SLO_STATUS.md

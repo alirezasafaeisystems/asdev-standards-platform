@@ -3,11 +3,13 @@
 Standards, automation orchestration, and governance tooling for ASDEV repositories.
 
 ## Core Commands
+- `make setup`
 - `make lint`
 - `make test`
 - `make verify`
 - `make code-reviews` (runs review preflight + full verify gate)
 - `make reports`
+- `make automation-slo-status`
 - `make p0-stabilization`
 
 ## Management Dashboard

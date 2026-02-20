@@ -12,6 +12,12 @@ import sys
 from pathlib import Path
 
 att = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+meta = att.get('metadata', {})
+if not meta:
+    raise SystemExit('Attestation metadata missing')
+for key in ('git_sha', 'github_run_id', 'generator'):
+    if not meta.get(key):
+        raise SystemExit(f'Attestation metadata key missing: {key}')
 arts = att.get('artifacts', [])
 if not arts:
     raise SystemExit('Attestation has no artifacts')

@@ -11,6 +11,7 @@ if [[ "$#" -eq 0 ]]; then
     "docs/compliance-dashboard/history.json"
     "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md"
     "docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md"
+    "docs/reports/AUTOMATION_SLO_STATUS.md"
   )
 else
   files=("$@")
@@ -19,9 +20,21 @@ fi
 python3 - <<'PY' "$output_file" "${files[@]}"
 import hashlib
 import json
+import os
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+def resolve_git_sha() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except Exception:
+        return "unknown"
 
 out = Path(sys.argv[1])
 files = [Path(p) for p in sys.argv[2:]]
@@ -35,6 +48,11 @@ for p in files:
 
 payload = {
     'generated_at_utc': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+    'metadata': {
+        'git_sha': resolve_git_sha(),
+        'github_run_id': os.environ.get('GITHUB_RUN_ID', 'local'),
+        'generator': 'scripts/write-compliance-attestation.sh'
+    },
     'artifacts': artifacts,
 }
 

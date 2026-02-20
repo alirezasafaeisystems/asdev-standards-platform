@@ -64,6 +64,7 @@ jobs:
             docs/compliance-dashboard/attestation.json
             docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
             docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md
+            docs/reports/AUTOMATION_SLO_STATUS.md
 
       - name: Create/Update pull request with generated reports
         uses: peter-evans/create-pull-request@v7
@@ -81,3 +82,4 @@ jobs:
             docs/compliance-dashboard/attestation.json
             docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
             docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md
+            docs/reports/AUTOMATION_SLO_STATUS.md

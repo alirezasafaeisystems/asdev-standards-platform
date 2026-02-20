@@ -5,25 +5,19 @@
 - Intake of two new planning documents and conversion into executable roadmap items.
 
 ## Current Repository Status
-- Branch: `main`
-- Working tree: clean (no staged/unstaged changes before this update).
-- Recent commits are bootstrap/chore oriented.
-- Repository currently contains governance docs, reports, and automation logs.
+- Baseline branch: `main` (execution continues via PR branches).
+- Repository contains active workflows for PR validation, compliance audit, docs build, and release.
+- Compliance dashboard artifacts and monthly/weekly summaries are generated automatically.
 
-## Verification Signal (latest available local logs)
-- `logs/verify.lint.log`: success
-- `logs/verify.typecheck.log`: success
-- `logs/verify.test.log`: success
-- `logs/verify.security-audit.log`: success
-- `logs/verify.coverage.log`: success
-- `logs/verify.build.log`: success
-- `logs/verify.e2e.log`: skipped (no E2E suite configured)
-
-Note: available verify logs are from 2026-02-14. No fresh local run was possible because this snapshot does not currently contain runnable build/test sources or a top-level `Makefile`.
+## Verification Signal
+- Current repository includes runnable `Makefile` gates and contract tests.
+- Local execution gate for this phase: `make ci`.
+- Compliance generation and validation scripts are executable and included in tests.
 
 ## Findings (quick-review)
-- No code diff existed at start of review, so no change-level correctness/security regression finding.
-- Main execution risk is plan-to-implementation gap: roadmap exists in reports, but unified actionable tracker was missing.
+- Primary operational risk: inconsistent required-check emission on PRs.
+- Secondary risk: attestation/report contract drift without explicit provenance metadata.
+- Mitigation applied: workflow contract tests, ADR scope lock, and SLO policy/status artifacts.
 
 ## Document Intake
 Imported documents:
@@ -39,6 +33,10 @@ Imported documents:
   - `schemas/*.json`, `tools/validate_manifests.py`, `ops/automation/*.yaml`
 - Added governance baseline docs: `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `CHANGELOG.md`, `VERSION`
 - Removed legacy unused duplicate log tree: `var/automation/autonomous-executor/`
+- Added ADR scope lock: `governance/ADR/0001-next-wave-scope.md`
+- Added automation SLO policy: `docs/reports/AUTOMATION_SLO.md`
+- Added automation SLO generated status: `docs/reports/AUTOMATION_SLO_STATUS.md`
+- Extended compliance attestation contract with provenance metadata.
 
 ## Recommended Immediate Next Move
-- Configure GitHub branch protection required checks for `PR Validation / quality-gate`.
+- Validate required check emission on consecutive PRs without admin bypass and close remaining tracker issues.
