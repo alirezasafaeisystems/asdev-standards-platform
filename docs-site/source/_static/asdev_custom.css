@@ -1,0 +1,11 @@
+:root {
+  --asdev-accent: #0d9488;
+}
+
+a {
+  color: var(--asdev-accent);
+}
+
+div.related a {
+  color: var(--asdev-accent);
+}

@@ -49,6 +49,8 @@ bash tests/test_run_task_logging.sh
 bash tests/test_security_audit.sh
 bash tests/test_coverage_threshold.sh
 bash tests/test_repo_hygiene.sh
+bash tests/test_weekly_kpi_summary.sh
+bash tests/test_release_bump.sh
 bash scripts/validate-agent-pack.sh
 
 echo "Script checks passed."
