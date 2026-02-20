@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-02-20T16:19:20Z",
+  "repo": "asdev-standards-platform",
+  "compliance_score": 100.0,
+  "checks": [
+    {
+      "name": "build",
+      "status": "success",
+      "source": "logs/verify.build.log"
+    },
+    {
+      "name": "coverage",
+      "status": "success",
+      "source": "logs/verify.coverage.log"
+    },
+    {
+      "name": "e2e",
+      "status": "skipped",
+      "source": "logs/verify.e2e.log"
+    },
+    {
+      "name": "lint",
+      "status": "success",
+      "source": "logs/verify.lint.log"
+    },
+    {
+      "name": "security-audit",
+      "status": "success",
+      "source": "logs/verify.security-audit.log"
+    },
+    {
+      "name": "test",
+      "status": "success",
+      "source": "logs/verify.test.log"
+    },
+    {
+      "name": "typecheck",
+      "status": "success",
+      "source": "logs/verify.typecheck.log"
+    }
+  ]
+}

@@ -221,3 +221,9 @@ management-dashboard-data:
 
 remaining-execution:
 	@bash scripts/execute-remaining-roadmap-tasks.sh
+
+compliance-report:
+	@bash scripts/generate-compliance-report.sh
+
+validate-compliance-reports:
+	@bash scripts/validate-generated-reports.sh docs/compliance-dashboard/report.json docs/compliance-dashboard/report.csv schemas/compliance-report.schema.json
