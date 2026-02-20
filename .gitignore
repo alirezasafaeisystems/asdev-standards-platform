@@ -1,0 +1,12 @@
+# Generated runtime noise
+*.tmp
+*.swp
+
+# Local run outputs
+coverage.out
+.pytest_cache/
+__pycache__/
+.venv/
+
+# Future generated reports/artifacts (untracked by default)
+out/

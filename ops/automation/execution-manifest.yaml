@@ -1,0 +1,7 @@
+name: asdev-standards-platform
+version: 0.1.0
+jobs:
+  - id: pr-validation
+    enabled: true
+  - id: compliance-audit
+    enabled: true

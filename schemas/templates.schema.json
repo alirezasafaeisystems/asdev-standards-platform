@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Repo Templates",
+  "type": "object",
+  "properties": {
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "version": { "type": "string" },
+          "path": { "type": "string" }
+        },
+        "required": ["id", "version", "path"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["templates"],
+  "additionalProperties": false
+}
