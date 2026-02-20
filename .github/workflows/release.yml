@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'SemVer bump type'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and changelog
+        run: |
+          bash scripts/release/bump-version.sh "${{ inputs.bump }}"
+
+      - name: Commit version bump
+        run: |
+          git add VERSION CHANGELOG.md
+          if git diff --cached --quiet; then
+            echo "No release changes.";
+            exit 0;
+          fi
+          git commit -m "chore(release): bump version"
+          git push
+
+      - name: Create tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bash scripts/release/create-release.sh

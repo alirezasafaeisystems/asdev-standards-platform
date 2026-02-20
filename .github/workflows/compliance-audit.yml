@@ -38,6 +38,9 @@ jobs:
       - name: Validate generated report contracts
         run: make validate-generated-reports
 
+
+      - name: Generate weekly KPI summary
+        run: bash scripts/generate-weekly-kpi-summary.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -45,6 +48,8 @@ jobs:
           path: |
             docs/compliance-dashboard/report.json
             docs/compliance-dashboard/report.csv
+            docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
+            docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
 
       - name: Create/Update pull request with generated reports
         uses: peter-evans/create-pull-request@v7
@@ -58,3 +63,5 @@ jobs:
           add-paths: |
             docs/compliance-dashboard/report.json
             docs/compliance-dashboard/report.csv
+            docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
+            docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md

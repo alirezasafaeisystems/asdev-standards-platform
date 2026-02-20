@@ -32,6 +32,9 @@ def load_checks(logs_dir: Path):
                 "source": str(path),
             }
         )
+    if not checks:
+        for name in ["lint", "typecheck", "test", "e2e", "build", "security-audit", "coverage"]:
+            checks.append({"name": name, "status": "unknown", "source": "logs/unavailable"})
     return checks
 
 
