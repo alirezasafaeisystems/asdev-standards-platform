@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-02-20T17:01:34Z",
+  "generated_at_utc": "2026-02-20T17:05:15Z",
   "artifacts": [
     {
       "path": "docs/compliance-dashboard/report.json",
-      "sha256": "50b5a1131c44cd453f30071ea2f17135b9ccb26aeefbb7a8f42608756d89b628"
+      "sha256": "6dbf49633caa9fd188367eb59cb8a05e11e61107df13919fe6f6f33145cfaa7a"
     },
     {
       "path": "docs/compliance-dashboard/report.csv",
@@ -11,15 +11,15 @@
     },
     {
       "path": "docs/compliance-dashboard/history.json",
-      "sha256": "38365fbf6caea5ada95f8e149ea52ced6c2fc1a4fa1f6cbc77f62261e94ac858"
+      "sha256": "44705232fe02ecc4b4f3776fb692b888ed37c052de0dde16e11a4494f4dc4a73"
     },
     {
       "path": "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md",
-      "sha256": "da9bc8c688afe264ccf7dee4f945ab996c81dff4053f3023b348988fc334ba92"
+      "sha256": "1a11c05e5fd73f2e3e21274dafab4fe68a6c36d1b5644b07b0ebb28b91dd47c8"
     },
     {
       "path": "docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md",
-      "sha256": "a12db86f20fb771fc86199ae607dba19319ca732ab3d82328543040e0b1d0744"
+      "sha256": "cc89d1e181d354b8437caf151824cbd75d8a92d08f3baa99eb56c4a166449fcc"
     }
   ]
 }
