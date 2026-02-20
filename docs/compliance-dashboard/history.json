@@ -24,7 +24,15 @@
     {
       "generated_at_utc": "2026-02-20T17:38:01Z",
       "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-20T17:48:44Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-20T17:48:45Z",
+      "compliance_score": 0.0
     }
   ],
-  "updated_at_utc": "2026-02-20T17:38:01Z"
+  "updated_at_utc": "2026-02-20T17:48:45Z"
 }
