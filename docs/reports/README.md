@@ -8,6 +8,7 @@
 - `AUTOMATION_SLO_STATUS.md`
 - `PR_CHECK_EMISSION_EVIDENCE.md`
 - `PR_CHECK_EMISSION_AUDIT.md`
+- `NEXT_SESSION_HANDOFF_2026-02-20.md`
 
 ## Historical Reports
 سایر فایل‌های این پوشه گزارش‌های تاریخی اجرای خودکار هستند و برای audit نگهداری می‌شوند.
