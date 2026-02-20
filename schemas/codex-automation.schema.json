@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex Automation",
+  "type": "object",
+  "properties": {
+    "hub_enabled": { "type": "boolean" },
+    "known_repositories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "default_profile": { "type": "string" }
+  },
+  "required": ["hub_enabled", "known_repositories", "default_profile"],
+  "additionalProperties": false
+}

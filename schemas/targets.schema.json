@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sync Targets",
+  "type": "object",
+  "properties": {
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "repo": { "type": "string" },
+          "enabled": { "type": "boolean" }
+        },
+        "required": ["repo", "enabled"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["targets"],
+  "additionalProperties": false
+}
