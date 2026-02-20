@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Execution Manifest",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "enabled": { "type": "boolean" }
+        },
+        "required": ["id", "enabled"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["name", "version", "jobs"],
+  "additionalProperties": false
+}
