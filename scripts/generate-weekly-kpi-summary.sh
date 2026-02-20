@@ -3,6 +3,7 @@ set -euo pipefail
 
 report_json="docs/compliance-dashboard/report.json"
 output_file="docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md"
+slo_status_file="docs/reports/AUTOMATION_SLO_STATUS.md"
 
 [[ -f "$report_json" ]] || {
   echo "Missing $report_json" >&2
@@ -40,6 +41,8 @@ skipped="${metrics[5]}"
 failed="${metrics[6]}"
 unknown="${metrics[7]}"
 
+bash scripts/generate-automation-slo-status.sh "$report_json" "docs/compliance-dashboard/attestation.json" "$slo_status_file"
+
 cat > "$output_file" <<EOF_SUM
 # Weekly Compliance Summary
 
@@ -51,6 +54,7 @@ cat > "$output_file" <<EOF_SUM
 - skipped: ${skipped}
 - failed: ${failed}
 - unknown: ${unknown}
+- automation_slo_status: ${slo_status_file}
 EOF_SUM
 
 echo "Weekly KPI summary generated: $output_file"

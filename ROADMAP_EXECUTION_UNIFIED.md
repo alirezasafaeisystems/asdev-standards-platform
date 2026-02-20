@@ -18,6 +18,9 @@ Sources:
 - [x] Add compliance report attestation/signature and validation.
 - [x] Add compliance history rotation + trend visualization support.
 - [x] Add monthly executive summary workflow linked to KPI outputs.
+- [x] Lock next-wave scope via ADR (`governance/ADR/0001-next-wave-scope.md`).
+- [x] Add automation SLO policy and generated SLO status artifact.
+- [x] Harden compliance attestation with provenance metadata.
 
 ## Active Operational Workflows
 - `.github/workflows/pr-validation.yml`
@@ -33,10 +36,10 @@ Sources:
 - `docs/compliance-dashboard/attestation.json`
 - `docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md`
 - `docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md`
+- `docs/reports/AUTOMATION_SLO.md`
+- `docs/reports/AUTOMATION_SLO_STATUS.md`
 
-## Next 5 Execution Tasks (strict order)
-1. Enforce required check contexts cleanup so PR checks are emitted consistently.
-2. Add provenance metadata (run id / commit sha) to attestation payload.
-3. Add alert thresholds and failing policy for compliance score regression.
-4. Add monthly release post-check workflow (tag integrity + release note contract).
-5. Add executive dashboard markdown digest published from monthly workflow.
+## Remaining Execution Tasks (strict order)
+1. Verify `PR Validation / quality-gate` emission reliability across consecutive PRs without admin bypass.
+2. Add release post-check workflow (tag integrity + release-note contract).
+3. Close backlog tracker issues after verification evidence is attached.

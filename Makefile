@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution automation-slo-status
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -29,6 +29,13 @@ lint:
 	@bash -n scripts/generate-error-fingerprint-trend.sh
 	@bash -n scripts/close-stale-weekly-digests.sh
 	@bash -n scripts/validate-generated-reports.sh
+	@bash -n scripts/generate-compliance-report.sh
+	@bash -n scripts/update-compliance-history.sh
+	@bash -n scripts/generate-weekly-kpi-summary.sh
+	@bash -n scripts/generate-monthly-executive-summary.sh
+	@bash -n scripts/generate-automation-slo-status.sh
+	@bash -n scripts/write-compliance-attestation.sh
+	@bash -n scripts/validate-compliance-attestation.sh
 	@bash -n scripts/summarize-error-fingerprint-trend.sh
 	@bash -n scripts/write-report-attestation.sh
 	@bash -n scripts/validate-report-attestation.sh
@@ -227,3 +234,6 @@ compliance-report:
 
 validate-compliance-reports:
 	@bash scripts/validate-generated-reports.sh docs/compliance-dashboard/report.json docs/compliance-dashboard/report.csv schemas/compliance-report.schema.json
+
+automation-slo-status:
+	@bash scripts/generate-automation-slo-status.sh
