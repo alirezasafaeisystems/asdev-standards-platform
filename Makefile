@@ -1,4 +1,4 @@
-.PHONY: ci lint typecheck validate-manifests test security-audit coverage build
+.PHONY: ci lint typecheck validate-manifests test security-audit coverage build compliance-report validate-generated-reports
 
 ci: lint typecheck validate-manifests test security-audit coverage build
 
@@ -22,3 +22,9 @@ coverage:
 
 build:
 	bash scripts/build.sh
+
+compliance-report:
+	bash scripts/generate-compliance-report.sh
+
+validate-generated-reports:
+	bash scripts/validate-generated-reports.sh docs/compliance-dashboard/report.json docs/compliance-dashboard/report.csv schemas/compliance-report.schema.json
