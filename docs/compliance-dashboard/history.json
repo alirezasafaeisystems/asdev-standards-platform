@@ -32,7 +32,15 @@
     {
       "generated_at_utc": "2026-02-20T17:48:45Z",
       "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-20T17:58:07Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-20T17:58:08Z",
+      "compliance_score": 0.0
     }
   ],
-  "updated_at_utc": "2026-02-20T17:48:45Z"
+  "updated_at_utc": "2026-02-20T17:58:08Z"
 }

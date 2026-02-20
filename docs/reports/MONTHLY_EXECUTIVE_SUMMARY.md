@@ -1,12 +1,12 @@
 # Monthly Executive Summary
 
 - repo: asdev-standards-platform
-- generated_at_utc: 2026-02-20T17:48:45Z
+- generated_at_utc: 2026-02-20T17:58:08Z
 - current_compliance_score: 0.0
 - previous_compliance_score: 0.0
 - delta: 0.0
 - average_score: 0.0
-- history_points: 8
+- history_points: 10
 
 ## Executive Notes
 - Compliance trend should remain above baseline threshold.

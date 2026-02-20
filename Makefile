@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution automation-slo-status pr-check-evidence release-post-check
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution automation-slo-status pr-check-evidence pr-check-audit release-post-check
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -31,6 +31,7 @@ lint:
 	@bash -n scripts/validate-generated-reports.sh
 	@bash -n scripts/generate-compliance-report.sh
 	@bash -n scripts/generate-pr-check-evidence.sh
+	@bash -n scripts/audit-pr-check-emission.sh
 	@bash -n scripts/update-compliance-history.sh
 	@bash -n scripts/generate-weekly-kpi-summary.sh
 	@bash -n scripts/generate-monthly-executive-summary.sh
@@ -242,6 +243,9 @@ automation-slo-status:
 
 pr-check-evidence:
 	@bash scripts/generate-pr-check-evidence.sh
+
+pr-check-audit:
+	@bash scripts/audit-pr-check-emission.sh
 
 release-post-check:
 	@bash scripts/release/post-check.sh

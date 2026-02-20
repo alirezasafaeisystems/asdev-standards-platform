@@ -11,6 +11,7 @@ Standards, automation orchestration, and governance tooling for ASDEV repositori
 - `make reports`
 - `make automation-slo-status`
 - `make pr-check-evidence`
+- `make pr-check-audit`
 - `make release-post-check`
 - `make p0-stabilization`
 
