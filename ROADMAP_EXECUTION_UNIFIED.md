@@ -24,6 +24,7 @@ Sources:
 
 ## Active Operational Workflows
 - `.github/workflows/pr-validation.yml`
+- `.github/workflows/pr-check-audit.yml`
 - `.github/workflows/compliance-audit.yml`
 - `.github/workflows/docs-build.yml`
 - `.github/workflows/release.yml`
@@ -40,8 +41,10 @@ Sources:
 - `docs/reports/AUTOMATION_SLO.md`
 - `docs/reports/AUTOMATION_SLO_STATUS.md`
 - `docs/reports/PR_CHECK_EMISSION_EVIDENCE.md`
+- `docs/reports/PR_CHECK_EMISSION_AUDIT.md`
 
 ## Remaining Execution Tasks (strict order)
 1. [x] Verify `PR Validation / quality-gate` emission reliability evidence generation.
-2. [x] Add release post-check workflow (tag integrity + release-note contract).
-3. [x] Close backlog tracker issues after verification evidence is attached.
+2. [x] Add recurring PR check audit workflow with optional strict enforcement mode.
+3. [x] Clean up stale backlog noise by closing superseded old issues.
+4. [x] Add release post-check workflow (tag integrity + release-note contract).

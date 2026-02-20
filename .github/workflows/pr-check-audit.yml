@@ -1,0 +1,36 @@
+name: PR Check Audit
+
+on:
+  schedule:
+    - cron: '0 11 * * 1'
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Fail workflow when audit status is not pass'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  audit-required-check-emission:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run PR check emission audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_CHECK_AUDIT_STRICT: ${{ inputs.strict || 'false' }}
+        run: |
+          bash scripts/audit-pr-check-emission.sh \
+            "$GITHUB_REPOSITORY" \
+            docs/reports/PR_CHECK_EMISSION_AUDIT.md
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-check-audit
+          path: docs/reports/PR_CHECK_EMISSION_AUDIT.md

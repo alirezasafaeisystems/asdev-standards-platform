@@ -32,6 +32,7 @@ bash tests/test_make_reports_target.sh
 bash tests/test_summarize_clone_failed.sh
 bash tests/test_ci_workflow_contract.sh
 bash tests/test_pr_validation_contract.sh
+bash tests/test_pr_check_audit_workflow.sh
 bash tests/test_release_post_check_workflow.sh
 bash tests/test_detect_meaningful_report_delta.sh
 bash tests/test_status_counter_contract.sh
@@ -56,6 +57,7 @@ bash tests/test_compliance_attestation.sh
 bash tests/test_monthly_executive_summary.sh
 bash tests/test_weekly_kpi_summary.sh
 bash tests/test_automation_slo_status.sh
+bash tests/test_pr_check_audit.sh
 bash tests/test_release_post_check.sh
 bash tests/test_release_bump.sh
 bash scripts/validate-agent-pack.sh
