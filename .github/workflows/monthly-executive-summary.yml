@@ -1,0 +1,55 @@
+name: Monthly Executive Summary
+
+on:
+  schedule:
+    - cron: '0 10 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  monthly-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/requirements-ci.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tools/requirements-ci.txt
+
+      - name: Generate compliance artifacts
+        run: |
+          make compliance-report
+          make validate-compliance-reports
+          bash scripts/update-compliance-history.sh
+          bash scripts/generate-weekly-kpi-summary.sh
+          bash scripts/generate-monthly-executive-summary.sh
+          bash scripts/write-compliance-attestation.sh docs/compliance-dashboard/attestation.json
+          bash scripts/validate-compliance-attestation.sh docs/compliance-dashboard/attestation.json
+
+      - name: Create/update PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'chore: monthly executive summary refresh'
+          title: 'chore: monthly executive summary refresh'
+          body: |
+            Automated monthly executive summary and KPI refresh.
+          branch: 'chore/monthly-executive-summary'
+          delete-branch: true
+          add-paths: |
+            docs/compliance-dashboard/report.json
+            docs/compliance-dashboard/report.csv
+            docs/compliance-dashboard/history.json
+            docs/compliance-dashboard/attestation.json
+            docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md
+            docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md

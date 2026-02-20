@@ -1,0 +1,25 @@
+{
+  "generated_at_utc": "2026-02-20T17:05:15Z",
+  "artifacts": [
+    {
+      "path": "docs/compliance-dashboard/report.json",
+      "sha256": "6dbf49633caa9fd188367eb59cb8a05e11e61107df13919fe6f6f33145cfaa7a"
+    },
+    {
+      "path": "docs/compliance-dashboard/report.csv",
+      "sha256": "aa5543f26a71d576d09a947832147be61b2f906d9a005fd502417cff8bbf73c8"
+    },
+    {
+      "path": "docs/compliance-dashboard/history.json",
+      "sha256": "44705232fe02ecc4b4f3776fb692b888ed37c052de0dde16e11a4494f4dc4a73"
+    },
+    {
+      "path": "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md",
+      "sha256": "1a11c05e5fd73f2e3e21274dafab4fe68a6c36d1b5644b07b0ebb28b91dd47c8"
+    },
+    {
+      "path": "docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md",
+      "sha256": "cc89d1e181d354b8437caf151824cbd75d8a92d08f3baa99eb56c4a166449fcc"
+    }
+  ]
+}

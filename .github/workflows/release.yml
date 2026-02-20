@@ -12,6 +12,11 @@ on:
           - patch
           - minor
           - major
+      dry_run:
+        description: 'Run release flow without push/tag/release'
+        required: true
+        default: true
+        type: boolean
 
 permissions:
   contents: write
@@ -33,7 +38,14 @@ jobs:
         run: |
           bash scripts/release/bump-version.sh "${{ inputs.bump }}"
 
+      - name: Release dry-run summary
+        if: ${{ inputs.dry_run }}
+        run: |
+          echo "Dry-run enabled; release assets will not be pushed."
+          echo "Version: $(cat VERSION)"
+
       - name: Commit version bump
+        if: ${{ !inputs.dry_run }}
         run: |
           git add VERSION CHANGELOG.md
           if git diff --cached --quiet; then
@@ -44,6 +56,7 @@ jobs:
           git push
 
       - name: Create tag and GitHub release
+        if: ${{ !inputs.dry_run }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
