@@ -10,6 +10,8 @@ Standards, automation orchestration, and governance tooling for ASDEV repositori
 - `make code-reviews` (runs review preflight + full verify gate)
 - `make reports`
 - `make automation-slo-status`
+- `make pr-check-evidence`
+- `make release-post-check`
 - `make p0-stabilization`
 
 ## Management Dashboard

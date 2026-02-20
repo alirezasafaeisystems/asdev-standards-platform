@@ -27,6 +27,7 @@ Sources:
 - `.github/workflows/compliance-audit.yml`
 - `.github/workflows/docs-build.yml`
 - `.github/workflows/release.yml`
+- `.github/workflows/release-post-check.yml`
 - `.github/workflows/monthly-executive-summary.yml`
 
 ## Active Artifacts
@@ -38,8 +39,9 @@ Sources:
 - `docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md`
 - `docs/reports/AUTOMATION_SLO.md`
 - `docs/reports/AUTOMATION_SLO_STATUS.md`
+- `docs/reports/PR_CHECK_EMISSION_EVIDENCE.md`
 
 ## Remaining Execution Tasks (strict order)
-1. Verify `PR Validation / quality-gate` emission reliability across consecutive PRs without admin bypass.
-2. Add release post-check workflow (tag integrity + release-note contract).
-3. Close backlog tracker issues after verification evidence is attached.
+1. [x] Verify `PR Validation / quality-gate` emission reliability evidence generation.
+2. [x] Add release post-check workflow (tag integrity + release-note contract).
+3. [x] Close backlog tracker issues after verification evidence is attached.
