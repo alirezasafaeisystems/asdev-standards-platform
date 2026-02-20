@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compliance Dashboard Report",
+  "type": "object",
+  "properties": {
+    "generated_at_utc": { "type": "string" },
+    "repo": { "type": "string" },
+    "compliance_score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["success", "failed", "skipped", "unknown"] },
+          "source": { "type": "string" }
+        },
+        "required": ["name", "status", "source"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["generated_at_utc", "repo", "compliance_score", "checks"],
+  "additionalProperties": false
+}

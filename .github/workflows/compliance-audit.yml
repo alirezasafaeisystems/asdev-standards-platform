@@ -1,0 +1,60 @@
+name: Compliance Audit
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: compliance-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-compliance-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: tools/requirements-ci.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tools/requirements-ci.txt
+
+      - name: Generate report
+        run: make compliance-report
+
+      - name: Validate generated report contracts
+        run: make validate-generated-reports
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: compliance-dashboard-report
+          path: |
+            docs/compliance-dashboard/report.json
+            docs/compliance-dashboard/report.csv
+
+      - name: Create/Update pull request with generated reports
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore: update compliance dashboard report"
+          title: "chore: update compliance dashboard report"
+          body: |
+            Automated compliance audit report refresh.
+          branch: "chore/compliance-audit-report"
+          delete-branch: true
+          add-paths: |
+            docs/compliance-dashboard/report.json
+            docs/compliance-dashboard/report.csv
