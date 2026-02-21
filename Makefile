@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution automation-slo-status pr-check-evidence pr-check-audit release-post-check autonomous-max
+.PHONY: setup lint typecheck test e2e build coverage security-audit verify code-reviews run ci reports digest-cleanup-dry-run ci-last-run ci-last-run-json ci-last-run-compact agent-generate hygiene verify-hub fast-parallel-local autopilot-start autopilot-stop autopilot-status autopilot-install-user-service autopilot-uninstall-user-service execution-sync execution-status execution-max enforce-main-sync github-app-auth-check p0-stabilization management-dashboard management-dashboard-data remaining-execution automation-slo-status pr-check-evidence pr-check-audit release-post-check autonomous-max validate-manifests
 
 setup:
 	@command -v git >/dev/null || (echo "git is required" && exit 1)
@@ -237,6 +237,9 @@ compliance-report:
 
 validate-compliance-reports:
 	@bash scripts/validate-generated-reports.sh docs/compliance-dashboard/report.json docs/compliance-dashboard/report.csv schemas/compliance-report.schema.json
+
+validate-manifests:
+	@bash scripts/validate-manifests.sh
 
 automation-slo-status:
 	@bash scripts/generate-automation-slo-status.sh

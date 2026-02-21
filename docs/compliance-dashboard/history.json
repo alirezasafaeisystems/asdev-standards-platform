@@ -2,54 +2,6 @@
   "repo": "asdev-standards-platform",
   "points": [
     {
-      "generated_at_utc": "2026-02-20T17:00:25Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:01:34Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:05:14Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:05:15Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:38:00Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:38:01Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:48:44Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:48:45Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:58:07Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T17:58:08Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-20T20:49:54Z",
-      "compliance_score": 0.0
-    },
-    {
-      "generated_at_utc": "2026-02-21T11:33:36Z",
-      "compliance_score": 0.0
-    },
-    {
       "generated_at_utc": "2026-02-21T11:34:26Z",
       "compliance_score": 0.0
     },
@@ -208,7 +160,55 @@
     {
       "generated_at_utc": "2026-02-21T13:08:22Z",
       "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:12:52Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:13:10Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:13:11Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:20:49Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:20:50Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:21:08Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:23:55Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:23:56Z",
+      "compliance_score": 0.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:25:15Z",
+      "compliance_score": 66.67
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:25:16Z",
+      "compliance_score": 66.67
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:25:35Z",
+      "compliance_score": 100.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T13:25:36Z",
+      "compliance_score": 100.0
     }
   ],
-  "updated_at_utc": "2026-02-21T13:08:22Z"
+  "updated_at_utc": "2026-02-21T13:25:36Z"
 }

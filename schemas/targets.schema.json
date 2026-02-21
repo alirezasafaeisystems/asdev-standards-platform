@@ -9,9 +9,14 @@
         "type": "object",
         "properties": {
           "repo": { "type": "string" },
-          "enabled": { "type": "boolean" }
+          "default_branch": { "type": "string" },
+          "runtime_profile": { "type": "string" },
+          "templates": { "type": "array", "items": { "type": "string" } },
+          "optional_features": { "type": "array", "items": { "type": "string" } },
+          "opt_outs": { "type": "array", "items": { "type": "string" } },
+          "labels": { "type": "array", "items": { "type": "string" } }
         },
-        "required": ["repo", "enabled"],
+        "required": ["repo", "default_branch", "templates", "optional_features", "opt_outs", "labels"],
         "additionalProperties": false
       }
     }

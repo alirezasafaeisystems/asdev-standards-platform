@@ -1,10 +1,10 @@
 # PR Check Emission Audit
 
-- generated_at_utc: 2026-02-21T13:08:10Z
+- generated_at_utc: 2026-02-21T13:25:56Z
 - repository: alirezasafaeisystems/asdev-standards-platform
 - required_branch_protection_context: PR Validation / quality-gate
 - expected_context: PR Validation / quality-gate
-- strict_mode: false
+- strict_mode: true
 - sample_size_target: 5
 - minimum_sample_required: 3
 - merged_prs_checked: 5

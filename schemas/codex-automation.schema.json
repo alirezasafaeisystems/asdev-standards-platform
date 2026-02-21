@@ -3,13 +3,79 @@
   "title": "Codex Automation",
   "type": "object",
   "properties": {
-    "hub_enabled": { "type": "boolean" },
-    "known_repositories": {
-      "type": "array",
-      "items": { "type": "string" }
+    "version": { "type": "integer", "minimum": 1 },
+    "updated_at_utc": { "type": "string", "format": "date-time" },
+    "manifest_ref": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "branch_sync": {
+          "type": "object",
+          "properties": {
+            "required_default_branch": { "type": "string" },
+            "enforce_single_branch": { "type": "boolean" }
+          },
+          "required": ["required_default_branch", "enforce_single_branch"],
+          "additionalProperties": false
+        },
+        "auth": {
+          "type": "object",
+          "properties": {
+            "github_app_only": { "type": "boolean" },
+            "forbid_pat_env": { "type": "boolean" }
+          },
+          "required": ["github_app_only", "forbid_pat_env"],
+          "additionalProperties": false
+        },
+        "runtime_freeze": {
+          "type": "object",
+          "properties": {
+            "timezone": { "type": "string" },
+            "windows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "days": { "type": "array", "items": { "type": "string" } },
+                  "start": { "type": "string", "pattern": "^[0-9]{2}:[0-9]{2}$" },
+                  "end": { "type": "string", "pattern": "^[0-9]{2}:[0-9]{2}$" },
+                  "behavior": { "type": "string" }
+                },
+                "required": ["name", "days", "start", "end", "behavior"],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": ["timezone", "windows"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["branch_sync", "auth", "runtime_freeze"],
+      "additionalProperties": false
     },
-    "default_profile": { "type": "string" }
+    "baseline_health": {
+      "type": "object",
+      "properties": {
+        "repos": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "lint": { "type": "string" },
+              "typecheck": { "type": "string" },
+              "test": { "type": "string" },
+              "build": { "type": "string" }
+            },
+            "required": ["lint", "typecheck", "test", "build"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["repos"],
+      "additionalProperties": false
+    }
   },
-  "required": ["hub_enabled", "known_repositories", "default_profile"],
+  "required": ["version", "updated_at_utc", "manifest_ref", "policy", "baseline_health"],
   "additionalProperties": false
 }

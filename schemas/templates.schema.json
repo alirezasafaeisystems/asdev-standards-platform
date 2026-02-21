@@ -10,9 +10,14 @@
         "properties": {
           "id": { "type": "string" },
           "version": { "type": "string" },
+          "mode": {
+            "type": "string",
+            "enum": ["must", "should", "optional"]
+          },
+          "source_ref": { "type": "string" },
           "path": { "type": "string" }
         },
-        "required": ["id", "version", "path"],
+        "required": ["id", "version", "mode", "source_ref", "path"],
         "additionalProperties": false
       }
     }
