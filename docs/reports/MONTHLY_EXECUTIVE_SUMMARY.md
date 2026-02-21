@@ -1,11 +1,11 @@
 # Monthly Executive Summary
 
 - repo: asdev-standards-platform
-- generated_at_utc: 2026-02-21T13:25:36Z
+- generated_at_utc: 2026-02-21T13:38:03Z
 - current_compliance_score: 100.0
 - previous_compliance_score: 100.0
 - delta: 0.0
-- average_score: 6.41
+- average_score: 17.95
 - history_points: 52
 
 ## Executive Notes
