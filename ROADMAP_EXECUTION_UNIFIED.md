@@ -1,7 +1,8 @@
 # Roadmap Execution Unified
 
-Last updated: 2026-02-21
+Last updated: 2026-02-21  
 Status: operational maintenance
+
 Sources:
 - `docs/incoming/2026-02-20/technical-blueprint/`
 - `docs/incoming/2026-02-20/deep-research-report.md`
@@ -40,22 +41,20 @@ Sources:
 - `docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md`
 - `docs/reports/AUTOMATION_SLO.md`
 - `docs/reports/AUTOMATION_SLO_STATUS.md`
-- `docs/reports/PR_CHECK_EMISSION_EVIDENCE.md`
 - `docs/reports/PR_CHECK_EMISSION_AUDIT.md`
-
-## Remaining Execution Tasks (strict order)
-1. [x] Verify `PR Validation / quality-gate` emission reliability evidence generation.
-2. [x] Add recurring PR check audit workflow with optional strict enforcement mode.
-3. [x] Clean up stale backlog noise by closing superseded old issues.
-4. [x] Add release post-check workflow (tag integrity + release-note contract).
-
-## Next Session Start Point
-1. Run `PR Check Audit` workflow in strict mode and archive result.
-2. Run `Release Post Check` for latest valid release tag and archive result.
-3. Publish final readiness summary and switch roadmap state to operational maintenance.
 
 ## Final Readiness Checkpoint (2026-02-21)
 - `PR Check Audit` strict mode: done (`prs_with_expected_context: 5/5` in `docs/reports/PR_CHECK_EMISSION_AUDIT.md`).
 - `Release Post Check`: done (`v0.1.0` passed).
 - PR `#169` approved and merged.
 - Roadmap state transitioned to operational maintenance.
+
+## Real Execution Progress (2026-02-21)
+- Formal roadmap scope (Phase A-D + follow-up items): `12/12 done` => `100% complete`.
+- Final readiness tasks (NS-01..NS-03): `3/3 done` => `100% complete` (see `docs/reports/REMAINING_EXECUTION_AUTORUN_2026-02-21.md`).
+- Operational command checks run on `2026-02-21`:
+  - pass: `make lint`, `make test`, `make build`, `make management-dashboard-data`, `make -C docs-site html`, `make pr-check-evidence`, `make release-post-check`, `make remaining-execution`
+- Real operational pass-rate for checked commands: `8/8` => `100%`.
+
+## Real Remaining Steps (Operational Backlog)
+1. None.

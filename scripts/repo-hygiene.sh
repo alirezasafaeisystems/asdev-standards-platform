@@ -16,9 +16,9 @@ fi
 
 cd "${ROOT_DIR}"
 
-mapfile -t CACHE_DIRS < <(find . -type d -name '__pycache__' -not -path './.git/*' | sort)
-mapfile -t CACHE_FILES < <(find . -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '.DS_Store' \) -not -path './.git/*' | sort)
-mapfile -t EMPTY_DIRS < <(find . -depth -type d -empty -not -path './.git*' -not -path '.')
+mapfile -t CACHE_DIRS < <(find . -type d -name '__pycache__' -not -path './.git/*' -not -path '*/.venv/*' | sort)
+mapfile -t CACHE_FILES < <(find . -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '.DS_Store' \) -not -path './.git/*' -not -path '*/.venv/*' | sort)
+mapfile -t EMPTY_DIRS < <(find . -depth -type d -empty -not -path './.git*' -not -path '*/.venv*' -not -path '.')
 
 had_issues=0
 
@@ -53,7 +53,7 @@ if [[ "${MODE}" == "fix" ]]; then
   while IFS= read -r nested_empty; do
     [[ -z "${nested_empty}" ]] && continue
     rmdir "${nested_empty}" 2>/dev/null || true
-  done < <(find . -depth -type d -empty -not -path './.git*' -not -path '.')
+  done < <(find . -depth -type d -empty -not -path './.git*' -not -path '*/.venv*' -not -path '.')
   echo "Repo hygiene fix completed."
   exit 0
 fi

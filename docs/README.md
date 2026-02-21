@@ -2,15 +2,19 @@
 
 این پوشه مرجع مستندات اجرایی پروژه است.
 
-## ساختار
-- `docs/reports/`: گزارش‌های اجرایی و خروجی پایش
-- `docs/incoming/`: ورودی‌های خام (Blueprint/Research) برای traceability
+## Structure
+- `docs/reports/`: گزارش‌های عملیاتی و شواهد اجرا
+- `docs/compliance-dashboard/`: داده و UI داشبورد انطباق
+- `docs/dashboard/`: UI داشبورد مدیریت
+- `docs/strategic-execution/`: وضعیت stageها و لاگ‌های اجرای استراتژیک
+- `docs/incoming/`: ورودی خام (Blueprint/Research) برای traceability
+- `docs/adr/`: تصمیمات معماری/حاکمیتی
 
-## مسیر اجرا
+## Execution Flow
 1. ورودی‌ها در `docs/incoming/<date>/` ثبت می‌شوند.
-2. خروجی عملیاتی در `ROADMAP_EXECUTION_UNIFIED.md` تبدیل به تسک می‌شود.
-3. وضعیت اجرا در `docs/reports/` ثبت می‌شود.
+2. برنامه اقدام و وضعیت عملیاتی در `ROADMAP_EXECUTION_UNIFIED.md` نگهداری می‌شود.
+3. خروجی اجرای خودکار در `docs/reports/` و داشبوردها تولید می‌شود.
 
-## وضعیت فعلی
-- سندهای Blueprint و Deep Research در تاریخ `2026-02-20` ingest شده‌اند.
-- برنامه اقدام فعال در `ROADMAP_EXECUTION_UNIFIED.md` نگهداری می‌شود.
+## Current State
+- ورودی‌های Blueprint و Research در تاریخ `2026-02-20` ingest شده‌اند.
+- وضعیت فعلی roadmap: `operational maintenance` (به‌روزرسانی: `2026-02-21`).
