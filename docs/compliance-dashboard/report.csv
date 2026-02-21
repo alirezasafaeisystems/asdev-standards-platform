@@ -1,8 +1,8 @@
 check,status,source
-lint,unknown,logs/unavailable
-typecheck,unknown,logs/unavailable
-test,unknown,logs/unavailable
-e2e,unknown,logs/unavailable
-build,unknown,logs/unavailable
-security-audit,unknown,logs/unavailable
-coverage,unknown,logs/unavailable
+build,success,logs/verify.build.log
+coverage,success,logs/verify.coverage.log
+e2e,skipped,logs/verify.e2e.log
+lint,success,logs/verify.lint.log
+security-audit,success,logs/verify.security-audit.log
+test,success,logs/verify.test.log
+typecheck,success,logs/verify.typecheck.log

@@ -1,11 +1,11 @@
 # Weekly Compliance Summary
 
-- generated_at_utc: 2026-02-20T17:58:08Z
+- generated_at_utc: 2026-02-21T13:25:36Z
 - repo: asdev-standards-platform
-- compliance_score: 0.0
+- compliance_score: 100.0
 - total_checks: 7
-- success: 0
-- skipped: 0
+- success: 6
+- skipped: 1
 - failed: 0
-- unknown: 7
+- unknown: 0
 - automation_slo_status: docs/reports/AUTOMATION_SLO_STATUS.md

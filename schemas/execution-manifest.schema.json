@@ -3,21 +3,29 @@
   "title": "Execution Manifest",
   "type": "object",
   "properties": {
-    "name": { "type": "string" },
-    "version": { "type": "string" },
-    "jobs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "enabled": { "type": "boolean" }
+    "version": { "type": "integer", "minimum": 1 },
+    "updated_at_utc": { "type": "string", "format": "date-time" },
+    "root_default": { "type": "string" },
+    "execution_stack": {
+      "type": "object",
+      "properties": {
+        "canonical_scripts": { "type": "array", "items": { "type": "string" } },
+        "compatibility_wrappers": { "type": "array", "items": { "type": "string" } },
+        "config": {
+          "type": "object",
+          "properties": {
+            "env_file": { "type": "string" },
+            "systemd_template": { "type": "string" }
+          },
+          "required": ["env_file", "systemd_template"],
+          "additionalProperties": false
         },
-        "required": ["id", "enabled"],
-        "additionalProperties": false
-      }
+        "reports": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["canonical_scripts", "compatibility_wrappers", "config", "reports"],
+      "additionalProperties": false
     }
   },
-  "required": ["name", "version", "jobs"],
+  "required": ["version", "updated_at_utc", "root_default", "execution_stack"],
   "additionalProperties": false
 }

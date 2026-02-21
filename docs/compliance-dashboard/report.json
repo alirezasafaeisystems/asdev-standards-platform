@@ -1,42 +1,42 @@
 {
-  "generated_at_utc": "2026-02-20T17:58:08Z",
+  "generated_at_utc": "2026-02-21T13:25:36Z",
   "repo": "asdev-standards-platform",
-  "compliance_score": 0.0,
+  "compliance_score": 100.0,
   "checks": [
     {
-      "name": "lint",
-      "status": "unknown",
-      "source": "logs/unavailable"
-    },
-    {
-      "name": "typecheck",
-      "status": "unknown",
-      "source": "logs/unavailable"
-    },
-    {
-      "name": "test",
-      "status": "unknown",
-      "source": "logs/unavailable"
-    },
-    {
-      "name": "e2e",
-      "status": "unknown",
-      "source": "logs/unavailable"
-    },
-    {
       "name": "build",
-      "status": "unknown",
-      "source": "logs/unavailable"
-    },
-    {
-      "name": "security-audit",
-      "status": "unknown",
-      "source": "logs/unavailable"
+      "status": "success",
+      "source": "logs/verify.build.log"
     },
     {
       "name": "coverage",
-      "status": "unknown",
-      "source": "logs/unavailable"
+      "status": "success",
+      "source": "logs/verify.coverage.log"
+    },
+    {
+      "name": "e2e",
+      "status": "skipped",
+      "source": "logs/verify.e2e.log"
+    },
+    {
+      "name": "lint",
+      "status": "success",
+      "source": "logs/verify.lint.log"
+    },
+    {
+      "name": "security-audit",
+      "status": "success",
+      "source": "logs/verify.security-audit.log"
+    },
+    {
+      "name": "test",
+      "status": "success",
+      "source": "logs/verify.test.log"
+    },
+    {
+      "name": "typecheck",
+      "status": "success",
+      "source": "logs/verify.typecheck.log"
     }
   ]
 }

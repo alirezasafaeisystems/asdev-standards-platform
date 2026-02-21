@@ -1,34 +1,34 @@
 {
-  "generated_at_utc": "2026-02-20T17:58:08Z",
+  "generated_at_utc": "2026-02-21T13:25:36Z",
   "metadata": {
-    "git_sha": "32fdf0c4389ab5848252491990ba524dca64440d",
+    "git_sha": "d6de9ee249e38aee5daa21710e7d8d1c8e2967be",
     "github_run_id": "local",
     "generator": "scripts/write-compliance-attestation.sh"
   },
   "artifacts": [
     {
       "path": "docs/compliance-dashboard/report.json",
-      "sha256": "7ed2e96d4f640886c5fba5ccf7687d6b161a43db387aaf1da7fe2f06c8fa45f3"
+      "sha256": "88685fae8f449117cec91bfb7228c6c36005b4d85c365797dc5406d59d92a8f5"
     },
     {
       "path": "docs/compliance-dashboard/report.csv",
-      "sha256": "aa5543f26a71d576d09a947832147be61b2f906d9a005fd502417cff8bbf73c8"
+      "sha256": "1fc19fb881bf6c10d7c00c956453f7f07b8f164a2536be6aea54124e40a14712"
     },
     {
       "path": "docs/compliance-dashboard/history.json",
-      "sha256": "9146b1b543e9343f11d356f3f36ce0886b11171825d183ad1ee7d5e7772c130b"
+      "sha256": "791fb94b4fe7563b73d777c71733a1eaf116ebad011bc3e15ac687df9a196ebb"
     },
     {
       "path": "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md",
-      "sha256": "03aed3e4dcfc6266e0401ffaf840cf61aed598e284dc38d4f364d3b404339d4e"
+      "sha256": "3b8b8d698d876411859e12230981b63ad7dd0e8cd6d4d16210f9b08c1857786b"
     },
     {
       "path": "docs/reports/MONTHLY_EXECUTIVE_SUMMARY.md",
-      "sha256": "85403f320afa12c5aac06d23694325935b8c5478668387d6a8307c2fc8765acd"
+      "sha256": "3348fd1b18528189bca70371213342b6dace5055b01deec445fe8ec2ac004ee2"
     },
     {
       "path": "docs/reports/AUTOMATION_SLO_STATUS.md",
-      "sha256": "1c473771deccb8aef57df6c1c7f3bb963278d5dcbf74073d14b2d7e3976e12fe"
+      "sha256": "e12f5a33efbc8fae2c4366b5a2505dd5363803e9a5f455b746bc62e67f2426ab"
     }
   ]
 }
