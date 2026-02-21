@@ -58,3 +58,4 @@ Sources:
 - `PR Check Audit` strict mode: blocked (`prs_with_expected_context: 0/5` in `docs/reports/PR_CHECK_EMISSION_AUDIT.md`).
 - `Release Post Check`: done (`v0.1.0` passed).
 - Final roadmap transition to operational maintenance: deferred until strict audit passes.
+- Merge path is currently blocked by branch protection requirements on PR `#169` (needs external approval + required check completion).
