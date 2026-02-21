@@ -2,10 +2,6 @@
   "repo": "asdev-standards-platform",
   "points": [
     {
-      "generated_at_utc": "2026-02-21T11:54:06Z",
-      "compliance_score": 0.0
-    },
-    {
       "generated_at_utc": "2026-02-21T11:54:07Z",
       "compliance_score": 0.0
     },
@@ -208,7 +204,11 @@
     {
       "generated_at_utc": "2026-02-21T16:06:24Z",
       "compliance_score": 100.0
+    },
+    {
+      "generated_at_utc": "2026-02-21T16:39:03Z",
+      "compliance_score": 85.71
     }
   ],
-  "updated_at_utc": "2026-02-21T16:06:24Z"
+  "updated_at_utc": "2026-02-21T16:39:03Z"
 }

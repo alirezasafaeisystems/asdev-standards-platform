@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-02-21T16:12:24Z",
+  "generated_at": "2026-02-21T16:39:10Z",
   "kpis": {
-    "readiness_avg": "100.0",
+    "readiness_avg": "85.71",
     "roadmap_todo": 0,
     "roadmap_done": 12,
     "autopilot_failed": 1
@@ -32,7 +32,7 @@
     ]
   },
   "readiness": [
-    {"repo":"asdev-standards-platform","exit":"0","readiness":"operational-maintenance","score":100}
+    {"repo":"asdev-standards-platform","exit":"0","readiness":"operational-maintenance","score":86}
   ],
   "sources": [
     "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md",
