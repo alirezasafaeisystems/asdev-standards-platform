@@ -4,5 +4,5 @@ coverage,success,logs/verify.coverage.log
 e2e,skipped,logs/verify.e2e.log
 lint,success,logs/verify.lint.log
 security-audit,success,logs/verify.security-audit.log
-test,success,logs/verify.test.log
+test,failed,logs/verify.test.log
 typecheck,success,logs/verify.typecheck.log

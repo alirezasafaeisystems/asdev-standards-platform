@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-02-21T16:06:24Z",
+  "generated_at_utc": "2026-02-21T16:39:03Z",
   "repo": "asdev-standards-platform",
-  "compliance_score": 100.0,
+  "compliance_score": 85.71,
   "checks": [
     {
       "name": "build",
@@ -30,7 +30,7 @@
     },
     {
       "name": "test",
-      "status": "success",
+      "status": "failed",
       "source": "logs/verify.test.log"
     },
     {
