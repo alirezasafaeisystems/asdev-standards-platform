@@ -1,55 +1,44 @@
 {
-  "generated_at": "2026-02-14T21:50:04Z",
+  "generated_at": "2026-02-21T16:05:48Z",
   "kpis": {
-    "readiness_avg": "55",
-    "roadmap_todo": 29,
-    "roadmap_done": 0,
-    "autopilot_failed": 0
+    "readiness_avg": "100.0",
+    "roadmap_todo": 0,
+    "roadmap_done": 12,
+    "autopilot_failed": 1
   },
   "autopilot": {
-    "stamp": "2026-02-14T21:44:55Z",
-    "phase": "health",
-    "success": 7,
-    "failed": 0
+    "stamp": "2026-02-21T13:08:23Z",
+    "phase": "pass",
+    "success": 13,
+    "failed": 1
   },
   "p0": [
-    {"check":"Freeze Guard","status":"PASS"},
-    {"check":"Main Branch Sync Policy","status":"PASS"},
-    {"check":"GitHub App Auth Guard","status":"PASS"},
-    {"check":"Baseline Health (lint/typecheck/test/build)","status":"PASS"}
+    {"check":"PR Check Audit (strict)","status":"PASS"},
+    {"check":"Release Post Check","status":"PASS"},
+    {"check":"Roadmap Maintenance Transition","status":"PASS"}
   ],
   "priority_steps": [
-    {"step":"apply_blueprint","status":"PASS"},
-    {"step":"autopilot_scan","status":"PASS"},
-    {"step":"prioritize_tasks","status":"PASS"},
-    {"step":"p0_stabilization","status":"PASS"},
-    {"step":"pipeline_max","status":"PASS"},
-    {"step":"readiness_score","status":"PASS"}
+    {"step":"NS-01","status":"done"},
+    {"step":"NS-02","status":"done"},
+    {"step":"NS-03","status":"done"}
   ],
   "queue": {
-    "todo": 29,
-    "done": 0,
+    "todo": 0,
+    "done": 12,
     "by_priority": [
-      {"priority":"P0","todo":16},
-      {"priority":"P1","todo":43},
-      {"priority":"P2","todo":15}
+      {"priority":"P0","todo":0},
+      {"priority":"P1","todo":0},
+      {"priority":"P2","todo":0}
     ]
   },
   "readiness": [
-    {"repo":"asdev-portfolio","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-persiantoolbox","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-family-rosca","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-nexa-vpn","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-creator-membership-ir","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-automation-hub","exit":"127","readiness":"degraded","score":40},
-    {"repo":"asdev-standards-platform","exit":"0","readiness":"ready","score":100},
-    {"repo":"asdev-codex-reviewer","exit":"0","readiness":"ready","score":100}
+    {"repo":"asdev-standards-platform","exit":"0","readiness":"operational-maintenance","score":100}
   ],
   "sources": [
-    "docs/reports/PRODUCTION_READINESS_SCORE_2026-02-14.md",
-    "docs/reports/P0_STABILIZATION_2026-02-14.md",
-    "docs/reports/PRIORITY_EXECUTION_RUN_2026-02-14.md",
-    "docs/reports/ROADMAP_PRIORITY_TASKS_2026-02-14.md",
-    "docs/reports/AUTOPILOT_EXECUTION_REPORT.md"
+    "docs/reports/WEEKLY_COMPLIANCE_SUMMARY.md",
+    "docs/reports/REMAINING_EXECUTION_AUTORUN_2026-02-21.md",
+    "docs/reports/REMAINING_EXECUTION_AUTORUN_2026-02-21.md",
+    "ROADMAP_EXECUTION_UNIFIED.md",
+    "docs/reports/AUTONOMOUS_MAX_STATUS.md"
   ]
 }

@@ -4,12 +4,12 @@
 Provide one operational UI for ASDEV standards execution without replacing existing scripts.
 
 ## Data Sources
-Dashboard reads existing generated artifacts:
-- `docs/reports/PRODUCTION_READINESS_SCORE_<date>.md`
-- `docs/reports/P0_STABILIZATION_<date>.md`
-- `docs/reports/PRIORITY_EXECUTION_RUN_<date>.md`
-- `docs/reports/ROADMAP_TASK_QUEUE_<date>.csv`
-- `docs/reports/AUTOPILOT_EXECUTION_REPORT.md`
+Dashboard reads generated artifacts from `docs/reports/`:
+- `PRODUCTION_READINESS_SCORE_<date>.md` (latest)
+- `P0_STABILIZATION_<date>.md` (latest)
+- `PRIORITY_EXECUTION_RUN_<date>.md` (latest)
+- `ROADMAP_TASK_QUEUE_<date>.csv` (optional; fallback to roadmap/task reports)
+- `AUTOPILOT_EXECUTION_REPORT.md`
 
 ## What It Shows
 - Executive KPIs: readiness average, roadmap todo/done, autopilot failed count
@@ -53,4 +53,4 @@ make management-dashboard-data
 
 ## Notes
 - Dashboard is read-only by design.
-- It depends on generated reports; if reports are missing, run `make reports`.
+- If required source reports are missing, generate them first with `make reports`.
