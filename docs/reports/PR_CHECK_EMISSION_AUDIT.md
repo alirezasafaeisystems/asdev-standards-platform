@@ -1,6 +1,6 @@
 # PR Check Emission Audit
 
-- generated_at_utc: 2026-02-21T13:25:56Z
+- generated_at_utc: 2026-02-21T13:36:41Z
 - repository: alirezasafaeisystems/asdev-standards-platform
 - required_branch_protection_context: PR Validation / quality-gate
 - expected_context: PR Validation / quality-gate
@@ -8,14 +8,14 @@
 - sample_size_target: 5
 - minimum_sample_required: 3
 - merged_prs_checked: 5
-- prs_with_expected_context: 0
-- status: warn
-- reason: required context missing on one or more checked PRs
+- prs_with_expected_context: 5
+- status: pass
+- reason: all checked PRs emitted required context
 
 ## PR Sample Audit
-- PR #168: context missing
-- PR #167: context missing
-- PR #166: context missing
-- PR #163: context missing
-- PR #157: context missing
+- PR #169: context present (pr-rollup)
+- PR #168: context present (merge-sha)
+- PR #167: context present (merge-sha)
+- PR #166: context present (merge-sha)
+- PR #163: context present (merge-sha)
 
