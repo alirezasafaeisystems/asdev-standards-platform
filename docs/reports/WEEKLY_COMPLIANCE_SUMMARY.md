@@ -1,6 +1,6 @@
 # Weekly Compliance Summary
 
-- generated_at_utc: 2026-02-20T17:58:08Z
+- generated_at_utc: 2026-02-21T13:05:34Z
 - repo: asdev-standards-platform
 - compliance_score: 0.0
 - total_checks: 7

@@ -13,6 +13,7 @@ Standards, automation orchestration, and governance tooling for ASDEV repositori
 - `make pr-check-evidence`
 - `make pr-check-audit`
 - `make release-post-check`
+- `make autonomous-max`
 - `make p0-stabilization`
 
 ## Management Dashboard
